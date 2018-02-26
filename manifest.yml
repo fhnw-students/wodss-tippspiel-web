@@ -1,0 +1,11 @@
+---
+applications:
+- name: wodss-tippspiel-web
+  memory: 64MB
+  instances: 1
+  buildpack: staticfile_buildpack
+  path: ./dist/
+
+  env:
+    NODE_ENV: production
+    FORCE_HTTPS: true
