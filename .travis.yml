@@ -1,12 +1,10 @@
 language: node_js
 node_js:
-  - "6.9.1"
+  - "8.9.4"
 install:
   - yarn install
 script:
   - npm test
-  - npm start -- build
-  - npm start -- mobile.setup
+  - npm start build
 notifications:
   email: false
-  hipchat: 861e4f14f03ed33d069f1083a6c9f5@2679708
