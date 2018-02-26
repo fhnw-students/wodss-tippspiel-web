@@ -1,4 +1,4 @@
-# wodss-tippspiel-web [![Build Status](https://api.travis-ci.org/fhnw-students/wodss-tippspiel-web.svg?branch=master)](https://travis-ci.org/fhnw-students/wodss-tippspiel-web)
+# wodss-tippspiel-web [![Build Status](https://travis-ci.org/fhnw-students/wodss-tippspiel-web.svg?branch=develop)](https://travis-ci.org/fhnw-students/wodss-tippspiel-web) [![Build Status](https://travis-ci.org/fhnw-students/wodss-tippspiel-web.svg?branch=master)](https://travis-ci.org/fhnw-students/wodss-tippspiel-web)
 
 ## Getting started
 
