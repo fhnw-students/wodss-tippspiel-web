@@ -19,3 +19,4 @@ deploy:
   on:
     repo: fhnw-students/wodss-tippspiel-web
     branch: develop
+
