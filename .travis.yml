@@ -7,6 +7,7 @@ script:
 - npm start build
 notifications:
   email: false
+  slack: fhnw-wodss:2eK9ca6usY3orK9hBDdV8vvA
 deploy:
   provider: cloudfoundry
   api: https://api.lyra-836.appcloud.swisscom.com
