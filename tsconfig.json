@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "sourceRoot": "src",
+    "importHelpers": true,
+    "jsx": "react",
+    "lib": [
+      "es2017", "dom"
+    ],
+    // Be strict
+    "alwaysStrict": true,
+    "strict": true,
+    "noImplicitAny": false,
+    // For i18next and any other module with default export error
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "static",
+    "cordova"
+  ]
+}

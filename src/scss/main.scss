@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+/**
+ * Third-pary libraries and fonts
+ */
+@import "variables";
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../node_modules/animate.css/animate.css';
+
+/**
+ * Common styles
+ */
+@import 'base';

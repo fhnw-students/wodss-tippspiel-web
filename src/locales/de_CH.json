@@ -1,0 +1,15 @@
+{
+  "NAV": {
+    "LANG": {
+      "DE": "Deutsch",
+      "EN": "Englisch"
+    }
+  },
+  "APP": {
+    "TITLE": "Tippspiel"
+  },
+  "HOME": {
+    "TITLE": "WODSS WM Tippspiel",
+    "DESCRIPTION": "Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli"
+  }
+}
