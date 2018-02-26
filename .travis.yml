@@ -8,3 +8,4 @@ script:
   - npm start build
 notifications:
   email: false
+
