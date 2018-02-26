@@ -9,7 +9,7 @@ notifications:
   email: false
 deploy:
   provider: cloudfoundry
-  api: https://api.scapp-console.swisscom.com
+  api: https://api.lyra-836.appcloud.swisscom.com
   username: gery.hirschfeld@w3tec.ch
   password:
     secure: QnaKfhLO8aUpEgLgYGZVHMA+g7gRVRDXwu0uRlzbvK3hjXKnOw/z+gbpytph0luJhLRrxdwB+KsDJ4I5gkDcDKK+PzESHZ0ALzFDmXCU9u72KyEbrAX7SVoiKNcasgg0Z/wGwE4mi4FK07xmr+lsORqBWjqPIvrdz8dWfbVAXvuvT6BiisTjMLQscIVCFqPBXp/ZLLgl3lGAdQgZ8FmN8saRrJKwvC7Yu/RRZj7ACsjV1GzJiiOxHgbqlSbfb4cLzIEIOGLpcuvsrwin88scUVNj9TphwZpRl/ahZD14JaJUVqbIiqN8f2+4xgaCOph/mu2nn6bUtVjINXrqUpVzwxoaBiqfVOIkOGJdPnCkX+10PRd5j1hGN1XsJJNiOCW6MWYYZe8Y/lSyHRI96sASQXVxTK1PbOlLAL1lMJtZsA8aGYRnBgh3oUIlzg0KTvV0u+IamIuzN3fXIs5N937RyhJrgzY2HrXRk/GWOGAFXOrH3bxUlw0GmhL2ki/sRDdCAq5Ikx5+su+QudI3GOdf/518lH0nZXmKv7EGD4zX8eywuSW+M0Cl/ORIbNuvDRICquSrRIbBZwawA1WIxFFQBkAsIq+cWSx1haGIb73/Dz/DGd2j3nGxxLOCiN3rLJroc4RpANuevupLkbn5gUczoN3rzFGxdR+f8uk09eKxyMY=
