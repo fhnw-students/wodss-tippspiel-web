@@ -8,13 +8,10 @@ script:
 notifications:
   email: false
 deploy:
-  provider: cloudfoundry
-  api: https://api.lyra-836.appcloud.swisscom.com
-  username: gery.hirschfeld@w3tec.ch
-  password:
-    secure: QnaKfhLO8aUpEgLgYGZVHMA+g7gRVRDXwu0uRlzbvK3hjXKnOw/z+gbpytph0luJhLRrxdwB+KsDJ4I5gkDcDKK+PzESHZ0ALzFDmXCU9u72KyEbrAX7SVoiKNcasgg0Z/wGwE4mi4FK07xmr+lsORqBWjqPIvrdz8dWfbVAXvuvT6BiisTjMLQscIVCFqPBXp/ZLLgl3lGAdQgZ8FmN8saRrJKwvC7Yu/RRZj7ACsjV1GzJiiOxHgbqlSbfb4cLzIEIOGLpcuvsrwin88scUVNj9TphwZpRl/ahZD14JaJUVqbIiqN8f2+4xgaCOph/mu2nn6bUtVjINXrqUpVzwxoaBiqfVOIkOGJdPnCkX+10PRd5j1hGN1XsJJNiOCW6MWYYZe8Y/lSyHRI96sASQXVxTK1PbOlLAL1lMJtZsA8aGYRnBgh3oUIlzg0KTvV0u+IamIuzN3fXIs5N937RyhJrgzY2HrXRk/GWOGAFXOrH3bxUlw0GmhL2ki/sRDdCAq5Ikx5+su+QudI3GOdf/518lH0nZXmKv7EGD4zX8eywuSW+M0Cl/ORIbNuvDRICquSrRIbBZwawA1WIxFFQBkAsIq+cWSx1haGIb73/Dz/DGd2j3nGxxLOCiN3rLJroc4RpANuevupLkbn5gUczoN3rzFGxdR+f8uk09eKxyMY=
-  organization: fhnw
-  space: wodss
+  provider: heroku
+  api_key:
+    secure: BJ6sqd9F3AyqqumySl1f0HN5byAl4bZwLCfEAQx1WM/4Ilq+11A3SIHP7GYh58WcOSJHdQGvDUBs+D1jjoS9BtzBOIeiDDdkCQ9UlC3/OMKvpHj1QdVorFqnsKl1PUnA561Gq99ssBmNq1QE4y+fYDiybAtqCQbhRrIVJCVTLexMWlGVTvhidQvMZ28ggyKiFQZYFR5n6oKSEWSgaaSifuE/FHtuESOF2lXEMrvSkuAmHdJMswmct14LdyOBhnNh49Na+9U35Mqf121HT8MTGNSjt6O+bfbgPYwIHUG2OSvDgy2Gfo6wt4cENxuZIiX1NYJpKsWYEpwaZMZHYmZ47f8V3jVK9aiUKhiT+xkeIJhFzRw5s7z9onCETzHp1fjIC8XmPZTE/qP7klYMyFKbwhZT9O3e//GbIbdeW1fFo4gYNPsd04PdP5C9qD5GAxC+BH6EPgSOxApQhc9uHA1K0GvSP73cg2lnSmSW0CPS13YZbvzxZtf6rD1BBfVX/jjzG/xEyaKKA7PImZ9GmYGHGuxbQ5KQuDg1QXIn1zOWpfEr0RPtfQ8GOIed751RSWmQpMd6PINB8NfIhsxdsAQvWx/1BaZEKHjD/knPPldQDGMVBed3QIuVOq1Y0f8NQPQAlpMB4bCB0dEHGCCvpRJv9ku8UD2l0F9AGHmgeFjKBWg=
+  app: wodss-tippspiel-web
   on:
     repo: fhnw-students/wodss-tippspiel-web
     branch: develop
