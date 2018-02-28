@@ -36,6 +36,9 @@ Thumbs.db
 # Docs #
 /docs
 
+# Builded app #
+/dist
+
 # Cordova #
 cordova/plugins
 cordova/platforms
