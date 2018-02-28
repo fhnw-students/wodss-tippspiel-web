@@ -1,1 +1,1 @@
-web: yarn install --production=false && npm start build && node server.js
+web: node server.js
