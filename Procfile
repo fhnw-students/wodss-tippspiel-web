@@ -1,1 +1,1 @@
-web: yarn install && node_modules/.bin/nps build && node server.js
+web: yarn install && webpack --progress -p --env.production --env.extractCss --env.config=production && node server.js
