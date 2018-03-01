@@ -14,50 +14,137 @@
 
   <% if (htmlWebpackPlugin.options.platform === 'browser') { %>
     <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
-  <% } %>
+    <% } %>
 
-  <style>
-    .splash {
-      text-align: center;
-      margin: 10% 0 0 0;
-    }
+      <style>
+        .splash {
+          text-align: center;
+          margin: 10% 0 0 0;
+        }
 
-    .splash .message {
-      font-size: 72px;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
+        .sk-folding-cube {
+          margin: 20px auto;
+          width: 40px;
+          height: 40px;
+          position: relative;
+          -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+        }
 
-    .sk-three-bounce {
-      margin: 40px auto;
-    }
+        .sk-folding-cube .sk-cube {
+          float: left;
+          width: 50%;
+          height: 50%;
+          position: relative;
+          -webkit-transform: scale(1.1);
+          -ms-transform: scale(1.1);
+          transform: scale(1.1);
+        }
 
-    .sk-three-bounce .sk-child {
-      width: 30px;
-      height: 30px;
-      background-color: #333;
-      border-radius: 100%;
-      display: inline-block;
-      animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
-    }
+        .sk-folding-cube .sk-cube:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #333;
+          -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+          animation: sk-foldCubeAngle 2.4s infinite linear both;
+          -webkit-transform-origin: 100% 100%;
+          -ms-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+        }
 
-    .sk-three-bounce .sk-bounce1 { animation-delay: -0.32s; }
-    .sk-three-bounce .sk-bounce2 { animation-delay: -0.16s; }
+        .sk-folding-cube .sk-cube2 {
+          -webkit-transform: scale(1.1) rotateZ(90deg);
+          transform: scale(1.1) rotateZ(90deg);
+        }
 
-    @keyframes sk-three-bounce {
-      0%, 80%, 100% { transform: scale(0); }
-      40% { transform: scale(1); }
-    }
-  </style>
+        .sk-folding-cube .sk-cube3 {
+          -webkit-transform: scale(1.1) rotateZ(180deg);
+          transform: scale(1.1) rotateZ(180deg);
+        }
+
+        .sk-folding-cube .sk-cube4 {
+          -webkit-transform: scale(1.1) rotateZ(270deg);
+          transform: scale(1.1) rotateZ(270deg);
+        }
+
+        .sk-folding-cube .sk-cube2:before {
+          -webkit-animation-delay: .3s;
+          animation-delay: .3s;
+        }
+
+        .sk-folding-cube .sk-cube3:before {
+          -webkit-animation-delay: .6s;
+          animation-delay: .6s;
+        }
+
+        .sk-folding-cube .sk-cube4:before {
+          -webkit-animation-delay: .9s;
+          animation-delay: .9s;
+        }
+
+        @-webkit-keyframes sk-foldCubeAngle {
+          0%,
+          10% {
+            -webkit-transform: perspective(140px) rotateX(-180deg);
+            transform: perspective(140px) rotateX(-180deg);
+            opacity: 0;
+          }
+
+          25%,
+          75% {
+            -webkit-transform: perspective(140px) rotateX(0deg);
+            transform: perspective(140px) rotateX(0deg);
+            opacity: 1;
+          }
+
+          100%,
+          90% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
+            transform: perspective(140px) rotateY(180deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes sk-foldCubeAngle {
+          0%,
+          10% {
+            -webkit-transform: perspective(140px) rotateX(-180deg);
+            transform: perspective(140px) rotateX(-180deg);
+            opacity: 0;
+          }
+
+          25%,
+          75% {
+            -webkit-transform: perspective(140px) rotateX(0deg);
+            transform: perspective(140px) rotateX(0deg);
+            opacity: 1;
+          }
+
+          100%,
+          90% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
+            transform: perspective(140px) rotateY(180deg);
+            opacity: 0;
+          }
+        }
+      </style>
 </head>
 
 <body>
   <div id="root">
     <div class="splash">
-      <div class="message"><%- htmlWebpackPlugin.options.metadata.title %></div>
-      <div class="sk-three-bounce">
-        <div class="sk-child sk-bounce1"></div>
-        <div class="sk-child sk-bounce2"></div>
-        <div class="sk-child sk-bounce3"></div>
+      <!-- <div class="message">
+        <%- htmlWebpackPlugin.options.metadata.title %>
+      </div> -->
+      <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
       </div>
     </div>
   </div>
@@ -65,12 +152,12 @@
   <% if (htmlWebpackPlugin.options.metadata.platform === 'mobile') { %>
     <!-- Cordova -->
     <script src="cordova.js"></script>
-  <% } %>
-
-  <% if (htmlWebpackPlugin.options.metadata.server) { %>
-    <!-- Webpack Dev Server reload -->
-    <script src="/webpack-dev-server.js"></script>
     <% } %>
+
+      <% if (htmlWebpackPlugin.options.metadata.server) { %>
+        <!-- Webpack Dev Server reload -->
+        <script src="/webpack-dev-server.js"></script>
+        <% } %>
 </body>
 
 </html>

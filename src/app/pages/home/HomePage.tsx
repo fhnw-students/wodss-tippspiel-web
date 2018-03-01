@@ -1,9 +1,9 @@
-import { faCoffee, faRocket, faStar } from '@fortawesome/fontawesome-free-solid';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faCoffee, faRocket, faStar } from "@fortawesome/fontawesome-free-solid";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 
-import * as React from 'react';
-import { translate } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import { translate } from "react-i18next";
+import { Link } from "react-router-dom";
 
 /**
  * @name HomePage
