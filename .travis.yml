@@ -5,7 +5,7 @@ install:
 - yarn install
 script:
 - npm start build
-- npm start test
+- npm test
 - npm version minor
 notifications:
   email: false
