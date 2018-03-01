@@ -1,6 +1,6 @@
 {
   "name": "wodss-tippspiel-web",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "title": "wodss-tippspiel-web",
   "description": "wodss-tippspiel-web",
   "main": "dist/app.bundle.js",

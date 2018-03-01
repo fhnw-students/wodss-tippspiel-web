@@ -5,8 +5,6 @@ install:
 - yarn install
 script:
 - npm start build
-- npm test
-- npm version minor
 notifications:
   email: false
   slack: fhnw-wodss:2eK9ca6usY3orK9hBDdV8vvA
