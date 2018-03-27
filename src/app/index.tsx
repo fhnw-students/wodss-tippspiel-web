@@ -10,6 +10,11 @@ import { i18n } from './config/i18n';
 import { createLogger } from './config/logger';
 import { configureStore } from './config/store';
 
+// Fontawesome setup
+import fontawesome from '@fortawesome/fontawesome';
+import fontawesomeSolid from '@fortawesome/fontawesome-free-solid';
+fontawesome.library.add(fontawesomeSolid);
+
 const log = createLogger("index");
 const store = configureStore();
 
