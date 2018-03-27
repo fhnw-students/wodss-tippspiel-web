@@ -12,10 +12,10 @@ export const Footer = ({ }) => (
     <div className="container">
       <div className="row">
         <div className="col">
-          <p className="text-muted">{getAppName()} © w3tec 2017</p>
+          <p>{getAppName()} © HeimHirschEli</p>
         </div>
         <div className="col text-right">
-          <p className="text-muted">Portal {getAppVersion()} - API {}</p>
+          <p>Portal {getAppVersion()} - API {}</p>
         </div>
       </div>
     </div>

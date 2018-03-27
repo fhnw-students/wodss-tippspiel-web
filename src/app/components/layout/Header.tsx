@@ -9,7 +9,7 @@ import { NavMenuLink } from './nav/NavMenuLink';
  */
 export const Header = ({ }) => (
   <header>
-    <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
       <div className="container">
         <a className="navbar-brand" href="#">
           <span>Tippspiel</span>
