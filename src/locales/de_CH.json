@@ -9,7 +9,21 @@
     "TITLE": "Tippspiel"
   },
   "HOME": {
-    "TITLE": "WODSS WM Tippspiel",
+    "TITLE": "Weltmeisterschaft 2018 in Russland",
+    "SUB_TITLE": "Tippspiel",
+    "DESCRIPTION": "Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli",
+    "REGISTER_LINK": "Jetzt registrieren",
+    "RESET_PASSWORD": "Passwort vergessen"
+  },
+  "GAMES": {
+    "TITLE": "Spiele",
     "DESCRIPTION": "Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli"
+  },
+  "LOGIN": {
+    "SIGN_IN": "Anmelden"
+  },
+  "LABEL": {
+    "USERNAME": "Username",
+    "PASSWORD": "Passwort"
   }
 }

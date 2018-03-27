@@ -11,5 +11,9 @@
   "HOME": {
     "TITLE": "WODSS WM Bet-Game",
     "DESCRIPTION": "Project of David Heimgartner, Gerhard Hirschfeld & Ken Iseli"
+  },
+  "GAMES": {
+    "TITLE": "Games",
+    "DESCRIPTION": "Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli"
   }
 }
