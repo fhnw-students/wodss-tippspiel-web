@@ -1,21 +1,21 @@
 import * as React from "react";
-import { translate } from "react-i18next";
+// import { translate } from "react-i18next";
 import { Link } from "react-router-dom";
 
 /**
  * @name GamesPage
  * @description First page after the login.
  */
-@translate()
+// @translate()
 export default class GamesPage extends React.Component<any, any> {
 
   public render(): React.ReactNode {
-    const { t } = this.props;
+    // const { t } = this.props;
     return (
       <div className="container">
         <div className="jumbotron">
-          <h1>🚀{t("GAMES.TITLE")}</h1>
-          <p>{t("GAMES.DESCRIPTION")}</p>
+          {/* <h1>🚀{t("GAMES.TITLE")}</h1> */}
+          {/* <p>{t("GAMES.DESCRIPTION")}</p> */}
           <button type="button" className="btn btn-primary">Primary</button>
           <button type="button" className="btn btn-secondary">Secondary</button>
           <button type="button" className="btn btn-success">Success</button>

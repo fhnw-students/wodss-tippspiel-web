@@ -1,18 +1,18 @@
 import * as React from "react";
-import { translate } from "react-i18next";
+// import { translate } from "react-i18next";
 
 /**
  * @name ResetPasswordPage
  * @description Site to request a reset of his password
  */
-@translate()
+// @translate()
 export default class ResetPasswordPage extends React.Component<any, any> {
 
   public render(): React.ReactNode {
-    const { t } = this.props;
+    // const { t } = this.props;
     return (
       <div className="container">
-        <h1>{t("RESET_PASSWORD.TITLE")}</h1>
+        {/* <h1>{t("RESET_PASSWORD.TITLE")}</h1> */}
 
         <p>Text</p>
 

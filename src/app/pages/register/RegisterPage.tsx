@@ -1,18 +1,18 @@
 import * as React from "react";
-import { translate } from "react-i18next";
+// import { translate } from "react-i18next";
 
 /**
  * @name RegisterPage
  * @description Her is a user able to register to the app
  */
-@translate()
+// @translate()
 export default class RegisterPage extends React.Component<any, any> {
 
   public render(): React.ReactNode {
-    const { t } = this.props;
+    // const { t } = this.props;
     return (
       <div className="container">
-        <h1>{t("REGISTER.TITLE")}</h1>
+        {/* <h1>{t("REGISTER.TITLE")}</h1> */}
 
         <p>Text</p>
 
