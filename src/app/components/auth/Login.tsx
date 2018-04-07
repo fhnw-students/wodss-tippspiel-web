@@ -1,5 +1,6 @@
 import * as React from "react";
 import { I18n } from "react-i18next";
+import Trans from "../common/Trans";
 
 import "./Login.scss";
 
@@ -23,7 +24,7 @@ export default class Login extends React.Component<Props, State> {
                 <input type="password" id="inputPassword" className="form-control" placeholder={t("LABEL.PASSWORD")} required />
 
                 <button className="btn btn-lg btn-primary btn-block" type="submit">
-                  {t("LOGIN.SIGN_IN")}
+                  <Trans translate="LOGIN.SIGN_IN"></Trans>
                 </button>
               </form>
             </div>
