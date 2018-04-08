@@ -7,7 +7,7 @@ import './Footer.scss';
  * @name Footer
  * @description Renders the footer for the app.
  */
-export const Footer = ({ }) => (
+const Footer = ({ }) => (
   <footer className="footer">
     <div className="container">
       <div className="row">
@@ -21,3 +21,5 @@ export const Footer = ({ }) => (
     </div>
   </footer>
 );
+
+export default Footer;

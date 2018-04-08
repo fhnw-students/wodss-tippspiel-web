@@ -12,9 +12,16 @@
     "jsdoc-format": true,
     "max-line-length": [
       true,
-      140
+      180
     ],
-    "no-console": [true, "log", "info", "debug", "warn", "error"],
+    "no-console": [
+      true,
+      "log",
+      "info",
+      "debug",
+      "warn",
+      "error"
+    ],
     "member-access": true,
     "member-ordering": false,
     "no-arg": true,
