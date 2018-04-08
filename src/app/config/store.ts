@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux';
+import { createStore, applyMiddleware, Store, Middleware, compose } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
