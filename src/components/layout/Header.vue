@@ -21,6 +21,20 @@
           <ul class="navbar-nav mt-2 mt-md-0">
             <NavLanguageSelect />
           </ul>
+
+          <router-link
+            class="btn btn-outline-secondary my-2 my-md-2"
+            v-if="$route.name === 'register'"
+            to="login">
+            {{ $t("login.sign_in") }}
+          </router-link>
+          <router-link
+            class="btn btn-outline-secondary my-2 my-md-2"
+            v-if="$route.name === 'login'"
+            to="register">
+            {{ $t("register.title") }}
+          </router-link>
+
         </div>
       </div>
     </nav>
@@ -37,6 +51,15 @@ import NavLanguageSelect from './NavLanguageSelect.vue';
     NavLanguageSelect,
   },
 })
-export default class Header extends Vue {}
+export default class Header extends Vue { }
 </script>
+
+<style lang="scss" scoped>
+  a.btn-outline-secondary {
+    margin-left: 10px;
+    background: rgba($color: #BBB28D, $alpha: .15);
+    border-width: 2px;
+  }
+</style>
+
 

@@ -36,9 +36,4 @@ export default {
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
   },
-  validation: {
-    messages: {
-      _default: (e: any) => e + ' ist ungültig.',
-    },
-  },
 };

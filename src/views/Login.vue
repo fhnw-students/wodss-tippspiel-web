@@ -1,8 +1,8 @@
 <template>
   <div class="login-page container">
     <div class="row justify-content-sm-center">
-      <div class="col col-sm-6 col-md-4">
-        <div class="row login">
+      <div class="col col-sm-6 col-md-6 card">
+        <div class="card-body login">
           <form class="form-signin" noValidate>
 
             <h2>{{ $t('login.title') }}</h2>
@@ -33,13 +33,8 @@
             </button>
 
           </form>
-        </div>
-        <div class="row links">
-          <div class="col col-sm-6">
-            <router-link to="register">{{ $t('login.register_link') }}</router-link>
-          </div>
-          <div class="col col-sm-6 text-right">
-            <router-link to="reset">{{ $t('login.reset_password_link') }}</router-link>
+          <div class=" links">
+              <router-link to="reset">{{ $t('login.reset_password_link') }}</router-link>
           </div>
         </div>
       </div>
@@ -89,7 +84,7 @@ export default class Login extends Vue {
 
 <style lang="scss">
 .login-page {
-  .row.links {
+  .links {
     margin-top: 15px;
   }
 }
