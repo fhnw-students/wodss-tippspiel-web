@@ -22,7 +22,7 @@ export const SIGN_IN_USER = 'SIGN_IN_USER';
 // -------------------------------------------------------------------------
 
 export const actions: ActionTree<AuthState, AuthState> = {
-  [SIGN_IN_USER]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials) {
+  [SIGN_IN_USER]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials): void {
     commit(SIGN_IN_USER_REQUESTED);
     setTimeout(() => commit(SIGN_IN_USER_SUCCESS, 'token'), 1000);
   },

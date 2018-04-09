@@ -14,8 +14,8 @@
 </template>
 
 <style lang="scss">
-footer.footer {
-  font-size: .8em;
-  background: transparent;
-}
+  footer.footer {
+    font-size: .8em;
+    background: transparent;
+  }
 </style>

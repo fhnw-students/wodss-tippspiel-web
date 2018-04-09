@@ -52,6 +52,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Watch } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
+
 import { AuthState, AuthNamespace, AuthGetters, AuthActions, Credentials } from '@/states/modules/auth';
 
 @Component

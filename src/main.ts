@@ -4,6 +4,7 @@ import fontawesome from '@fortawesome/fontawesome';
 import fontawesomeSolid from '@fortawesome/fontawesome-free-solid';
 import * as Bluebird from 'bluebird';
 import 'bootstrap';
+import 'isomorphic-fetch';
 import 'jquery';
 import VeeValidate, { Validator } from 'vee-validate';
 import de from 'vee-validate/dist/locale/de';
@@ -27,15 +28,15 @@ Vue.config.productionTip = false;
 Vue.use(Logger);
 
 Vue.use(VeeValidate, {
-  locale: i18n.locale,
   dictionary: { en, de },
+  locale: i18n.locale,
 });
 Validator.localize(i18n.locale);
 
 new Vue({
+  i18n,
   router: getRouter(store),
   store,
-  i18n,
   render: (h) => h(App),
 }).$mount('#app');
 

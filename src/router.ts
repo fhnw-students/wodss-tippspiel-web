@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import { AuthGetters } from './states/modules/auth/index';
 import Games from './views/Games.vue';
 import Login from './views/Login.vue';
-import Register from './views/Register.vue';
 import NotFound from './views/NotFound.vue';
-import { AuthGetters } from './states/modules/auth/index';
+import Register from './views/Register.vue';
 
 Vue.use(Router);
 

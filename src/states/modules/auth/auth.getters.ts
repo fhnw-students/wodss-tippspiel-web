@@ -11,7 +11,7 @@ export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
 // -------------------------------------------------------------------------
 
 export const getters = {
-  [IS_AUTHENTICATED](state: AuthState) {
+  [IS_AUTHENTICATED](state: AuthState): boolean {
     return state.isAuthenticated;
   },
 };

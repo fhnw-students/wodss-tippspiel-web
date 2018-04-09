@@ -4,7 +4,7 @@ import * as JSLogger from 'js-logger';
 import { createLogger } from '../config/logger.config';
 
 export const Logger: PluginObject<any> = {
-  install(Vue, options) {
+  install(Vue, options): void {
 
     Vue.prototype.$createLogger = (channelOrClass: string | any) => {
       try {
