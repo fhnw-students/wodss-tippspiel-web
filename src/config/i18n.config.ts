@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
+import { Validator } from 'vee-validate';
 
 import de from '@/locals/de';
 import en from '@/locals/en';

@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { Validator } from 'vee-validate';
 
 @Component
 export default class NavLanguageSelect extends Vue {
@@ -25,6 +26,7 @@ export default class NavLanguageSelect extends Vue {
 
   public setLocal(locale: string): void {
       this.$i18n.locale = locale;
+      Validator.localize(locale);
       localStorage.setItem('locale', locale);
   }
 
