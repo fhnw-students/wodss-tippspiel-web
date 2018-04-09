@@ -29,6 +29,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+
 import NavLanguageSelect from './NavLanguageSelect.vue';
 
 @Component({

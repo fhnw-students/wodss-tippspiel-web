@@ -1,6 +1,7 @@
-import { ActionTree, ActionContext } from 'vuex';
-import { AuthState } from './auth.state';
+import { ActionContext, ActionTree } from 'vuex';
+
 import { SIGN_IN_USER_REQUESTED, SIGN_IN_USER_SUCCESS } from './auth.mutations.types';
+import { AuthState } from './auth.state';
 
 // -------------------------------------------------------------------------
 // Define Types & Interfaces

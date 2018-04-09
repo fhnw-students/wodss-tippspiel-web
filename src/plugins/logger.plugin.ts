@@ -1,6 +1,8 @@
-import { PluginObject, PluginFunction } from 'vue';
 import * as _Vue from 'vue';
+import { PluginObject, PluginFunction } from 'vue';
+
 import * as JSLogger from 'js-logger';
+
 import { createLogger } from '../config/logger.config';
 
 export const Logger: PluginObject<any> = {

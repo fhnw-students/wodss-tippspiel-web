@@ -1,5 +1,5 @@
-import { getters, IS_AUTHENTICATED } from './auth.getters';
 import { actions, SIGN_IN_USER } from './auth.actions';
+import { getters, IS_AUTHENTICATED } from './auth.getters';
 import { mutations } from './auth.mutations';
 
 // -------------------------------------------------------------------------
