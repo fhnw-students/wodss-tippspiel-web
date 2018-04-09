@@ -32,21 +32,21 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, Getter, State } from 'vuex-class';
-import { AuthState, Credentials } from '../../states/modules/auth';
+import { AuthState, AuthNamespace, AuthGetters, AuthActions } from '../../states/modules/auth';
 
 @Component
 export default class Login extends Vue {
   public username = '';
   public password = '';
 
-  @State('auth')
+  @State(AuthNamespace)
   public authState: any;
 
-  @Getter('auth/isAuthenticated')
+  @Getter(AuthGetters.IsAuthenticated)
   public isAuthenticated: boolean;
 
-  @Action(`auth/signInUser`)
-  public signInUser: (cred: Credentials) => void;
+  @Action(AuthActions.SignInUser)
+  public signInUser: (cred: any) => void;
 
   private log = this.$createLogger(this);
 
