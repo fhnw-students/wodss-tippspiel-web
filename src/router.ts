@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Games from './views/Games.vue';
-import Home from './views/Home.vue';
+import Login from './views/Login.vue';
+import Register from './views/Register.vue';
 import NotFound from './views/NotFound.vue';
 import { AuthGetters } from './states/modules/auth/index';
 
@@ -14,15 +15,23 @@ export const getRouter = (store: any) => {
     mode: 'history',
     routes: [
       {
-        path: '/',
-        name: 'home',
-        component: Home,
+        path: '/login',
+        name: 'login',
+        component: Login,
         meta: {
           requiresAuth: false,
         },
       },
       {
-        path: '/games',
+        path: '/register',
+        name: 'register',
+        component: Register,
+        meta: {
+          requiresAuth: false,
+        },
+      },
+      {
+        path: '/',
         name: 'games',
         component: Games,
         meta: {
