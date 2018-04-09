@@ -1,7 +1,19 @@
 {
   "name": "wodss-tippspiel-web",
   "version": "0.1.0",
-  "private": true,
+  "author": "Gery Hirschfeld <gerhard.hirschfeld@students.fhnw.ch> (https://github.com/hirsch88)",
+  "contributors": [
+    {
+      "name": "Gery Hirschfeld <gerhard.hirschfeld@students.fhnw.ch> (https://github.com/hirsch88)"
+    },
+    {
+      "name": "Ken Iseli <ken.iseli@students.fhnw.ch> (https://github.com/hirsch88)"
+    },
+    {
+      "name": "David Heimgartner <david.heimgartner@students.fhnw.ch> (https://github.com/hirsch88)"
+    }
+  ],
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
