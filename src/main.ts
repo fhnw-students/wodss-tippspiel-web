@@ -10,7 +10,7 @@ import { appConfig } from './config/app.config';
 import { i18n } from './config/i18n.config';
 import { createLogger } from './config/logger.config';
 import { Logger } from './plugins/logger.plugin';
-import router from './router';
+import { getRouter } from './router';
 import store from './store';
 import './styles/main.scss';
 
@@ -20,7 +20,7 @@ Vue.config.productionTip = false;
 Vue.use(Logger);
 
 new Vue({
-  router,
+  router: getRouter(store),
   store,
   i18n,
   render: (h) => h(App),

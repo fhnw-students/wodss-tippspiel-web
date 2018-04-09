@@ -20,10 +20,14 @@
         required />
 
       <button
+        type="button"
         class="btn btn-lg btn-primary btn-block"
         v-on:click="signIn()">
         {{ $t("login.sign_in" )}}
       </button>
+
+      <!-- <h3>{{isAuthenticated}}</h3> -->
+
     </form>
   </div>
 </template>
@@ -31,35 +35,37 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Action, Getter, State } from 'vuex-class';
-import { AuthState, AuthNamespace, AuthGetters, AuthActions } from '../../states/modules/auth';
+import { Watch } from 'vue-property-decorator'
+import { Action, Getter } from 'vuex-class';
+import { AuthState, AuthNamespace, AuthGetters, AuthActions, Credentials } from '@/states/modules/auth';
 
 @Component
 export default class Login extends Vue {
   public username = '';
   public password = '';
 
-  @State(AuthNamespace)
-  public authState: any;
-
   @Getter(AuthGetters.IsAuthenticated)
   public isAuthenticated: boolean;
 
   @Action(AuthActions.SignInUser)
-  public signInUser: (cred: any) => void;
+  public signInUser: (cred: Credentials) => void;
 
   private log = this.$createLogger(this);
 
-  public created(): void {
-    this.log.info('created', this.authState);
-    this.log.info('signInUser', this.signInUser);
-  }
-
   public signIn(): void {
+    this.log.info('Try to sign in the user.');
     this.signInUser({
       username: this.username,
       password: this.password,
     });
+  }
+
+  @Watch('isAuthenticated')
+  private isAuthenticatedChanged(): void {
+    if (this.isAuthenticated) {
+      this.log.info('Sign in was successfull. Redirecting to /games.');
+      this.$router.push('/games');
+    }
   }
 
 }
