@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- 8.9.4
+install:
+- yarn install
+script:
+- yarn build
+notifications:
+  email: false
+  slack: fhnw-wodss:2eK9ca6usY3orK9hBDdV8vvA
