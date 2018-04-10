@@ -6,6 +6,7 @@ import Games from './views/Games.vue';
 import Login from './views/Login.vue';
 import NotFound from './views/NotFound.vue';
 import Register from './views/Register.vue';
+import Reset from './views/ResetPassword.vue';
 
 Vue.use(Router);
 
@@ -26,6 +27,14 @@ export const getRouter = (store: any) => {
         path: '/register',
         name: 'register',
         component: Register,
+        meta: {
+          requiresAuth: false,
+        },
+      },
+      {
+        path: '/reset',
+        name: 'reset',
+        component: Reset,
         meta: {
           requiresAuth: false,
         },

@@ -20,6 +20,12 @@ export default {
     register_link: 'Registrieren',
     reset_password_link: 'Passwort vergessen?',
   },
+  reset: {
+    title: 'Passwort zurücksetzen',
+    submit: 'Passwort zurücksetzen',
+    email: 'E-Mail',
+    successMessage: 'Es wurde eine E-Mail an <b>%{email}</b> verschickt. Bitte überprüfen Sie Ihre Mailbox.',
+  },
   register: {
     title: 'Registrierung',
     submit: 'Erstellen',
