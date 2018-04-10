@@ -17,6 +17,11 @@ export default {
   login: {
     sign_in: 'Sign in',
   },
+  reset: {
+    title: 'Reset password',
+    submit: 'Reset password',
+    email: 'E-Mail',
+  },
   label: {
     username: 'Username',
     password: 'Password',
