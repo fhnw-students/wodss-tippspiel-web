@@ -1,5 +1,5 @@
 <template>
-  <div class="games">
+  <section class="game-page">
     <h1>Games page</h1>
-  </div>
+  </section>
 </template>

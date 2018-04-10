@@ -1,5 +1,5 @@
 <template>
-  <div class="register-page container">
+  <section class="register-page">
     <div class="row justify-content-sm-center">
       <div class="card col-sm-12 col-md-6">
         <form class="card-body" noValidate>
@@ -88,7 +88,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
