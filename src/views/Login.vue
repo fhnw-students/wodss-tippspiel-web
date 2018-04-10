@@ -1,5 +1,5 @@
 <template>
-  <div class="login-page container">
+  <section class="login-page">
     <div class="row justify-content-sm-center">
       <div class="col col-sm-6 col-md-6 card">
         <div class="card-body login">
@@ -10,27 +10,31 @@
             <label htmlFor="inputUsername" class="sr-only">{{ $t('label.username') }}</label>
             <input
               id="inputUsername"
-              class="form-control"
+              name="username"
               type="text"
+               :class="{'form-control': true, 'is-invalid': errors.has('username') }"
               v-bind:placeholder="$t('label.username')"
               v-model="username"
+              v-validate="'required'"
               required />
 
             <label htmlFor="inputPassword" class="sr-only">{{ $t('label.password') }}</label>
             <input
               id="inputPassword"
-              class="form-control"
+              name="password"
               type="password"
+              :class="{'form-control': true, 'is-invalid': errors.has('password') }"
               v-bind:placeholder="$t('label.password')"
               v-model="password"
+              v-validate="'required'"
               required />
 
-            <button
-              type="button"
-              class="btn btn-lg btn-primary btn-block"
-              v-on:click="signIn()">
+            <spinner-button
+              class="btn-lg btn-primary btn-block"
+              :is-spinning="isFetching"
+              @click.native="signIn()">
               {{ $t("login.sign_in" )}}
-            </button>
+            </spinner-button>
 
           </form>
           <div class=" links">
@@ -39,7 +43,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -47,36 +51,57 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Watch } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
+import SpinnerButton from '../components/layout/SpinnerButton.vue';
 
 import { AuthState, AuthNamespace, AuthGetters, AuthActions, Credentials } from '@/states/modules/auth';
 
-@Component
+@Component({
+  components: {
+    SpinnerButton,
+  },
+})
 export default class Login extends Vue {
   public username = '';
   public password = '';
+  public isSpinning = true;
 
   @Getter(AuthGetters.IsAuthenticated)
   public isAuthenticated: boolean;
+
+  @Getter(AuthGetters.IsFetching)
+  public isFetching: boolean;
+
+  @Getter(AuthGetters.HasFailed)
+  public hasFailed: boolean;
 
   @Action(AuthActions.SignInUser)
   public signInUser: (cred: Credentials) => void;
 
   private log = this.$createLogger(this);
 
-  public signIn(): void {
-    this.log.info('Try to sign in the user.');
-    this.signInUser({
-      username: this.username,
-      password: this.password,
-    });
+  public async signIn(): Promise<void> {
+    const isValid = await this.$validator.validateAll();
+    if (isValid) {
+      this.log.info('Try to sign in the user.');
+      this.signInUser({
+        username: this.username,
+        password: this.password,
+      });
+    } else {
+      this.$noty.warning('message.login_incomplete');
+    }
   }
 
   @Watch('isAuthenticated')
   private isAuthenticatedChanged(): void {
     if (this.isAuthenticated) {
-      this.log.info('Sign in was successfull. Redirecting to /games.');
+      this.log.info('Sign in was successfull. Redirecting to the games page.');
       this.$noty.success('message.login_successful');
-      this.$router.push('/games');
+      this.$router.push('/');
+    } else {
+      if (this.hasFailed) {
+        this.$noty.error('message.login_failed');
+      }
     }
   }
 

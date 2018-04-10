@@ -38,5 +38,7 @@ export default {
   },
   message: {
     login_successful: 'Sie haben sich erfolgreich angemeldet',
+    login_failed: 'Username oder Passwort ist falsch.',
+    login_incomplete: 'Bitte geben Sie Username und Passwort an.',
   },
 };

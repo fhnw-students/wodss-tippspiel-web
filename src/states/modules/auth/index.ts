@@ -1,5 +1,5 @@
 import { actions, SIGN_IN_USER } from './auth.actions';
-import { getters, IS_AUTHENTICATED } from './auth.getters';
+import { getters, IS_AUTHENTICATED, IS_FETCHING, HAS_FAILED } from './auth.getters';
 import { mutations } from './auth.mutations';
 
 // -------------------------------------------------------------------------
@@ -8,6 +8,8 @@ import { mutations } from './auth.mutations';
 
 const initialState = {
   isAuthenticated: false,
+  isFetching: false,
+  hasFailed: false,
 };
 
 // -------------------------------------------------------------------------
@@ -29,6 +31,8 @@ export const AuthActions = {
 
 export const AuthGetters = {
   IsAuthenticated: `${AuthNamespace}/${IS_AUTHENTICATED}`,
+  IsFetching: `${AuthNamespace}/${IS_FETCHING}`,
+  HasFailed: `${AuthNamespace}/${HAS_FAILED}`,
 };
 
 // -------------------------------------------------------------------------
