@@ -12,6 +12,7 @@
               id="inputUsername"
               name="username"
               type="text"
+              autocomplete="username"
               :data-vv-as="$t('label.username')"
               :class="{'form-control': true, 'is-invalid': errors.has('username') }"
               :placeholder="$t('placeholder.username')"
@@ -29,6 +30,7 @@
               id="inputEmail"
               name="email"
               type="email"
+              autocomplete="email"
               :data-vv-as="$t('label.email')"
               :class="{'form-control': true, 'is-invalid': errors.has('email') }"
               :placeholder="$t('placeholder.email')"
@@ -46,6 +48,7 @@
               id="inputPassword"
               name="password"
               type="password"
+              autocomplete="off"
               :data-vv-as="$t('label.password')"
               :class="{'form-control': true, 'is-invalid': errors.has('password') }"
               :placeholder="$t('placeholder.password')"
@@ -63,6 +66,7 @@
               id="inputPasswordConfirm"
               name="passwordConfirm"
               type="password"
+              autocomplete="off"
               :data-vv-as="$t('label.password_confirm')"
               :class="{'form-control': true, 'is-invalid': errors.has('passwordConfirm') }"
               :placeholder="$t('placeholder.password_confirm')"
@@ -81,7 +85,7 @@
           <button
             type="button"
             class="btn btn-lg btn-primary btn-block"
-            v-on:click="onClickRegister()">
+            @click="onClickRegister()">
             {{ $t("register.submit" )}}
           </button>
 

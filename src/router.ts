@@ -6,7 +6,10 @@ import Games from './views/Games.vue';
 import Login from './views/Login.vue';
 import NotFound from './views/NotFound.vue';
 import Register from './views/Register.vue';
-import Reset from './views/ResetPassword.vue';
+import ResetPassword from './views/ResetPassword.vue';
+import Ranking from './views/Ranking.vue';
+import Teams from './views/Teams.vue';
+import Home from './views/Home.vue';
 
 Vue.use(Router);
 
@@ -15,6 +18,14 @@ export const getRouter = (store: any) => {
   const router = new Router({
     mode: 'history',
     routes: [
+      {
+        path: '/',
+        name: 'home',
+        component: Home,
+        meta: {
+          requiresAuth: false,
+        },
+      },
       {
         path: '/login',
         name: 'login',
@@ -32,17 +43,33 @@ export const getRouter = (store: any) => {
         },
       },
       {
-        path: '/reset',
-        name: 'reset',
-        component: Reset,
+        path: '/reset-password',
+        name: 'reset-password',
+        component: ResetPassword,
         meta: {
           requiresAuth: false,
         },
       },
       {
-        path: '/',
+        path: '/ranking',
+        name: 'ranking',
+        component: Ranking,
+        meta: {
+          requiresAuth: false,
+        },
+      },
+      {
+        path: '/games',
         name: 'games',
         component: Games,
+        meta: {
+          requiresAuth: true,
+        },
+      },
+      {
+        path: '/teams',
+        name: 'teams',
+        component: Teams,
         meta: {
           requiresAuth: true,
         },

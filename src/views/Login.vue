@@ -11,8 +11,9 @@
             <input
               id="inputUsername"
               name="username"
+              autocomplete="off"
               type="text"
-               :class="{'form-control': true, 'is-invalid': errors.has('username') }"
+              :class="{'form-control': true, 'is-invalid': errors.has('username') }"
               v-bind:placeholder="$t('label.username')"
               v-model="username"
               v-validate="'required'"
@@ -22,6 +23,7 @@
             <input
               id="inputPassword"
               name="password"
+              autocomplete="off"
               type="password"
               :class="{'form-control': true, 'is-invalid': errors.has('password') }"
               v-bind:placeholder="$t('label.password')"
@@ -38,7 +40,7 @@
 
           </form>
           <div class=" links">
-              <router-link to="reset">{{ $t('login.reset_password_link') }}</router-link>
+              <router-link to="/reset-password">{{ $t('login.reset_password_link') }}</router-link>
           </div>
         </div>
       </div>
@@ -53,7 +55,7 @@ import { Watch } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import SpinnerButton from '../components/layout/SpinnerButton.vue';
 
-import { AuthState, AuthNamespace, AuthGetters, AuthActions, Credentials } from '@/states/modules/auth';
+import { AuthGetters, AuthActions, Credentials } from '@/states/modules/auth';
 
 @Component({
   components: {
@@ -97,7 +99,7 @@ export default class Login extends Vue {
     if (this.isAuthenticated) {
       this.log.info('Sign in was successfull. Redirecting to the games page.');
       this.$noty.success('message.login_successful');
-      this.$router.push('/');
+      this.$router.push('/games');
     } else {
       if (this.hasFailed) {
         this.$noty.error('message.login_failed');

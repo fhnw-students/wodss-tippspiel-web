@@ -18,6 +18,7 @@
                 id="inputEmail"
                 name="email"
                 type="email"
+                autocomplete="email"
                 :data-vv-as="$t('reset.email')"
                 :class="{'form-control': true, 'is-invalid': errors.has('email') }"
                 :placeholder="$t('placeholder.email')"
@@ -31,7 +32,7 @@
             <button
               type="button"
               class="btn btn-lg btn-primary btn-block"
-              v-on:click="onClickReset()">
+              @click="onClickReset()">
               {{ $t('reset.submit') }}
             </button>
           </div>

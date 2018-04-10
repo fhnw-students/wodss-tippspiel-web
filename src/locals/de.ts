@@ -6,8 +6,14 @@ export default {
   app: {
     title: 'WM Tippsiel',
   },
+  ranking: {
+    title: 'Ranglisten',
+  },
   games: {
-    title: 'Spiele',
+    title: 'Tippspiel',
+  },
+  teams: {
+    title: 'Tippgruppen',
   },
   home: {
     title: 'Weltmeisterschaft 2018 in Russland',
