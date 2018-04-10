@@ -75,6 +75,7 @@ export default class Login extends Vue {
   private isAuthenticatedChanged(): void {
     if (this.isAuthenticated) {
       this.log.info('Sign in was successfull. Redirecting to /games.');
+      this.$noty.success('message.login_successful');
       this.$router.push('/games');
     }
   }

@@ -28,7 +28,7 @@
             <input
               id="inputEmail"
               name="email"
-              type="text"
+              type="email"
               :data-vv-as="$t('label.email')"
               :class="{'form-control': true, 'is-invalid': errors.has('email') }"
               :placeholder="$t('placeholder.email')"

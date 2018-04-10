@@ -36,4 +36,7 @@ export default {
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
   },
+  message: {
+    login_successful: 'Sie haben sich erfolgreich angemeldet',
+  },
 };

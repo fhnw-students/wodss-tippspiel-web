@@ -15,6 +15,7 @@ import { appConfig } from './config/app.config';
 import { i18n } from './config/i18n.config';
 import { createLogger } from './config/logger.config';
 import { Logger } from './plugins/logger.plugin';
+import { Noty } from './plugins/noty.plugin';
 import { getRouter } from './router';
 import store from './store';
 import './styles/main.scss';
@@ -26,6 +27,7 @@ fontawesome.library.add(fontawesomeSolid);
 
 Vue.config.productionTip = false;
 Vue.use(Logger);
+Vue.use(Noty, { i18n });
 
 Vue.use(VeeValidate, {
   dictionary: { en, de },
