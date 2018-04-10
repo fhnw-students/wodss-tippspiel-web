@@ -3,14 +3,11 @@
     <div class="row justify-content-sm-center">
       <div class="col col-sm-6 col-md-6 card">
         <div class="card-body">
-          <div v-if="ok">
+          <div v-if="isValidSubmission">
             <h2>
               <i class="fas fa-check"></i>
             </h2>
-            <div>
-                {{ $t('reset.successMessage') }}
-                {{email}}
-            </div>
+            <p v-html="$t('reset.successMessage', {email: email})"></p>
 
           </div>
           <div v-else>
@@ -51,16 +48,13 @@ import Component from 'vue-class-component';
 @Component
 export default class ResetPassword extends Vue {
 
-  public ok = false;
+  public isValidSubmission = false;
   public email = '';
-
-  private log = this.$createLogger(this);
 
   public async onClickReset(): Promise<void> {
     const isValid = await this.$validator.validateAll();
-    this.log.info('The form is valid?', isValid);
     if (isValid) {
-      this.ok = true;
+      this.isValidSubmission = true;
       // TODO: Send Reset action
     }
   }
