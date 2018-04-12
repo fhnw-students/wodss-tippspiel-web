@@ -1,16 +1,7 @@
 import { actions, SIGN_IN_USER } from './auth.actions';
 import { getters, IS_AUTHENTICATED, IS_FETCHING, HAS_FAILED } from './auth.getters';
 import { mutations } from './auth.mutations';
-
-// -------------------------------------------------------------------------
-// Initial State
-// -------------------------------------------------------------------------
-
-const initialState = {
-  isAuthenticated: false,
-  isFetching: false,
-  hasFailed: false,
-};
+import { initialState } from './auth.state';
 
 // -------------------------------------------------------------------------
 // Export Types & Interfaces
