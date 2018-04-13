@@ -1,4 +1,4 @@
-# wodss-tippspiel-vue [![Build Status](https://travis-ci.org/fhnw-students/wodss-tippspiel-vue.svg?branch=develop)](https://travis-ci.org/fhnw-students/wodss-tippspiel-vue) [![Build Status](https://travis-ci.org/fhnw-students/wodss-tippspiel-vue.svg?branch=master)](https://travis-ci.org/fhnw-students/wodss-tippspiel-vue)
+# wodss-tippspiel-vue [![Build Status](https://travis-ci.org/fhnw-students/wodss-tippspiel-web-vue.svg?branch=develop)](https://travis-ci.org/fhnw-students/wodss-tippspiel-web-vue) [![Build Status](https://travis-ci.org/fhnw-students/wodss-tippspiel-web-vue.svg?branch=master)](https://travis-ci.org/fhnw-students/wodss-tippspiel-web-vue)
 
 ## Getting started
 
