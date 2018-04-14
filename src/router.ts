@@ -16,7 +16,6 @@ Vue.use(Router);
 export const getRouter = (store: any) => {
 
   const router = new Router({
-    mode: 'history',
     routes: [
       {
         path: '/',
