@@ -4,28 +4,21 @@
 
     <main class="container">
 
-      <div v-if="!isServerAvailable && hasInternetConnection" class="server-unavailable row justify-content-sm-center">
-        <div class="col col-sm-6 col-md-6 card">
-          <div class="card-body">
-            <i class="fas fa-server fa-5x"></i>
-            <i class="fas fa-times fa-3x"></i>
-            <h3>{{ $t('connection.server_unavailable.title') }}</h3>
-            <p>{{ $t('connection.server_unavailable.message') }}</p>
-          </div>
-        </div>
-      </div>
+      <div class="row justify-content-sm-center">
 
-      <div v-if="!hasInternetConnection" class="offline row justify-content-sm-center">
-        <div class="col col-sm-6 col-md-6 card">
-          <div class="card-body">
-            <i class="fas fa-plug fa-5x"></i>
-            <i class="fas fa-times fa-3x"></i>
-            <h3>{{ $t('connection.offline.title') }}</h3>
-            <p>{{ $t('connection.offline.message') }}</p>
-          </div>
-        </div>
-      </div>
+        <AlertCard
+          v-if="!isServerAvailable && hasInternetConnection"
+          icon="fa-server"
+          :title="$t('connection.server_unavailable.title')"
+          :message="$t('connection.server_unavailable.message')" />
 
+        <AlertCard
+          v-if="!hasInternetConnection"
+          icon="fa-plug"
+          :title="$t('connection.offline.title')"
+          :message="$t('connection.offline.message')" />
+
+      </div>
     </main>
 
   </div>
@@ -37,8 +30,13 @@ import Component from 'vue-class-component';
 import { Action, Getter } from 'vuex-class';
 
 import { MetaDataGetters } from '@/states/modules/meta';
+import AlertCard from './layout/AlertCard.vue';
 
-@Component
+@Component({
+  components: {
+    AlertCard,
+  },
+})
 export default class ConnectionHandler extends Vue {
 
   public static EVENTS = ['online', 'offline', 'load'];

@@ -30,7 +30,8 @@ export default {
     title: 'Passwort zurücksetzen',
     submit: 'Passwort zurücksetzen',
     email: 'E-Mail',
-    successMessage: 'Es wurde eine E-Mail an <b>%{email}</b> verschickt. Bitte überprüfen Sie Ihre Mailbox.',
+    success_title: 'Mail erfolgreich versendet.',
+    success_message: 'Es wurde eine E-Mail an <b>%{email}</b> verschickt. Bitte überprüfen Sie Ihre Mailbox.',
   },
   register: {
     title: 'Registrierung',
