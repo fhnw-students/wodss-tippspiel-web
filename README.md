@@ -38,3 +38,9 @@ yarn serve
 This command starts the webpack development server that serves the build bundles.
 You can now browse the skeleton app at `http://localhost:8080` (or the next available port, notice the output of the command). Changes in the code
 will automatically build and reload the app.
+
+## Deployment
+
+First increase your version number in the `package.json` file. Next we have to build the app with `yarn build`. This creates a new `dist` folder with our awesome app. Afterwards, commit and push your changes to the `develop` branch. [Travis](travis-ci.org) our CI will automatically test your changes, and [Heroku](https://www.heroku.com/) our Cloud Application Platform will deploy your App later.
+
+You can visit the builded app [here](https://wodss-tippspiel-web.herokuapp.com)
