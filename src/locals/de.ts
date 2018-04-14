@@ -53,4 +53,14 @@ export default {
     login_failed: 'Username oder Passwort ist falsch.',
     login_incomplete: 'Bitte geben Sie Username und Passwort an.',
   },
+  connection: {
+    server_unavailable: {
+      title: 'Server ist nicht erreichbar!',
+      message: 'Momentan ist der Server nicht ansprechbar. Bitte versuchen Sie es in ein paar Minuten erneut.',
+    },
+    offline: {
+      title: 'Keine Internet Verbindung!',
+      message: 'Bitte stellen Sie sicher, dass Sie eine Internet Verbindung haben und laden Sie dann die Seite neu.',
+    },
+  },
 };

@@ -1,3 +1,4 @@
+import { State } from './states/state';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -8,7 +9,7 @@ Vue.use(Vuex);
 
 const debug = process.env.NODE_ENV !== 'production';
 
-export default new Vuex.Store({
+export const store = new Vuex.Store<State>({
   modules: {
     auth: auth as any,
     meta: meta as any,

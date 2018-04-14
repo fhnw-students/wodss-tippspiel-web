@@ -7,6 +7,7 @@ import { MetaDataState } from './meta.state';
 export const API_VERSION = 'API_VERSION';
 export const GUI_VERSION = 'GUI_VERSION';
 export const IS_FETCHING = 'IS_FETCHING';
+export const IS_SERVER_AVAILABLE = 'IS_SERVER_AVAILABLE';
 
 // -------------------------------------------------------------------------
 // Define Getter Object
@@ -21,5 +22,8 @@ export const getters = {
   },
   [IS_FETCHING](state: MetaDataState): boolean {
     return state.isFetching;
+  },
+  [IS_SERVER_AVAILABLE](state: MetaDataState): boolean {
+    return state.isServerAvailable;
   },
 };

@@ -1,7 +1,12 @@
 import { plainToClass } from 'class-transformer';
+import { Store } from 'vuex';
+import { State } from '@/states/state';
+import { RequestOptions } from 'https';
+import { MetaDataActions } from '@/states/modules/meta';
 
-export interface RestClientConfiguration {
+export interface FetchClientConfiguration {
   basePath?: string;
+  store: Store<State>;
   authorizationBuilder?: () => string;
 }
 
@@ -14,18 +19,14 @@ export const jsonHeaders = {
   'Content-Type': 'application/json',
 };
 
-export const createRestClient = (config: RestClientConfiguration) => (resource?: string, model?: any) => {
-  return new RestClient(config, resource, model);
-};
-
-class RestClient {
+export class FetchClient {
 
   private headers: THeaders = {};
   private withCredentials: boolean;
   private withJsonHeaders: boolean;
 
   constructor(
-    private config: RestClientConfiguration,
+    private config: FetchClientConfiguration,
     private resource?: string,
     private model?: any,
   ) {
@@ -33,27 +34,27 @@ class RestClient {
     this.withJsonHeaders = true;
   }
 
-  public withResource(resource: string): RestClient {
+  public withResource(resource: string): FetchClient {
     this.resource = resource;
     return this;
   }
 
-  public withoutCredentials(): RestClient {
+  public withoutCredentials(): FetchClient {
     this.withCredentials = false;
     return this;
   }
 
-  public withModel(model: any): RestClient {
+  public withModel(model: any): FetchClient {
     this.model = model;
     return this;
   }
 
-  public withHeaders(headers: THeaders): RestClient {
+  public withHeaders(headers: THeaders): FetchClient {
     this.configureHeaders(headers);
     return this;
   }
 
-  public withoutJsonHeaders(): RestClient {
+  public withoutJsonHeaders(): FetchClient {
     this.withJsonHeaders = false;
     return this;
   }
@@ -103,7 +104,9 @@ class RestClient {
     const finalRequestOption: RequestInit = Object.assign({
       headers: this.getHeaders(),
     }, requestOption);
-    const response: Response = await fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
+    const response = await this.fetch(requestURL, query, finalRequestOption);
+
     if (response.status === 200 && this.withJsonHeaders) {
       return response.json();
     }
@@ -123,7 +126,9 @@ class RestClient {
       method: 'POST',
       headers: this.getHeaders(),
     }, { body }, requestOption);
-    const response: Response = await fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
+    const response = await this.fetch(requestURL, query, finalRequestOption);
+
     if ((response.status === 200 || response.status === 201) && this.withJsonHeaders) {
       return response.json();
     }
@@ -143,7 +148,9 @@ class RestClient {
       method: 'PUT',
       headers: this.getHeaders(),
     }, { body }, requestOption);
-    const response: Response = await fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
+    const response = await this.fetch(requestURL, query, finalRequestOption);
+
     if (response.status === 200 && this.withJsonHeaders) {
       return response.json();
     }
@@ -155,7 +162,9 @@ class RestClient {
       method: 'PATCH',
       headers: this.getHeaders(),
     }, { body }, requestOption);
-    const response: Response = await fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
+    const response = await this.fetch(requestURL, query, finalRequestOption);
+
     if (response.status === 200 && this.withJsonHeaders) {
       return response.json();
     }
@@ -175,7 +184,9 @@ class RestClient {
       method: 'DELETE',
       headers: this.getHeaders(),
     }, requestOption);
-    const response: Response = await fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
+    const response = await this.fetch(requestURL, query, finalRequestOption);
+
     if ((response.status === 200) && this.withJsonHeaders) {
       return response.json();
     }
@@ -189,4 +200,19 @@ class RestClient {
   private configureHeaders(headers: THeaders): void {
     this.headers = Object.assign(this.headers, headers);
   }
+
+  private async fetch(requestURL: string, query?: string, requestOptions?: RequestInit): Promise<Response> {
+    try {
+      const response: Response = await fetch(this.getRequestURL(requestURL, query), requestOptions);
+      this.config.store.dispatch(MetaDataActions.SetServerAvailable);
+      return response;
+    } catch (fetchError) {
+      // This means the server is not running
+      if (fetchError.message === 'Failed to fetch') {
+        this.config.store.dispatch(MetaDataActions.SetServerUnavailable);
+      }
+      throw fetchError;
+    }
+  }
+
 }
