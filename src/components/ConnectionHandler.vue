@@ -2,27 +2,31 @@
   <div>
     <slot v-if="hasInternetConnection && isServerAvailable"></slot>
 
-    <div v-if="!isServerAvailable && hasInternetConnection" class="server-unavailable row justify-content-sm-center">
-      <div class="col col-sm-6 col-md-6 card">
-        <div class="card-body">
-          <i class="fas fa-server fa-5x"></i>
-          <i class="fas fa-times fa-3x"></i>
-          <h3>{{ $t('connection.server_unavailable.title') }}</h3>
-          <p>{{ $t('connection.server_unavailable.message') }}</p>
-        </div>
-      </div>
-    </div>
+    <main class="container">
 
-    <div v-if="!hasInternetConnection" class="offline row justify-content-sm-center">
-      <div class="col col-sm-6 col-md-6 card">
-        <div class="card-body">
-          <i class="fas fa-plug fa-5x"></i>
-          <i class="fas fa-times fa-3x"></i>
-          <h3>{{ $t('connection.offline.title') }}</h3>
-          <p>{{ $t('connection.offline.message') }}</p>
+      <div v-if="!isServerAvailable && hasInternetConnection" class="server-unavailable row justify-content-sm-center">
+        <div class="col col-sm-6 col-md-6 card">
+          <div class="card-body">
+            <i class="fas fa-server fa-5x"></i>
+            <i class="fas fa-times fa-3x"></i>
+            <h3>{{ $t('connection.server_unavailable.title') }}</h3>
+            <p>{{ $t('connection.server_unavailable.message') }}</p>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div v-if="!hasInternetConnection" class="offline row justify-content-sm-center">
+        <div class="col col-sm-6 col-md-6 card">
+          <div class="card-body">
+            <i class="fas fa-plug fa-5x"></i>
+            <i class="fas fa-times fa-3x"></i>
+            <h3>{{ $t('connection.offline.title') }}</h3>
+            <p>{{ $t('connection.offline.message') }}</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
 
   </div>
 </template>
