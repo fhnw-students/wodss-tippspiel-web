@@ -1,13 +1,13 @@
-import { plainToClass } from 'class-transformer';
+import { actions } from './../states/modules/auth/auth.actions';
 import { Store } from 'vuex';
 import { State } from '@/states/state';
 import { RequestOptions } from 'https';
 import { MetaDataActions } from '@/states/modules/meta';
+import { getToken } from '@/services/token.service';
 
 export interface FetchClientConfiguration {
   basePath?: string;
   store: Store<State>;
-  authorizationBuilder?: () => string;
 }
 
 export interface THeaders { [name: string]: string; }
@@ -26,26 +26,14 @@ export class FetchClient {
   private withJsonHeaders: boolean;
 
   constructor(
-    private config: FetchClientConfiguration,
-    private resource?: string,
-    private model?: any,
+    private config: FetchClientConfiguration
   ) {
-    this.withCredentials = !!this.config.authorizationBuilder;
+    this.withCredentials = true;
     this.withJsonHeaders = true;
-  }
-
-  public withResource(resource: string): FetchClient {
-    this.resource = resource;
-    return this;
   }
 
   public withoutCredentials(): FetchClient {
     this.withCredentials = false;
-    return this;
-  }
-
-  public withModel(model: any): FetchClient {
-    this.model = model;
     return this;
   }
 
@@ -63,134 +51,64 @@ export class FetchClient {
     return `${this.config.basePath}${path}${query || ''}`;
   }
 
-  public getHeaders(): THeaders {
-    if (this.withCredentials && this.config.authorizationBuilder) {
-      this.withHeaders({
-        // tslint:disable-next-line
-        'Authorization': this.config.authorizationBuilder(),
-      });
-    }
-    if (this.withJsonHeaders) {
-      this.withHeaders(jsonHeaders);
-    }
-    return this.headers;
-  }
-
-  public getResource(): string | undefined {
-    return this.resource;
-  }
-
   // -------------------------------------------------------------------------
   // GET
   // -------------------------------------------------------------------------
 
-  public async findOne<T>(id: TIdentifier): Promise<T> {
-    const response = await this.fetchGet<T>(`${this.resource}/${id}`);
-    if (this.model) {
-      return plainToClass(this.model, response);
-    }
-    return response;
-  }
-
-  public async findAll<T>(query?: string): Promise<T[]> {
-    const responses = await this.fetchGet<T[]>(`${this.resource}`, query);
-    if (this.model) {
-      return plainToClass(this.model, responses);
-    }
-    return responses;
-  }
-
-  public async fetchGet<T>(requestURL: string = '', query?: string, requestOption?: RequestInit): Promise<T> {
+  public fetchGet(requestURL: string = '', query?: string, requestOption?: RequestInit): Promise<Response> {
     const finalRequestOption: RequestInit = Object.assign({
       headers: this.getHeaders(),
     }, requestOption);
 
-    const response = await this.fetch(requestURL, query, finalRequestOption);
-
-    if (response.status === 200 && this.withJsonHeaders) {
-      return response.json();
-    }
-    return response as any;
+    return this.fetch(requestURL, query, finalRequestOption);
   }
 
   // -------------------------------------------------------------------------
   // POST
   // -------------------------------------------------------------------------
 
-  public create<T>(body: TBody): Promise<T> {
-    return this.fetchPost<T>(`${this.resource}`, body);
-  }
-
-  public async fetchPost<T>(requestURL: string, body: TBody, query?: string, requestOption?: RequestInit): Promise<T> {
+  public fetchPost(requestURL: string, body?: TBody, query?: string, requestOption?: RequestInit): Promise<Response> {
     const finalRequestOption: RequestInit = Object.assign({
       method: 'POST',
       headers: this.getHeaders(),
     }, { body }, requestOption);
 
-    const response = await this.fetch(requestURL, query, finalRequestOption);
-
-    if ((response.status === 200 || response.status === 201) && this.withJsonHeaders) {
-      return response.json();
-    }
-    return response as any;
+    return this.fetch(requestURL, query, finalRequestOption);
   }
 
   // -------------------------------------------------------------------------
   // PUT & PATCH
   // -------------------------------------------------------------------------
 
-  public update<T>(id: TIdentifier, body: TBody): Promise<T> {
-    return this.fetchPut<T>(`${this.resource}/${id}`, body);
-  }
-
-  public async fetchPut<T>(requestURL: string, body: TBody, query?: string, requestOption?: RequestInit): Promise<T> {
+  public fetchPut(requestURL: string, body?: TBody, query?: string, requestOption?: RequestInit): Promise<Response> {
     const finalRequestOption: RequestInit = Object.assign({
       method: 'PUT',
       headers: this.getHeaders(),
     }, { body }, requestOption);
 
-    const response = await this.fetch(requestURL, query, finalRequestOption);
-
-    if (response.status === 200 && this.withJsonHeaders) {
-      return response.json();
-    }
-    return response as any;
+    return this.fetch(requestURL, query, finalRequestOption);
   }
 
-  public async fetchPatch<T>(requestURL: string, body: TBody, query?: string, requestOption?: RequestInit): Promise<T> {
+  public fetchPatch(requestURL: string, body?: TBody, query?: string, requestOption?: RequestInit): Promise<Response> {
     const finalRequestOption: RequestInit = Object.assign({
       method: 'PATCH',
       headers: this.getHeaders(),
     }, { body }, requestOption);
 
-    const response = await this.fetch(requestURL, query, finalRequestOption);
-
-    if (response.status === 200 && this.withJsonHeaders) {
-      return response.json();
-    }
-    return response as any;
+    return this.fetch(requestURL, query, finalRequestOption);
   }
 
   // -------------------------------------------------------------------------
   // DELETE
   // -------------------------------------------------------------------------
 
-  public delete<T>(id: TIdentifier): Promise<T> {
-    return this.fetchDelete<T>(`${this.resource}/${id}`);
-  }
-
-  public async fetchDelete<T>(requestURL: string, query?: string, requestOption?: RequestInit): Promise<T> {
+  public fetchDelete(requestURL: string, query?: string, requestOption?: RequestInit): Promise<Response> {
     const finalRequestOption: RequestInit = Object.assign({
       method: 'DELETE',
       headers: this.getHeaders(),
     }, requestOption);
 
-    const response = await this.fetch(requestURL, query, finalRequestOption);
-
-    if ((response.status === 200) && this.withJsonHeaders) {
-      return response.json();
-    }
-    return response as any;
+    return this.fetch(requestURL, query, finalRequestOption);
   }
 
   // -------------------------------------------------------------------------
@@ -199,6 +117,19 @@ export class FetchClient {
 
   private configureHeaders(headers: THeaders): void {
     this.headers = Object.assign(this.headers, headers);
+  }
+
+  private getHeaders(): THeaders {
+    if (this.withCredentials) {
+      this.withHeaders({
+        // tslint:disable-next-line
+        'Authorization': getToken() || '',
+      });
+    }
+    if (this.withJsonHeaders) {
+      this.withHeaders(jsonHeaders);
+    }
+    return this.headers;
   }
 
   private async fetch(requestURL: string, query?: string, requestOptions?: RequestInit): Promise<Response> {
