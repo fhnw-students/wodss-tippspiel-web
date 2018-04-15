@@ -1,4 +1,3 @@
-import { MetaDataActions } from '@/states/modules/meta';
 import Vue from 'vue';
 
 import fontawesome from '@fortawesome/fontawesome';
@@ -11,14 +10,16 @@ import VeeValidate, { Validator } from 'vee-validate';
 import de from 'vee-validate/dist/locale/de';
 import en from 'vee-validate/dist/locale/en';
 
+import { MetaDataActions } from '@/states/modules/meta';
 import App from './App.vue';
 import { appConfig } from './config/app.config';
 import { i18n } from './config/i18n.config';
 import { createLogger } from './config/logger.config';
+import { Fetch } from './plugins/fetch.plugin';
 import { Logger } from './plugins/logger.plugin';
 import { Noty } from './plugins/noty.plugin';
-import { Fetch } from './plugins/fetch.plugin';
 import { getRouter } from './router';
+import { AuthActions } from './states/modules/auth/index';
 import { store } from './store';
 import './styles/main.scss';
 
@@ -43,6 +44,7 @@ Vue.use(VeeValidate, {
 Validator.localize(i18n.locale);
 
 store.dispatch(MetaDataActions.LoadAPIInfo);
+store.dispatch(AuthActions.CheckLocalToken);
 
 new Vue({
   i18n,
