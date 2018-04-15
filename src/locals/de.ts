@@ -6,6 +6,10 @@ export default {
   app: {
     title: 'WM Tippsiel',
   },
+  nav: {
+    profile: 'Profile',
+    sign_out: 'Abmelden',
+  },
   ranking: {
     title: 'Ranglisten',
   },

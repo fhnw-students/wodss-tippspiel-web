@@ -33,6 +33,8 @@
             <NavLanguageSelect />
           </ul>
 
+          <NavProfile v-if="isAuthenticated"/>
+
           <router-link
             class="btn btn-outline-secondary my-2 my-md-2"
             v-if="!isAuthenticated && $route.name !== 'login'"
@@ -58,10 +60,12 @@ import { Getter } from 'vuex-class';
 
 import { AuthGetters } from '@/states/modules/auth';
 import NavLanguageSelect from './NavLanguageSelect.vue';
+import NavProfile from './NavProfile.vue';
 
 @Component({
   components: {
     NavLanguageSelect,
+    NavProfile,
   },
 })
 export default class Header extends Vue {
