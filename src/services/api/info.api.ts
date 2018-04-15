@@ -10,8 +10,14 @@ import { MetaData } from '@/models/MetaData';
  * @returns List of contributors.
  */
 export async function getAPIInfo(): Promise<MetaData> {
-  return await Vue.$fetchClient()
+  const response = await Vue.$fetchClient()
     .withoutCredentials()
-    .withModel(MetaData)
-    .fetchGet<MetaData>();
+    .fetchGet();
+
+  if (response.status === 200) {
+    const body = await response.json();
+    return plainToClass<MetaData, any>(MetaData, body) as any;
+  }
+
+  throw new Error('Could not load api info');
 }
