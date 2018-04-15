@@ -96,6 +96,17 @@ export default class Login extends Vue {
 
   @Watch('isAuthenticated')
   private isAuthenticatedChanged(): void {
+    this.loginChanged();
+  }
+
+  @Watch('hasFailed')
+  private hasFailedChanged(): void {
+    this.loginChanged();
+  }
+
+  private loginChanged(): void {
+    this.log.info('isAuthenticated', this.isAuthenticated);
+    this.log.info('hasFailed', this.hasFailed);
     if (this.isAuthenticated) {
       this.log.info('Sign in was successfull. Redirecting to the games page.');
       this.$noty.success('message.login_successful');
