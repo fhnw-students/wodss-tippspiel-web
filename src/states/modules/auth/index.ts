@@ -1,4 +1,4 @@
-import { actions, SIGN_IN_USER } from './auth.actions';
+import { actions, SIGN_IN_USER, CHECK_LOCAL_TOKEN, SIGN_OUT_USER } from './auth.actions';
 import { getters, IS_AUTHENTICATED, IS_FETCHING, HAS_FAILED } from './auth.getters';
 import { mutations } from './auth.mutations';
 import { initialState } from './auth.state';
@@ -18,6 +18,8 @@ export const AuthNamespace = 'auth';
 
 export const AuthActions = {
   SignInUser: `${AuthNamespace}/${SIGN_IN_USER}`,
+  SignOutUser: `${AuthNamespace}/${SIGN_OUT_USER}`,
+  CheckLocalToken: `${AuthNamespace}/${CHECK_LOCAL_TOKEN}`,
 };
 
 export const AuthGetters = {
