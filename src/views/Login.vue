@@ -1,46 +1,62 @@
 <template>
   <section class="login-page">
     <div class="row justify-content-sm-center">
-      <div class="col col-sm-6 col-md-6 card">
-        <div class="card-body login">
-          <form class="form-signin" noValidate>
+      <div class="col col-sm-6 col-md-6">
+        <div class="card">
+          <div class="card-body login">
+            <form noValidate>
 
-            <h2>{{ $t('login.title') }}</h2>
+              <h2>{{ $t('login.title') }}</h2>
 
-            <label htmlFor="inputUsername" class="sr-only">{{ $t('label.username') }}</label>
-            <input
-              id="inputUsername"
-              name="username"
-              autocomplete="off"
-              type="text"
-              :class="{'form-control': true, 'is-invalid': errors.has('username') }"
-              v-bind:placeholder="$t('label.username')"
-              v-model="username"
-              v-validate="'required'"
-              required />
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
+                <input
+                  id="inputUsername"
+                  name="username"
+                  autocomplete="off"
+                  type="text"
+                  :class="{'form-control form-control-lg': true, 'is-invalid': errors.has('username') }"
+                  v-bind:placeholder="$t('label.username')"
+                  v-model="username"
+                  v-validate="'required'"
+                  required />
+              </div>
 
-            <label htmlFor="inputPassword" class="sr-only">{{ $t('label.password') }}</label>
-            <input
-              id="inputPassword"
-              name="password"
-              autocomplete="off"
-              type="password"
-              :class="{'form-control': true, 'is-invalid': errors.has('password') }"
-              v-bind:placeholder="$t('label.password')"
-              v-model="password"
-              v-validate="'required'"
-              required />
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </div>
+                <input
+                  id="inputPassword"
+                  name="password"
+                  autocomplete="off"
+                  type="password"
+                  :class="{'form-control form-control-lg': true, 'is-invalid': errors.has('password') }"
+                  v-bind:placeholder="$t('label.password')"
+                  v-model="password"
+                  v-validate="'required'"
+                  required />
+              </div>
 
-            <spinner-button
-              class="btn-lg btn-primary btn-block"
-              :is-spinning="isFetching"
-              @click.native="signIn()">
-              {{ $t("login.sign_in" )}}
-            </spinner-button>
+              <spinner-button
+                class="btn-primary btn-lg btn-block"
+                :is-spinning="isFetching"
+                @click.native="signIn()">
+                {{ $t("login.sign_in" )}}
+              </spinner-button>
 
-          </form>
-          <div class=" links">
+            </form>
+          </div>
+          <div class="card-footer text-muted">
+            <div class="links">
               <router-link to="/reset-password">{{ $t('login.reset_password_link') }}</router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -123,43 +139,8 @@ export default class Login extends Vue {
 
 <style lang="scss">
 .login-page {
-  .links {
-    margin-top: 15px;
+  h2 {
+    margin-bottom: 15px;
   }
 }
-
-
-.form-signin {
-  width: 100%;
-  margin: 0 auto;
-
-  .checkbox {
-    font-weight: 400;
-  }
-
-  .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-  }
-
-  .form-control:focus {
-    z-index: 2;
-  }
-
-  input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-}
-
 </style>
