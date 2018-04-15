@@ -1,95 +1,103 @@
 <template>
   <section class="register-page">
     <div class="row justify-content-sm-center">
-      <div class="card col-sm-12 col-md-6">
-        <form class="card-body" noValidate>
+      <div class="col-sm-12 col-md-6">
+        <div class="card">
+          <form class="card-body" noValidate>
 
-          <h2>{{ $t('register.title') }}</h2>
+            <h2>{{ $t('register.title') }}</h2>
 
-          <div class="form-group">
-            <label for="inputUsername">{{ $t('label.username') }}</label>
-            <input
-              id="inputUsername"
-              name="username"
-              type="text"
-              autocomplete="username"
-              :data-vv-as="$t('label.username')"
-              :class="{'form-control': true, 'is-invalid': errors.has('username') }"
-              :placeholder="$t('placeholder.username')"
-              v-validate="'required|min:3'"
-              v-model="username"
-              required>
-              <div v-show="errors.has('username')" class="invalid-feedback">
-                {{ errors.first('username') }}
-              </div>
-          </div>
+            <Gravatar :email="email" />
 
-          <div class="form-group">
-            <label for="inputEmail">{{ $t('label.email') }}</label>
-            <input
-              id="inputEmail"
-              name="email"
-              type="email"
-              autocomplete="email"
-              :data-vv-as="$t('label.email')"
-              :class="{'form-control': true, 'is-invalid': errors.has('email') }"
-              :placeholder="$t('placeholder.email')"
-              v-validate="'required|email'"
-              v-model="email"
-              required>
-              <div v-show="errors.has('email')" class="invalid-feedback">
-                {{ errors.first('email') }}
-              </div>
-          </div>
+            <div class="form-group">
+              <label for="inputUsername">{{ $t('label.username') }}</label>
+              <input
+                id="inputUsername"
+                name="username"
+                type="text"
+                autocomplete="username"
+                :data-vv-as="$t('label.username')"
+                :class="{'form-control': true, 'is-invalid': errors.has('username') }"
+                :placeholder="$t('placeholder.username')"
+                v-validate="'required|min:3'"
+                v-model="username"
+                required>
+                <div v-show="errors.has('username')" class="invalid-feedback">
+                  {{ errors.first('username') }}
+                </div>
+            </div>
 
-          <div class="form-group">
-            <label for="inputPassword">{{ $t('label.password') }}</label>
-            <input
-              id="inputPassword"
-              name="password"
-              type="password"
-              autocomplete="off"
-              :data-vv-as="$t('label.password')"
-              :class="{'form-control': true, 'is-invalid': errors.has('password') }"
-              :placeholder="$t('placeholder.password')"
-              v-validate="'required|min:4'"
-              v-model="password"
-              required>
-              <div v-show="errors.has('password')" class="invalid-feedback">
-                {{ errors.first('password') }}
-              </div>
-          </div>
+            <div class="form-group">
+              <label for="inputEmail">{{ $t('label.email') }}</label>
+              <input
+                id="inputEmail"
+                name="email"
+                type="email"
+                autocomplete="email"
+                :data-vv-as="$t('label.email')"
+                :class="{'form-control': true, 'is-invalid': errors.has('email') }"
+                :placeholder="$t('placeholder.email')"
+                v-validate="'required|email'"
+                v-model="email"
+                required>
+                <div v-show="errors.has('email')" class="invalid-feedback">
+                  {{ errors.first('email') }}
+                </div>
+            </div>
 
-          <div class="form-group">
-            <label for="inputPasswordConfirm">{{ $t('label.password_confirm') }}</label>
-            <input
-              id="inputPasswordConfirm"
-              name="passwordConfirm"
-              type="password"
-              autocomplete="off"
-              :data-vv-as="$t('label.password_confirm')"
-              :class="{'form-control': true, 'is-invalid': errors.has('passwordConfirm') }"
-              :placeholder="$t('placeholder.password_confirm')"
-              v-validate="'required|confirmed:password'"
-              v-model="passwordConfirm"
-              required>
-              <div v-show="errors.has('passwordConfirm')" class="invalid-feedback">
-                {{ errors.first('passwordConfirm') }}
-              </div>
-          </div>
+            <div class="form-group">
+              <label for="inputPassword">{{ $t('label.password') }}</label>
+              <input
+                id="inputPassword"
+                name="password"
+                type="password"
+                autocomplete="off"
+                :data-vv-as="$t('label.password')"
+                :class="{'form-control': true, 'is-invalid': errors.has('password') }"
+                :placeholder="$t('placeholder.password')"
+                v-validate="'required|min:4'"
+                v-model="password"
+                required>
+                <div v-show="errors.has('password')" class="invalid-feedback">
+                  {{ errors.first('password') }}
+                </div>
+            </div>
 
-          <div>
-            <p>TODO: I' am no Robot!</p>
-          </div>
+            <div class="form-group">
+              <label for="inputPasswordConfirm">{{ $t('label.password_confirm') }}</label>
+              <input
+                id="inputPasswordConfirm"
+                name="passwordConfirm"
+                type="password"
+                autocomplete="off"
+                :data-vv-as="$t('label.password_confirm')"
+                :class="{'form-control': true, 'is-invalid': errors.has('passwordConfirm') }"
+                :placeholder="$t('placeholder.password_confirm')"
+                v-validate="'required|confirmed:password'"
+                v-model="passwordConfirm"
+                required>
+                <div v-show="errors.has('passwordConfirm')" class="invalid-feedback">
+                  {{ errors.first('passwordConfirm') }}
+                </div>
+            </div>
 
-          <button
-            type="button"
-            class="btn btn-lg btn-primary btn-block"
-            @click="onClickRegister()">
-            {{ $t("register.submit" )}}
-          </button>
+            <div>
+              <VueRecaptcha
+                sitekey="6LcRXlMUAAAAAK2eHmFMSMgzUHsq7mrZgDaQzuXz"
+                v-on:verify="onVerify"
+                v-on:expired="onExpired"></VueRecaptcha>
+            </div>
 
-        </form>
+            <button
+              type="button"
+              class="btn btn-lg btn-primary btn-block"
+              :disabled="!isVerified"
+              @click="onClickRegister()">
+              {{ $t("register.submit" )}}
+            </button>
+
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -97,27 +105,51 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import VueRecaptcha from 'vue-recaptcha';
 import Component from 'vue-class-component';
 
-@Component
+import Gravatar from '../components/layout/Gravatar.vue';
+
+@Component({
+  components: {
+    Gravatar,
+    VueRecaptcha,
+  }
+})
 export default class Register extends Vue {
   public username = '';
   public email = '';
   public password = '';
   public passwordConfirm = '';
 
+  public isVerified = false;
+
   private log = this.$createLogger(this);
 
   public async onClickRegister(): Promise<void> {
     const isValid = await this.$validator.validateAll();
     this.log.info('The form is valid?', isValid);
-    if (isValid) {
+    if (isValid && this.isVerified) {
       // TODO: Send register action
     }
+  }
+
+  public onVerify(response: any): void {
+    this.isVerified = !!response;
+  }
+
+  public onExpired(): void {
+    this.isVerified = false;
   }
 
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+img {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border-radius: 100%;
+}
 </style>
