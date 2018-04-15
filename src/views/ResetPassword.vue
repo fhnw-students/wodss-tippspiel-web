@@ -9,33 +9,34 @@
         :title="$t('reset.success_title')"
         :message="$t('reset.success_message', {email: email})" />
 
-      <div v-if="!isValidSubmission" class="col col-sm-6 col-md-6 card">
-        <div class="card-body">
-          <h2>{{ $t('reset.title') }}</h2>
-          <div class="form-group">
-            <label for="inputEmail">{{ $t('reset.email') }}</label>
-            <input
-              id="inputEmail"
-              name="email"
-              type="email"
-              autocomplete="email"
-              :data-vv-as="$t('reset.email')"
-              :class="{'form-control': true, 'is-invalid': errors.has('email') }"
-              :placeholder="$t('placeholder.email')"
-              v-validate="'required|email'"
-              v-model="email"
-              required />
-            <div v-show="errors.has('email')" class="invalid-feedback">
-              {{ errors.first('email') }}
+      <div v-if="!isValidSubmission" class="col col-sm-6 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2>{{ $t('reset.title') }}</h2>
+            <div class="form-group">
+              <input
+                id="inputEmail"
+                name="email"
+                type="email"
+                autocomplete="email"
+                :data-vv-as="$t('reset.email')"
+                :class="{'form-control': true, 'is-invalid': errors.has('email') }"
+                :placeholder="$t('placeholder.email')"
+                v-validate="'required|email'"
+                v-model="email"
+                required />
+              <div v-show="errors.has('email')" class="invalid-feedback">
+                {{ errors.first('email') }}
+              </div>
             </div>
-          </div>
-          <button
-            type="button"
-            class="btn btn-lg btn-primary btn-block"
-            @click="onClickReset()">
-            {{ $t('reset.submit') }}
-          </button>
+            <button
+              type="button"
+              class="btn btn-lg btn-primary btn-block"
+              @click="onClickReset()">
+              {{ $t('reset.submit') }}
+            </button>
 
+          </div>
         </div>
       </div>
     </div>
