@@ -14,6 +14,8 @@ import { MetaData } from '@/models/MetaData';
 // -------------------------------------------------------------------------
 
 export const LOAD_API_INFO = 'LOAD_API_INFO';
+export const SET_SERVER_AVAILABLE = 'SET_SERVER_AVAILABLE';
+export const SET_SERVER_UNAVAILABLE = 'SET_SERVER_UNAVAILABLE';
 
 // -------------------------------------------------------------------------
 // Define Action Object
@@ -25,5 +27,11 @@ export const actions: ActionTree<MetaDataState, MetaDataState> = {
     getAPIInfo()
       .then((apiInfo: MetaData) => commit(LOAD_INFO_SUCCESS, apiInfo))
       .catch((err: any) => commit(LOAD_INFO_FAILED, err));
+  },
+  [SET_SERVER_AVAILABLE]({ commit, state }: ActionContext<MetaDataState, MetaDataState>): void {
+    commit(SET_SERVER_AVAILABLE);
+  },
+  [SET_SERVER_UNAVAILABLE]({ commit, state }: ActionContext<MetaDataState, MetaDataState>): void {
+    commit(SET_SERVER_UNAVAILABLE);
   },
 };

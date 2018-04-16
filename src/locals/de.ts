@@ -30,7 +30,8 @@ export default {
     title: 'Passwort zurücksetzen',
     submit: 'Passwort zurücksetzen',
     email: 'E-Mail',
-    successMessage: 'Es wurde eine E-Mail an <b>%{email}</b> verschickt. Bitte überprüfen Sie Ihre Mailbox.',
+    success_title: 'Mail erfolgreich versendet.',
+    success_message: 'Es wurde eine E-Mail an <b>%{email}</b> verschickt. Bitte überprüfen Sie Ihre Mailbox.',
   },
   register: {
     title: 'Registrierung',
@@ -52,5 +53,15 @@ export default {
     login_successful: 'Sie haben sich erfolgreich angemeldet',
     login_failed: 'Username oder Passwort ist falsch.',
     login_incomplete: 'Bitte geben Sie Username und Passwort an.',
+  },
+  connection: {
+    server_unavailable: {
+      title: 'Server ist nicht erreichbar!',
+      message: 'Momentan ist der Server nicht ansprechbar. Bitte versuchen Sie es in ein paar Minuten erneut.',
+    },
+    offline: {
+      title: 'Keine Internet Verbindung!',
+      message: 'Bitte stellen Sie sicher, dass Sie eine Internet Verbindung haben und laden Sie dann die Seite neu.',
+    },
   },
 };

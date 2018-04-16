@@ -1,6 +1,7 @@
+import Vue from 'vue';
+
 import { plainToClass } from 'class-transformer';
 
-import { api } from '@/config/api.config';
 import { MetaData } from '@/models/MetaData';
 
 /**
@@ -9,7 +10,7 @@ import { MetaData } from '@/models/MetaData';
  * @returns List of contributors.
  */
 export async function getAPIInfo(): Promise<MetaData> {
-  return await api()
+  return await Vue.$fetchClient()
     .withoutCredentials()
     .withModel(MetaData)
     .fetchGet<MetaData>();

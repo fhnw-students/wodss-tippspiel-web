@@ -1,3 +1,4 @@
+import { MetaDataActions } from '@/states/modules/meta';
 import Vue from 'vue';
 
 import fontawesome from '@fortawesome/fontawesome';
@@ -16,8 +17,9 @@ import { i18n } from './config/i18n.config';
 import { createLogger } from './config/logger.config';
 import { Logger } from './plugins/logger.plugin';
 import { Noty } from './plugins/noty.plugin';
+import { Fetch } from './plugins/fetch.plugin';
 import { getRouter } from './router';
-import store from './store';
+import { store } from './store';
 import './styles/main.scss';
 
 // remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
@@ -26,14 +28,21 @@ Bluebird.config({ warnings: { wForgottenReturn: false } });
 fontawesome.library.add(fontawesomeSolid);
 
 Vue.config.productionTip = false;
-Vue.use(Logger);
-Vue.use(Noty, { i18n });
 
+Vue.use(Logger);
+Vue.use(Fetch, {
+  basePath: appConfig.apiPath,
+  store,
+});
+Vue.use(Noty, { i18n });
 Vue.use(VeeValidate, {
   dictionary: { en, de },
   locale: i18n.locale,
 });
+
 Validator.localize(i18n.locale);
+
+store.dispatch(MetaDataActions.LoadAPIInfo);
 
 new Vue({
   i18n,

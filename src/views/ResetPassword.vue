@@ -1,41 +1,41 @@
 <template>
   <section class="reset-password-page">
     <div class="row justify-content-sm-center">
-      <div class="col col-sm-6 col-md-6 card">
-        <div class="card-body">
-          <div v-if="isValidSubmission">
-            <h2>
-              <i class="fas fa-check"></i>
-            </h2>
-            <p v-html="$t('reset.successMessage', {email: email})"></p>
 
-          </div>
-          <div v-else>
-            <h2>{{ $t('reset.title') }}</h2>
-            <div class="form-group">
-              <label for="inputEmail">{{ $t('reset.email') }}</label>
-              <input
-                id="inputEmail"
-                name="email"
-                type="email"
-                autocomplete="email"
-                :data-vv-as="$t('reset.email')"
-                :class="{'form-control': true, 'is-invalid': errors.has('email') }"
-                :placeholder="$t('placeholder.email')"
-                v-validate="'required|email'"
-                v-model="email"
-                required />
-              <div v-show="errors.has('email')" class="invalid-feedback">
-                {{ errors.first('email') }}
-              </div>
+      <AlertCard
+        type="success"
+        v-if="isValidSubmission"
+        icon="fa-envelope"
+        :title="$t('reset.success_title')"
+        :message="$t('reset.success_message', {email: email})" />
+
+      <div v-if="!isValidSubmission" class="col col-sm-6 col-md-6 card">
+        <div class="card-body">
+          <h2>{{ $t('reset.title') }}</h2>
+          <div class="form-group">
+            <label for="inputEmail">{{ $t('reset.email') }}</label>
+            <input
+              id="inputEmail"
+              name="email"
+              type="email"
+              autocomplete="email"
+              :data-vv-as="$t('reset.email')"
+              :class="{'form-control': true, 'is-invalid': errors.has('email') }"
+              :placeholder="$t('placeholder.email')"
+              v-validate="'required|email'"
+              v-model="email"
+              required />
+            <div v-show="errors.has('email')" class="invalid-feedback">
+              {{ errors.first('email') }}
             </div>
-            <button
-              type="button"
-              class="btn btn-lg btn-primary btn-block"
-              @click="onClickReset()">
-              {{ $t('reset.submit') }}
-            </button>
           </div>
+          <button
+            type="button"
+            class="btn btn-lg btn-primary btn-block"
+            @click="onClickReset()">
+            {{ $t('reset.submit') }}
+          </button>
+
         </div>
       </div>
     </div>
@@ -46,7 +46,13 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-@Component
+import AlertCard from '@/components/layout/AlertCard.vue';
+
+@Component({
+  components: {
+    AlertCard,
+  },
+})
 export default class ResetPassword extends Vue {
 
   public isValidSubmission = false;

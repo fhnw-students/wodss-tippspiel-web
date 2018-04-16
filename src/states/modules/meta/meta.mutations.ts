@@ -1,8 +1,14 @@
 import { MutationTree } from 'vuex';
 
-import { LOAD_INFO_REQUESTED, LOAD_INFO_SUCCESS, LOAD_INFO_FAILED } from './meta.mutations.types';
-import { MetaDataState } from './meta.state';
 import { MetaData } from '@/models/MetaData';
+import {
+  LOAD_INFO_FAILED,
+  LOAD_INFO_REQUESTED,
+  LOAD_INFO_SUCCESS,
+  SET_SERVER_AVAILABLE,
+  SET_SERVER_UNAVAILABLE,
+} from './meta.mutations.types';
+import { MetaDataState } from './meta.state';
 
 export const mutations: MutationTree<MetaDataState> = {
   [LOAD_INFO_REQUESTED](state: MetaDataState): void {
@@ -17,5 +23,11 @@ export const mutations: MutationTree<MetaDataState> = {
   [LOAD_INFO_FAILED](state: MetaDataState, error: any): void {
     state.isFetching = false;
     state.hasFailed = true;
+  },
+  [SET_SERVER_AVAILABLE](state: MetaDataState, error: any): void {
+    state.isServerAvailable = true;
+  },
+  [SET_SERVER_UNAVAILABLE](state: MetaDataState, error: any): void {
+    state.isServerAvailable = false;
   },
 };

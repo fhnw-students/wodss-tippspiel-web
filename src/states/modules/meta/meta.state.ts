@@ -8,6 +8,7 @@ export interface MetaDataState {
   gui: MetaData;
   hasFailed: boolean;
   isFetching: boolean;
+  isServerAvailable: boolean;
 }
 
 export const initialState: MetaDataState = {
@@ -15,4 +16,5 @@ export const initialState: MetaDataState = {
   gui: plainToClass<MetaData, MetaData>(MetaData, (pkg as any)),
   hasFailed: false,
   isFetching: false,
+  isServerAvailable: true,
 };

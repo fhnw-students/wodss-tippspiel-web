@@ -13,13 +13,12 @@
   </footer>
 </template>
 
-
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Action, Getter } from 'vuex-class';
+import { Getter } from 'vuex-class';
 
-import { MetaDataGetters, MetaDataActions } from '@/states/modules/meta';
+import { MetaDataGetters } from '@/states/modules/meta';
 
 @Component
 export default class Footer extends Vue {
@@ -29,16 +28,6 @@ export default class Footer extends Vue {
 
   @Getter(MetaDataGetters.GUIVersion)
   public guiVersion: string;
-
-  @Action(MetaDataActions.LoadAPIInfo)
-  public loadAPIInfo: () => void;
-
-  private log = this.$createLogger(this);
-
-  public created(): void {
-    this.log.info('Requesting api info.');
-    this.loadAPIInfo();
-  }
 
 }
 </script>
