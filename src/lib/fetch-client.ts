@@ -11,7 +11,7 @@ export interface FetchClientConfiguration {
 }
 
 export interface THeaders { [name: string]: string; }
-export type TBody = Blob | BufferSource | FormData | URLSearchParams | string;
+export type TBody = { [name: string]: string; } | Blob | BufferSource | FormData | URLSearchParams | string;
 export type TIdentifier = string | number;
 
 export const jsonHeaders = {
