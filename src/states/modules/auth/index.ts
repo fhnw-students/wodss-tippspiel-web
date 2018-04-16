@@ -1,5 +1,5 @@
-import { actions, SIGN_IN_USER, CHECK_LOCAL_TOKEN, SIGN_OUT_USER } from './auth.actions';
-import { getters, IS_AUTHENTICATED, IS_FETCHING, HAS_FAILED } from './auth.getters';
+import { actions, actionTypes } from './auth.actions';
+import { getters, getterTypes } from './auth.getters';
 import { mutations } from './auth.mutations';
 import { initialState } from './auth.state';
 
@@ -8,7 +8,7 @@ import { initialState } from './auth.state';
 // -------------------------------------------------------------------------
 
 export * from './auth.state';
-export { Credentials } from './auth.actions';
+export { Credentials, NewUser } from './auth.actions';
 
 // -------------------------------------------------------------------------
 // Define Namespace, Actions & Getters
@@ -17,15 +17,19 @@ export { Credentials } from './auth.actions';
 export const AuthNamespace = 'auth';
 
 export const AuthActions = {
-  SignInUser: `${AuthNamespace}/${SIGN_IN_USER}`,
-  SignOutUser: `${AuthNamespace}/${SIGN_OUT_USER}`,
-  CheckLocalToken: `${AuthNamespace}/${CHECK_LOCAL_TOKEN}`,
+  CheckLocalToken: `${AuthNamespace}/${actionTypes.CHECK_LOCAL_TOKEN}`,
+  SignInUser: `${AuthNamespace}/${actionTypes.SIGN_IN_USER}`,
+  SignOutUser: `${AuthNamespace}/${actionTypes.SIGN_OUT_USER}`,
+  RegisterUser: `${AuthNamespace}/${actionTypes.REGISTER_USER}`,
+  ResetState: `${AuthNamespace}/${actionTypes.RESET_STATE}`,
 };
 
 export const AuthGetters = {
-  IsAuthenticated: `${AuthNamespace}/${IS_AUTHENTICATED}`,
-  IsFetching: `${AuthNamespace}/${IS_FETCHING}`,
-  HasFailed: `${AuthNamespace}/${HAS_FAILED}`,
+  IsFetching: `${AuthNamespace}/${getterTypes.IS_FETCHING}`,
+  IsAuthenticated: `${AuthNamespace}/${getterTypes.IS_AUTHENTICATED}`,
+  LoginHasFailed: `${AuthNamespace}/${getterTypes.LOGIN_HAS_FAILED}`,
+  IsRegistered: `${AuthNamespace}/${getterTypes.IS_REGISTERED}`,
+  RegisterHasFailed: `${AuthNamespace}/${getterTypes.REGISTER_HAS_FAILED}`,
 };
 
 // -------------------------------------------------------------------------

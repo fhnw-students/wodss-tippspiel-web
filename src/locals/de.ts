@@ -57,6 +57,8 @@ export default {
     login_successful: 'Sie haben sich erfolgreich angemeldet',
     login_failed: 'Username oder Passwort ist falsch.',
     login_incomplete: 'Bitte geben Sie Username und Passwort an.',
+    register_successful: 'Sie haben sich erfolgreich registriert',
+    register_failed: 'Sie konnten leider nicht registriert werden.',
   },
   connection: {
     server_unavailable: {

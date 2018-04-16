@@ -83,18 +83,28 @@
 
             <div>
               <VueRecaptcha
+                ref="recaptcha"
                 sitekey="6LcRXlMUAAAAAK2eHmFMSMgzUHsq7mrZgDaQzuXz"
-                v-on:verify="onVerify"
-                v-on:expired="onExpired"></VueRecaptcha>
+                @verify="onCaptchaVerified"
+                @expired="onCaptchaExpired"
+              ></VueRecaptcha>
             </div>
 
-            <button
+            <!-- <button
               type="button"
               class="btn btn-lg btn-primary btn-block"
               :disabled="!isVerified"
               @click="onClickRegister()">
               {{ $t("register.submit" )}}
-            </button>
+            </button> -->
+
+            <spinner-button
+              class="btn btn-primary btn-lg btn-block"
+              :is-spinning="isFetching"
+              :disabled="!isVerified"
+              @click.native="onClickRegister()">
+              {{ $t("register.submit" )}}
+            </spinner-button>
 
           </form>
         </div>
@@ -105,16 +115,21 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { Watch } from 'vue-property-decorator';
 import VueRecaptcha from 'vue-recaptcha';
 import Component from 'vue-class-component';
+import { Action, Getter } from 'vuex-class';
 
-import Gravatar from '../components/layout/Gravatar.vue';
+import { AuthGetters, AuthActions, Credentials, NewUser } from '@/states/modules/auth';
+import Gravatar from '@/components/layout/Gravatar.vue';
+import SpinnerButton from '@/components/layout/SpinnerButton.vue';
 
 @Component({
   components: {
     Gravatar,
     VueRecaptcha,
-  }
+    SpinnerButton,
+  },
 })
 export default class Register extends Vue {
   public username = '';
@@ -124,22 +139,64 @@ export default class Register extends Vue {
 
   public isVerified = false;
 
+  @Getter(AuthGetters.IsRegistered)
+  public isRegistered: boolean;
+
+  @Getter(AuthGetters.IsFetching)
+  public isFetching: boolean;
+
+  @Getter(AuthGetters.RegisterHasFailed)
+  public hasFailed: boolean;
+
+  @Action(AuthActions.RegisterUser)
+  public registerUser: (newUser: NewUser) => void;
+
   private log = this.$createLogger(this);
+
+  public onCaptchaVerified(response: any): void {
+    this.log.info('VueRecaptcha is verified!');
+    this.isVerified = !!response;
+  }
+
+  public onCaptchaExpired(): void {
+    this.log.info('VueRecaptcha has expired!');
+    this.isVerified = false;
+  }
 
   public async onClickRegister(): Promise<void> {
     const isValid = await this.$validator.validateAll();
     this.log.info('The form is valid?', isValid);
     if (isValid && this.isVerified) {
-      // TODO: Send register action
+      this.registerUser({
+        username: this.username,
+        email: this.email,
+        password: this.password,
+      });
     }
   }
 
-  public onVerify(response: any): void {
-    this.isVerified = !!response;
+  @Watch('isRegistered')
+  public isRegisteredChanged(): void {
+    this.stateChanged();
   }
 
-  public onExpired(): void {
-    this.isVerified = false;
+  @Watch('hasFailed')
+  public hasFailedChanged(): void {
+    this.stateChanged();
+  }
+
+  private stateChanged(): void {
+    this.log.info('isRegistered', this.isRegistered);
+    this.log.info('hasFailed', this.hasFailed);
+    if (this.isRegistered) {
+      this.log.info('Register was successful. Redirecting to the login page.');
+      this.$noty.success('message.register_successful');
+      this.$router.push('/login');
+    } else {
+      if (this.hasFailed) {
+        this.$noty.error('message.register_failed');
+      }
+    }
   }
 
 }

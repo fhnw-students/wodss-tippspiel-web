@@ -89,7 +89,7 @@ export default class Login extends Vue {
   @Getter(AuthGetters.IsFetching)
   public isFetching: boolean;
 
-  @Getter(AuthGetters.HasFailed)
+  @Getter(AuthGetters.LoginHasFailed)
   public hasFailed: boolean;
 
   @Action(AuthActions.SignInUser)
@@ -111,16 +111,16 @@ export default class Login extends Vue {
   }
 
   @Watch('isAuthenticated')
-  private isAuthenticatedChanged(): void {
-    this.loginChanged();
+  public isAuthenticatedChanged(): void {
+    this.stateChanged();
   }
 
   @Watch('hasFailed')
-  private hasFailedChanged(): void {
-    this.loginChanged();
+  public hasFailedChanged(): void {
+    this.stateChanged();
   }
 
-  private loginChanged(): void {
+  private stateChanged(): void {
     this.log.info('isAuthenticated', this.isAuthenticated);
     this.log.info('hasFailed', this.hasFailed);
     if (this.isAuthenticated) {
