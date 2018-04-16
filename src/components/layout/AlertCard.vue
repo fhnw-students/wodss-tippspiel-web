@@ -30,7 +30,7 @@ export default class AlertCard extends Vue {
   };
 
   public get typeClass(): string {
-    return this.typeList[this.type] || 'error';
+    return this.typeList[this.type] || 'fa-times';
   }
 }
 </script>
