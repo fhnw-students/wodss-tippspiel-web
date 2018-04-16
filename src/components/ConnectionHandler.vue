@@ -65,11 +65,11 @@ export default class ConnectionHandler extends Vue {
 @import "../styles/colors";
 
 div.server-unavailable, div.offline {
-  .fa-times{
+  .fa-times {
     color: $red;
     margin-left: -20px;
   }
-  h3{
+  h3 {
     margin-top: 15px;
   }
 }
