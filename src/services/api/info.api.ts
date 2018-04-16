@@ -12,7 +12,7 @@ import { MetaData } from '@/models/MetaData';
 export async function getAPIInfo(): Promise<MetaData> {
   const response = await Vue.$fetchClient()
     .withoutCredentials()
-    .fetchGet();
+    .fetchGet('/api');
 
   if (response.status === 200) {
     const body = await response.json();
