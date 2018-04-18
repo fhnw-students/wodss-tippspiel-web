@@ -1,7 +1,8 @@
 <template>
   <section class="register-page">
     <div class="row justify-content-sm-center">
-      <div class="col-sm-12 col-md-6">
+
+      <div v-if="!isRegistered" class="col-sm-12 col-md-6">
         <div class="card">
           <form class="card-body" noValidate>
 
@@ -90,14 +91,6 @@
               ></VueRecaptcha>
             </div>
 
-            <!-- <button
-              type="button"
-              class="btn btn-lg btn-primary btn-block"
-              :disabled="!isVerified"
-              @click="onClickRegister()">
-              {{ $t("register.submit" )}}
-            </button> -->
-
             <spinner-button
               class="btn btn-primary btn-lg btn-block"
               :is-spinning="isFetching"
@@ -109,6 +102,15 @@
           </form>
         </div>
       </div>
+
+      <AlertCard
+        v-if="isRegistered"
+        :icon="'fa-envelope'"
+        :type="'sending'"
+        :title="$t('verification.pending.title')"
+        :message="$t('verification.pending.message')">
+      </AlertCard>
+
     </div>
   </section>
 </template>
@@ -118,15 +120,16 @@ import Vue from 'vue';
 import { Watch } from 'vue-property-decorator';
 import VueRecaptcha from 'vue-recaptcha';
 import Component from 'vue-class-component';
-import { Action, Getter } from 'vuex-class';
 
-import { AuthGetters, AuthActions, Credentials, NewUser } from '@/states/modules/auth';
 import Gravatar from '@/components/layout/Gravatar.vue';
+import AlertCard from '@/components/layout/AlertCard.vue';
 import SpinnerButton from '@/components/layout/SpinnerButton.vue';
+import { registerUser } from '@/services/api/auth.api';
 
 @Component({
   components: {
     Gravatar,
+    AlertCard,
     VueRecaptcha,
     SpinnerButton,
   },
@@ -137,19 +140,10 @@ export default class Register extends Vue {
   public password = '';
   public passwordConfirm = '';
 
-  public isVerified = false;
-
-  @Getter(AuthGetters.IsRegistered)
-  public isRegistered: boolean;
-
-  @Getter(AuthGetters.IsFetching)
-  public isFetching: boolean;
-
-  @Getter(AuthGetters.RegisterHasFailed)
-  public hasFailed: boolean;
-
-  @Action(AuthActions.RegisterUser)
-  public registerUser: (newUser: NewUser) => void;
+  public isVerified: boolean = false;
+  public isRegistered: boolean = false;
+  public isFetching: boolean = false;
+  public hasFailed: boolean = false;
 
   private log = this.$createLogger(this);
 
@@ -167,35 +161,16 @@ export default class Register extends Vue {
     const isValid = await this.$validator.validateAll();
     this.log.info('The form is valid?', isValid);
     if (isValid && this.isVerified) {
-      this.registerUser({
-        username: this.username,
-        email: this.email,
-        password: this.password,
-      });
-    }
-  }
-
-  @Watch('isRegistered')
-  public isRegisteredChanged(): void {
-    this.stateChanged();
-  }
-
-  @Watch('hasFailed')
-  public hasFailedChanged(): void {
-    this.stateChanged();
-  }
-
-  private stateChanged(): void {
-    this.log.info('isRegistered', this.isRegistered);
-    this.log.info('hasFailed', this.hasFailed);
-    if (this.isRegistered) {
-      this.log.info('Register was successful. Redirecting to the login page.');
-      this.$noty.success('message.register_successful');
-      this.$router.push('/login');
-    } else {
-      if (this.hasFailed) {
+      this.isFetching = true;
+      try {
+        await registerUser(this.username, this.email, this.password);
+        this.isRegistered = true;
+        this.$noty.success('message.register_successful');
+      } catch (_) {
+        this.hasFailed = true;
         this.$noty.error('message.register_failed');
       }
+      this.isFetching = false;
     }
   }
 

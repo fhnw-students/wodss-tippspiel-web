@@ -47,3 +47,45 @@ export async function registerUser(username: string, email: string, password: st
   }
 
 }
+
+/**
+ * Verifies the user throw is given email in the registration
+ */
+export async function verifyUser(verifyToken: string): Promise<void> {
+  const response = await Vue.$fetchClient()
+    .fetchPut(`/auth/verify/${verifyToken}`);
+
+  if (response.status !== 200) {
+    throw new Error('Could not register the user');
+  }
+
+}
+
+/**
+ * Request to change the password. This will send a email to the user with
+ * a reset password link.
+ */
+export async function forgotPassword(email: string): Promise<void> {
+  const response = await Vue.$fetchClient()
+    .fetchPut(`/auth/reset`, {
+      email,
+    });
+
+  if (response.status !== 200) {
+    throw new Error('Could not register the user');
+  }
+
+}
+
+/**
+ * Resets the password of the given user with the reset token from the received email.
+ */
+export async function resetUserPassword(resetToken: string, password: string): Promise<void> {
+  const response = await Vue.$fetchClient()
+    .fetchPut(`/auth/reset/${resetToken}`, { password });
+
+  if (response.status !== 200) {
+    throw new Error('Could not register the user');
+  }
+
+}

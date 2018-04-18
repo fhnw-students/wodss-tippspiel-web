@@ -38,13 +38,13 @@
           <router-link
             class="btn btn-outline-secondary my-2 my-md-2"
             v-if="!isAuthenticated && $route.name !== 'login'"
-            to="login">
+            to="/auth/login">
             {{ $t("login.sign_in") }}
           </router-link>
           <router-link
             class="btn btn-outline-secondary my-2 my-md-2"
             v-if="!isAuthenticated && $route.name !== 'register'"
-            to="register">
+            to="/auth/register">
             {{ $t("register.title") }}
           </router-link>
 

@@ -4,13 +4,15 @@ import { Store } from 'vuex';
 
 import { State } from '@/states/state';
 import { AuthGetters } from './states/modules/auth/index';
+import Login from './views/auth/Login.vue';
+import Registration from './views/auth/Registration.vue';
+import ResetPassword from './views/auth/ResetPassword.vue';
+import ForgotPassword from './views/auth/ForgotPassword.vue';
+import Verification from './views/auth/Verification.vue';
 import Games from './views/Games.vue';
 import Home from './views/Home.vue';
-import Login from './views/Login.vue';
 import NotFound from './views/NotFound.vue';
 import Ranking from './views/Ranking.vue';
-import Register from './views/Register.vue';
-import ResetPassword from './views/ResetPassword.vue';
 import Teams from './views/Teams.vue';
 
 Vue.use(Router);
@@ -42,7 +44,7 @@ export const getRouter = (store: Store<State>) => {
         },
       },
       {
-        path: '/login',
+        path: '/auth/login',
         name: 'login',
         component: Login,
         meta: {
@@ -51,18 +53,38 @@ export const getRouter = (store: Store<State>) => {
         beforeEnter: checkIfAuthenticated,
       },
       {
-        path: '/register',
+        path: '/auth/register',
         name: 'register',
-        component: Register,
+        component: Registration,
         meta: {
           requiresAuth: false,
         },
         beforeEnter: checkIfAuthenticated,
       },
       {
-        path: '/reset-password',
+        path: '/auth/verification/:verificationToken',
+        name: 'verification',
+        component: Verification,
+        props: true,
+        meta: {
+          requiresAuth: false,
+        },
+        beforeEnter: checkIfAuthenticated,
+      },
+      {
+        path: '/auth/forgot-password',
+        name: 'forgot-password',
+        component: ForgotPassword,
+        meta: {
+          requiresAuth: false,
+        },
+        beforeEnter: checkIfAuthenticated,
+      },
+      {
+        path: '/auth/reset-password/:resetToken',
         name: 'reset-password',
         component: ResetPassword,
+        props: true,
         meta: {
           requiresAuth: false,
         },
@@ -115,7 +137,7 @@ export const getRouter = (store: Store<State>) => {
       }
 
       return next({
-        path: '/login',
+        path: '/auth/login',
         // TODO: Handle fullPath
         // query: { redirect: to.fullPath },
       });
