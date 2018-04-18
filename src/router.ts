@@ -34,6 +34,7 @@ export const getRouter = (store: Store<State>) => {
    * All the defined routes of our application.
    */
   const router = new Router({
+    mode: 'history',
     routes: [
       {
         path: '/',

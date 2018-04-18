@@ -35,6 +35,8 @@
     "bluebird": "^3.5.1",
     "bootstrap": "^4.0.0",
     "class-transformer": "^0.1.9",
+    "connect-history-api-fallback": "^1.5.0",
+    "express": "^4.16.3",
     "immutable": "^3.8.2",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
