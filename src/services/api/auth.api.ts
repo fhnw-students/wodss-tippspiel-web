@@ -26,7 +26,7 @@ export async function signIn(username: string, password: string): Promise<void> 
  * Signs the user off the server and removes the access token from the localstorage.
  */
 export async function signOut(): Promise<void> {
-  await Vue.$fetchClient().fetchGet('/auth/logout');
+  await Vue.$fetchClient().fetchPost('/auth/logout');
   return removeToken();
 }
 

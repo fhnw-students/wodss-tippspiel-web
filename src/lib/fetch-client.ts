@@ -68,11 +68,13 @@ export class FetchClient {
   // -------------------------------------------------------------------------
 
   public fetchPost(requestURL: string, body?: TBody, query?: string, requestOption?: RequestInit): Promise<Response> {
-    const finalRequestOption: RequestInit = Object.assign({
-      method: 'POST',
-      headers: this.getHeaders(),
-    }, { body }, requestOption);
-
+    const finalRequestOption: RequestInit = Object.assign(
+      {
+        method: 'POST',
+        headers: this.getHeaders(),
+      }, {
+        body: JSON.stringify(body),
+      }, requestOption);
     return this.fetch(requestURL, query, finalRequestOption);
   }
 
@@ -81,19 +83,25 @@ export class FetchClient {
   // -------------------------------------------------------------------------
 
   public fetchPut(requestURL: string, body?: TBody, query?: string, requestOption?: RequestInit): Promise<Response> {
-    const finalRequestOption: RequestInit = Object.assign({
-      method: 'PUT',
-      headers: this.getHeaders(),
-    }, { body }, requestOption);
+    const finalRequestOption: RequestInit = Object.assign(
+      {
+        method: 'PUT',
+        headers: this.getHeaders(),
+      }, {
+        body: JSON.stringify(body),
+      }, requestOption);
 
     return this.fetch(requestURL, query, finalRequestOption);
   }
 
   public fetchPatch(requestURL: string, body?: TBody, query?: string, requestOption?: RequestInit): Promise<Response> {
-    const finalRequestOption: RequestInit = Object.assign({
-      method: 'PATCH',
-      headers: this.getHeaders(),
-    }, { body }, requestOption);
+    const finalRequestOption: RequestInit = Object.assign(
+      {
+        method: 'PATCH',
+        headers: this.getHeaders(),
+      }, {
+        body: JSON.stringify(body),
+      }, requestOption);
 
     return this.fetch(requestURL, query, finalRequestOption);
   }
@@ -123,7 +131,7 @@ export class FetchClient {
     if (this.withCredentials) {
       this.withHeaders({
         // tslint:disable-next-line
-        'Authorization': getToken() || '',
+        'Authorization': `Bearer ${getToken()}` || '',
       });
     }
     if (this.withJsonHeaders) {

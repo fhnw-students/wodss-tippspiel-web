@@ -62,8 +62,8 @@ export const getRouter = (store: Store<State>) => {
         beforeEnter: checkIfAuthenticated,
       },
       {
-        path: '/auth/verification/:verificationToken',
-        name: 'verification',
+        path: '/auth/verify/:verificationToken',
+        name: 'verify',
         component: Verification,
         props: true,
         meta: {
