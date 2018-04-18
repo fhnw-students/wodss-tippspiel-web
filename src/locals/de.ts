@@ -49,7 +49,7 @@ export default {
   verification: {
     pending: {
       title: 'Email Bestätigung',
-      message: `Sie sollten in kürze eine Email von uns erhaltn. In der Email befinden sich ein Bestätiguns-Link,
+      message: `Sie sollten in Kürze eine Email von uns erhalten. In der Email befinden sich ein Bestätiguns-Link,
       welchen Ihren User bestätigt. Anschliessend können Sie sich bei uns Anmelden`,
     },
     success: {
