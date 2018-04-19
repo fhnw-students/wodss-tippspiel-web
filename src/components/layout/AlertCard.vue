@@ -5,6 +5,7 @@
       <i class="fas fa-3x" :class="typeClass"></i>
       <h3>{{ title }}</h3>
       <p v-html="message"></p>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -27,10 +28,12 @@ export default class AlertCard extends Vue {
   public typeList: { [key: string]: string } = {
     success: 'fa-check',
     error: 'fa-times',
+    pending: 'fa-clock',
+    sending: 'fa-paper-plane',
   };
 
   public get typeClass(): string {
-    return this.typeList[this.type] || 'error';
+    return this.typeList[this.type] || 'fa-times';
   }
 }
 </script>
@@ -45,6 +48,16 @@ export default class AlertCard extends Vue {
 
 .fa-times {
   color: $red;
+  margin-left: -20px;
+}
+
+.fa-clock {
+  color: $yellow;
+  margin-left: -20px;
+}
+
+.fa-paper-plane {
+  color: $yellow;
   margin-left: -20px;
 }
 

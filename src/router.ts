@@ -1,21 +1,40 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import Router, { RawLocation, Route } from 'vue-router';
+import { Store } from 'vuex';
 
+import { State } from '@/states/state';
 import { AuthGetters } from './states/modules/auth/index';
+import Login from './views/auth/Login.vue';
+import Registration from './views/auth/Registration.vue';
+import ResetPassword from './views/auth/ResetPassword.vue';
+import ForgotPassword from './views/auth/ForgotPassword.vue';
+import Verification from './views/auth/Verification.vue';
 import Games from './views/Games.vue';
-import Login from './views/Login.vue';
+import Home from './views/Home.vue';
 import NotFound from './views/NotFound.vue';
-import Register from './views/Register.vue';
-import ResetPassword from './views/ResetPassword.vue';
 import Ranking from './views/Ranking.vue';
 import Teams from './views/Teams.vue';
-import Home from './views/Home.vue';
 
 Vue.use(Router);
 
-export const getRouter = (store: any) => {
+export const getRouter = (store: Store<State>) => {
 
+  /**
+   * Checks if the user is authenticated and redirects him to
+   * the default entry page
+   */
+  const checkIfAuthenticated = (to: Route, from: Route, next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void) => {
+    if (store.getters[AuthGetters.IsAuthenticated]) {
+      return next('games');
+    }
+    next();
+  };
+
+  /**
+   * All the defined routes of our application.
+   */
   const router = new Router({
+    mode: 'history',
     routes: [
       {
         path: '/',
@@ -26,28 +45,51 @@ export const getRouter = (store: any) => {
         },
       },
       {
-        path: '/login',
+        path: '/auth/login',
         name: 'login',
         component: Login,
         meta: {
           requiresAuth: false,
         },
+        beforeEnter: checkIfAuthenticated,
       },
       {
-        path: '/register',
+        path: '/auth/register',
         name: 'register',
-        component: Register,
+        component: Registration,
         meta: {
           requiresAuth: false,
         },
+        beforeEnter: checkIfAuthenticated,
       },
       {
-        path: '/reset-password',
+        path: '/auth/verify/:verificationToken',
+        name: 'verify',
+        component: Verification,
+        props: true,
+        meta: {
+          requiresAuth: false,
+        },
+        beforeEnter: checkIfAuthenticated,
+      },
+      {
+        path: '/auth/forgot-password',
+        name: 'forgot-password',
+        component: ForgotPassword,
+        meta: {
+          requiresAuth: false,
+        },
+        beforeEnter: checkIfAuthenticated,
+      },
+      {
+        path: '/auth/reset-password/:resetToken',
         name: 'reset-password',
         component: ResetPassword,
+        props: true,
         meta: {
           requiresAuth: false,
         },
+        beforeEnter: checkIfAuthenticated,
       },
       {
         path: '/ranking',
@@ -83,21 +125,28 @@ export const getRouter = (store: any) => {
     ],
   });
 
+  /**
+   * This before hooks checks if a user is authenticated or not and forces
+   * him to the login page if not.
+   */
   router.beforeEach((to, from, next) => {
     if (to.matched.some((record: any) => record.meta.requiresAuth)) {
       // this route requires auth, check if logged in
       // if not, redirect to login page.
-      if (!store.getters[AuthGetters.IsAuthenticated]) {
-        next({
-          path: '/login',
-          // query: { redirect: to.fullPath },
-        });
-      } else {
-        next();
+      if (store.getters[AuthGetters.IsAuthenticated]) {
+        return next();
       }
-    } else {
-      next(); // make sure to always call next()!
+
+      return next({
+        path: '/auth/login',
+        // TODO: Handle fullPath
+        // query: { redirect: to.fullPath },
+      });
+
     }
+
+    next(); // make sure to always call next()!
+
   });
 
   return router;

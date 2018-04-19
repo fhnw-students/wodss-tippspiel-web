@@ -4,22 +4,22 @@
 
       <AlertCard
         type="success"
-        v-if="isValidSubmission"
+        v-if="isRequested"
         icon="fa-envelope"
-        :title="$t('reset.success_title')"
-        :message="$t('reset.success_message', {email: email})" />
+        :title="$t('forgot_password.success_title')"
+        :message="$t('forgot_password.success_message', {email: email})" />
 
-      <div v-if="!isValidSubmission" class="col col-sm-6 col-md-6">
+      <div v-if="!isRequested" class="col col-sm-6 col-md-6">
         <div class="card">
-          <div class="card-body">
-            <h2>{{ $t('reset.title') }}</h2>
+          <form class="card-body" novalidate>
+            <h2>{{ $t('forgot_password.title') }}</h2>
             <div class="form-group">
               <input
                 id="inputEmail"
                 name="email"
                 type="email"
                 autocomplete="email"
-                :data-vv-as="$t('reset.email')"
+                :data-vv-as="$t('label.email')"
                 :class="{'form-control': true, 'is-invalid': errors.has('email') }"
                 :placeholder="$t('placeholder.email')"
                 v-validate="'required|email'"
@@ -33,10 +33,10 @@
               type="button"
               class="btn btn-lg btn-primary btn-block"
               @click="onClickReset()">
-              {{ $t('reset.submit') }}
+              {{ $t('forgot_password.submit') }}
             </button>
 
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -48,22 +48,32 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 import AlertCard from '@/components/layout/AlertCard.vue';
+import { forgotPassword } from '@/services/api/auth.api';
 
 @Component({
   components: {
     AlertCard,
   },
 })
-export default class ResetPassword extends Vue {
+export default class ForgotPassword extends Vue {
 
-  public isValidSubmission = false;
-  public email = '';
+  public isFetching: boolean = false;
+  public hasFailed: boolean = false;
+  public isRequested: boolean = false;
+  public email: string = '';
 
   public async onClickReset(): Promise<void> {
     const isValid = await this.$validator.validateAll();
     if (isValid) {
-      this.isValidSubmission = true;
-      // TODO: Send Reset action
+      this.isFetching = true;
+      try {
+        await forgotPassword(this.email);
+        this.isRequested = true;
+      } catch (_) {
+        this.hasFailed = true;
+        this.$noty.error('message.forgot_password_failed');
+      }
+      this.isFetching = false;
     }
   }
 }

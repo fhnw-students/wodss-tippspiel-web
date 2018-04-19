@@ -1,11 +1,11 @@
 export interface AuthState {
   isAuthenticated: boolean;
   isFetching: boolean;
-  hasFailed: boolean;
+  loginHasFailed: boolean;
 }
 
 export const initialState: AuthState = {
   isAuthenticated: false,
   isFetching: false,
-  hasFailed: false,
+  loginHasFailed: false,
 };

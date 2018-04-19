@@ -1,5 +1,5 @@
-import { actions, SIGN_IN_USER } from './auth.actions';
-import { getters, IS_AUTHENTICATED, IS_FETCHING, HAS_FAILED } from './auth.getters';
+import { actions, actionTypes } from './auth.actions';
+import { getters, getterTypes } from './auth.getters';
 import { mutations } from './auth.mutations';
 import { initialState } from './auth.state';
 
@@ -17,13 +17,16 @@ export { Credentials } from './auth.actions';
 export const AuthNamespace = 'auth';
 
 export const AuthActions = {
-  SignInUser: `${AuthNamespace}/${SIGN_IN_USER}`,
+  CheckLocalToken: `${AuthNamespace}/${actionTypes.CHECK_LOCAL_TOKEN}`,
+  SignInUser: `${AuthNamespace}/${actionTypes.SIGN_IN_USER}`,
+  SignOutUser: `${AuthNamespace}/${actionTypes.SIGN_OUT_USER}`,
+  ResetState: `${AuthNamespace}/${actionTypes.RESET_STATE}`,
 };
 
 export const AuthGetters = {
-  IsAuthenticated: `${AuthNamespace}/${IS_AUTHENTICATED}`,
-  IsFetching: `${AuthNamespace}/${IS_FETCHING}`,
-  HasFailed: `${AuthNamespace}/${HAS_FAILED}`,
+  IsFetching: `${AuthNamespace}/${getterTypes.IS_FETCHING}`,
+  IsAuthenticated: `${AuthNamespace}/${getterTypes.IS_AUTHENTICATED}`,
+  LoginHasFailed: `${AuthNamespace}/${getterTypes.LOGIN_HAS_FAILED}`,
 };
 
 // -------------------------------------------------------------------------
