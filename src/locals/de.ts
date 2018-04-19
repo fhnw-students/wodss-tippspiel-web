@@ -79,7 +79,7 @@ export default {
     verification_failed: 'Leider konnte Ihr Account nicht verifiziert werden.',
     forgot_password_failed: 'Leider kann ihr PW nicht zurückgesetzt werden.',
     reset_password_successful: 'Password wurde erfolgreich zurückgesetzt',
-    reset_password_failed: 'Leider kann ihr PW nicht zurückgesetzt werden.',
+    reset_password_failed: '@:message.forgot_password_failed',
   },
   connection: {
     server_unavailable: {
