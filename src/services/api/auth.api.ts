@@ -45,7 +45,6 @@ export async function registerUser(username: string, email: string, password: st
   if (response.status !== 200) {
     throw new Error('Could not register the user');
   }
-
 }
 
 /**
@@ -58,7 +57,6 @@ export async function verifyUser(verifyToken: string): Promise<void> {
   if (response.status !== 200) {
     throw new Error('Could not register the user');
   }
-
 }
 
 /**
@@ -74,7 +72,6 @@ export async function forgotPassword(email: string): Promise<void> {
   if (response.status !== 200) {
     throw new Error('Could not register the user');
   }
-
 }
 
 /**
@@ -87,5 +84,4 @@ export async function resetUserPassword(resetToken: string, password: string): P
   if (response.status !== 200) {
     throw new Error('Could not register the user');
   }
-
 }
