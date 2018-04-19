@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex';
 
-import { MetaData } from '@/models/MetaData';
+import { ApiInfo } from '@/models/ApiInfo';
 import {
   LOAD_INFO_FAILED,
   LOAD_INFO_REQUESTED,
@@ -15,7 +15,7 @@ export const mutations: MutationTree<MetaDataState> = {
     state.isFetching = true;
     state.hasFailed = false;
   },
-  [LOAD_INFO_SUCCESS](state: MetaDataState, apiInfo: MetaData): void {
+  [LOAD_INFO_SUCCESS](state: MetaDataState, apiInfo: ApiInfo): void {
     state.isFetching = false;
     state.hasFailed = false;
     state.api = apiInfo;
