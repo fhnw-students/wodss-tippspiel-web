@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { ApiInfo } from '@/models/APIInfo';
+import { ApiInfo } from '@/models/ApiInfo';
 
 export class GuiInfo extends ApiInfo {
 

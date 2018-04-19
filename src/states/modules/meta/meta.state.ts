@@ -14,7 +14,7 @@ export interface MetaDataState {
 
 export const initialState: MetaDataState = {
   api: new ApiInfo(),
-  gui: plainToClass<ApiInfo, ApiInfo>(ApiInfo, (pkg as any)),
+  gui: plainToClass<GuiInfo, GuiInfo>(GuiInfo, (pkg as any)),
   hasFailed: false,
   isFetching: false,
   isServerAvailable: true,
