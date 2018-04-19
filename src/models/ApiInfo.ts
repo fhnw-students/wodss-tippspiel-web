@@ -1,13 +1,10 @@
 import { Expose, Exclude } from 'class-transformer';
 
 @Exclude()
-export class MetaData {
+export class ApiInfo {
 
   @Expose()
   public name: string;
-
-  @Expose()
-  public description: string;
 
   @Expose()
   public version: string;
