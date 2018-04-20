@@ -1,14 +1,12 @@
 import Vue from 'vue';
 
 import Noty from 'noty';
-import { FetchClient } from '../lib/fetch-client';
 import { AxiosInstance } from "axios";
 
 
 declare module 'vue/types/vue' {
 
   interface VueConstructor {
-    $fetchClient: (resource?: string, model?: any) => FetchClient;
     $createLogger: (channelOrClass: string | any) => ILogger;
     $http: AxiosInstance;
   }
