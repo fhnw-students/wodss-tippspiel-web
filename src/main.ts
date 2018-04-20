@@ -1,24 +1,58 @@
+/* ============
+ * Main File
+ * ============
+ *
+ * Will initialize the application.
+ */
+
 import Vue from 'vue';
 
 import 'isomorphic-fetch';
 
+/* ============
+ * Plugins
+ * ============
+ *
+ * Import and bootstrap the plugins.
+ * The order is important!
+ */
+
 import '@/plugins/bootstrap.plugin';
 import '@/plugins/bluebird.plugin';
-import '@/plugins/vuex.plugin';
+import '@/plugins/fontawesome.plugin';
 import '@/plugins/logger.plugin';
+import '@/plugins/vuex.plugin';
+import '@/plugins/axios.plugin';
 import '@/plugins/noty.plugin';
 import '@/plugins/vee-validate.plugin';
-import '@/plugins/fontawesome.plugin';
 import { i18n } from '@/plugins/i18n.plugin';
 import { router } from '@/plugins/vue-router.plugin';
 
+/* ============
+ * Styling
+ * ============
+ *
+ * Import the application styling.
+ * Sass is used for this boilerplate.
+ *
+ * https://sass-lang.com/
+ */
+
+import '@/styles/main.scss';
+
+/* ============
+ * Main App
+ * ============
+ *
+ * Last but not least, we import the main application.
+ */
+
 import { MetaDataActions } from '@/store/modules/meta';
-import App from './App.vue';
-import { appConfig } from './config/app.config';
-import { Fetch } from './plugins/fetch.plugin';
-import { store } from './store/index';
-import { AuthActions } from './store/modules/auth/index';
-import './styles/main.scss';
+import App from '@/App.vue';
+import { appConfig } from '@/config/app.config';
+import { Fetch } from '@/plugins/fetch.plugin';
+import { store } from '@/store/index';
+import { AuthActions } from '@/store/modules/auth/index';
 
 Vue.config.productionTip = false;
 

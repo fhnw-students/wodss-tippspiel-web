@@ -26,6 +26,7 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.5",
     "@fortawesome/fontawesome-free-solid": "^5.0.9",
+    "@types/axios": "^0.14.0",
     "@types/bluebird": "^3.5.20",
     "@types/immutable": "^3.8.7",
     "@types/lodash": "^4.14.106",
@@ -49,6 +50,7 @@
     "popper.js": "^1.14.2",
     "vee-validate": "^2.0.6",
     "vue": "^2.5.13",
+    "vue-axios": "^2.1.1",
     "vue-class-component": "^6.0.0",
     "vue-i18n": "^7.6.0",
     "vue-property-decorator": "^6.0.0",
