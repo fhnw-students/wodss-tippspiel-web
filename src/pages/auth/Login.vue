@@ -55,7 +55,7 @@
           </div>
           <div class="card-footer text-muted">
             <div class="links">
-              <router-link to="/reset-password">{{ $t('login.reset_password_link') }}</router-link>
+              <router-link to="/auth/forgot-password">{{ $t('login.reset_password_link') }}</router-link>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Watch } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
-import SpinnerButton from '../components/layout/SpinnerButton.vue';
+import SpinnerButton from '@/components/layout/SpinnerButton.vue';
 
 import { AuthGetters, AuthActions, Credentials } from '@/store/modules/auth';
 
@@ -95,7 +95,7 @@ export default class Login extends Vue {
   @Action(AuthActions.SignInUser)
   public signInUser: (cred: Credentials) => void;
 
-  private log = this.$createLogger(this);
+  private log = this.$createLogger('Login');
 
   public async signIn(): Promise<void> {
     const isValid = await this.$validator.validateAll();

@@ -145,7 +145,7 @@ export default class Register extends Vue {
   public isFetching: boolean = false;
   public hasFailed: boolean = false;
 
-  private log = this.$createLogger(this);
+  private log = this.$createLogger('Register');
 
   public onCaptchaVerified(response: any): void {
     this.log.info('VueRecaptcha is verified!');

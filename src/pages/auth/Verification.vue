@@ -42,7 +42,7 @@ export default class Verification extends Vue {
   public isFetching: boolean = false;
   public hasFailed: boolean = false;
 
-  private log = this.$createLogger(this);
+  private log = this.$createLogger('Verification');
 
   public async created(): Promise<void> {
     this.log.info('Verifing the user with the given token ', this.verificationToken);
