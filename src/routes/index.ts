@@ -1,21 +1,10 @@
 import { RouteConfig } from 'vue-router';
 
-import ForgotPassword from '@/views/auth/ForgotPassword.vue';
-import Login from '@/views/auth/Login.vue';
-import Registration from '@/views/auth/Registration.vue';
-import ResetPassword from '@/views/auth/ResetPassword.vue';
-import Verification from '@/views/auth/Verification.vue';
-import Games from '@/views/Games.vue';
-import Home from '@/views/Home.vue';
-import NotFound from '@/views/NotFound.vue';
-import Ranking from '@/views/Ranking.vue';
-import Teams from '@/views/Teams.vue';
-
 export const routes: RouteConfig[] = [
   {
     path: '/',
     name: 'home',
-    component: Home,
+    component: () => import('@/pages/Home.vue'),
     meta: {
       requiresAuth: false,
       guest: false,
@@ -24,7 +13,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/auth/login',
     name: 'auth.login',
-    component: Login,
+    component: () => import('@/pages/auth/Login.vue'),
     meta: {
       requiresAuth: false,
       guest: true,
@@ -33,7 +22,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/auth/register',
     name: 'auth.register',
-    component: Registration,
+    component: () => import('@/pages/auth/Registration.vue'),
     meta: {
       requiresAuth: false,
       guest: true,
@@ -42,7 +31,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/auth/verify/:verificationToken',
     name: 'auth.verify',
-    component: Verification,
+    component: () => import('@/pages/auth/Verification.vue'),
     props: true,
     meta: {
       requiresAuth: false,
@@ -52,7 +41,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/auth/forgot-password',
     name: 'auth.forgot-password',
-    component: ForgotPassword,
+    component: () => import('@/pages/auth/ForgotPassword.vue'),
     meta: {
       requiresAuth: false,
       guest: true,
@@ -61,7 +50,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/auth/reset-password/:resetToken',
     name: 'auth.reset-password',
-    component: ResetPassword,
+    component: () => import('@/pages/auth/ResetPassword.vue'),
     props: true,
     meta: {
       requiresAuth: false,
@@ -71,7 +60,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/ranking',
     name: 'ranking',
-    component: Ranking,
+    component: () => import('@/pages/Ranking.vue'),
     meta: {
       requiresAuth: false,
       guest: false,
@@ -80,7 +69,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/games',
     name: 'games',
-    component: Games,
+    component: () => import('@/pages/Games.vue'),
     meta: {
       requiresAuth: true,
       guest: false,
@@ -89,7 +78,7 @@ export const routes: RouteConfig[] = [
   {
     path: '/teams',
     name: 'teams',
-    component: Teams,
+    component: () => import('@/pages/Teams.vue'),
     meta: {
       requiresAuth: true,
       guest: false,
@@ -97,7 +86,7 @@ export const routes: RouteConfig[] = [
   },
   {
     path: '*',
-    component: NotFound,
+    component: () => import('@/pages/NotFound.vue'),
     meta: {
       requiresAuth: false,
       guest: false,
