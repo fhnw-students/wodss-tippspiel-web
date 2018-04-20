@@ -17,7 +17,7 @@ export { Credentials } from './auth.actions';
 export const AuthNamespace = 'auth';
 
 export const AuthActions = {
-  CheckLocalToken: `${AuthNamespace}/${actionTypes.CHECK_LOCAL_TOKEN}`,
+  CheckAuth: `${AuthNamespace}/${actionTypes.CHECK_AUTH}`,
   SignInUser: `${AuthNamespace}/${actionTypes.SIGN_IN_USER}`,
   SignOutUser: `${AuthNamespace}/${actionTypes.SIGN_OUT_USER}`,
   ResetState: `${AuthNamespace}/${actionTypes.RESET_STATE}`,

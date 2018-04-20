@@ -7,8 +7,6 @@
 
 import Vue from 'vue';
 
-import 'isomorphic-fetch';
-
 /* ============
  * Plugins
  * ============
@@ -47,23 +45,16 @@ import '@/styles/main.scss';
  * Last but not least, we import the main application.
  */
 
-import { MetaDataActions } from '@/store/modules/meta';
 import App from '@/App.vue';
-import { appConfig } from '@/config/app.config';
-import { Fetch } from '@/plugins/fetch.plugin';
 import { store } from '@/store/index';
+import { appConfig } from '@/config/app.config';
+import { MetaDataActions } from '@/store/modules/meta';
 import { AuthActions } from '@/store/modules/auth/index';
 
-Vue.config.productionTip = false;
-
-// TODO: Replace this with axios
-Vue.use(Fetch, {
-  basePath: appConfig.apiPath,
-  store,
-});
+Vue.config.productionTip = appConfig.env !== 'Production';
 
 store.dispatch(MetaDataActions.LoadAPIInfo);
-store.dispatch(AuthActions.CheckLocalToken);
+store.dispatch(AuthActions.CheckAuth);
 
 new Vue({
 
