@@ -8,6 +8,7 @@ declare module 'vue/types/vue' {
 
   interface VueConstructor {
     $fetchClient: (resource?: string, model?: any) => FetchClient;
+    $createLogger: (channelOrClass: string | any) => ILogger;
   }
 
   interface INoty {

@@ -27,7 +27,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 
 import Gravatar from './Gravatar.vue';
-import { AuthGetters, AuthActions, Credentials } from '@/states/modules/auth';
+import { AuthGetters, AuthActions, Credentials } from '@/store/modules/auth';
 
 @Component({
   components: {

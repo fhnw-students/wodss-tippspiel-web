@@ -1,13 +1,13 @@
-import { actions } from './../states/modules/auth/auth.actions';
-import { Store } from 'vuex';
-import { State } from '@/states/state';
+import { actions } from '@/store/modules/auth/auth.actions';
+import * as Vuex from 'vuex';
+import { Store } from '@/store/index';
 import { RequestOptions } from 'https';
-import { MetaDataActions } from '@/states/modules/meta';
+import { MetaDataActions } from '@/store/modules/meta';
 import { getToken } from '@/services/token.service';
 
 export interface FetchClientConfiguration {
   basePath?: string;
-  store: Store<State>;
+  store: Vuex.Store<Store>;
 }
 
 export interface THeaders { [name: string]: string; }

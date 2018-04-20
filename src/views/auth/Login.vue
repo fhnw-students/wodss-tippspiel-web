@@ -71,7 +71,7 @@ import { Watch } from 'vue-property-decorator';
 import { Action, Getter } from 'vuex-class';
 import SpinnerButton from '@/components/layout/SpinnerButton.vue';
 
-import { AuthGetters, AuthActions, Credentials } from '@/states/modules/auth';
+import { AuthGetters, AuthActions, Credentials } from '@/store/modules/auth';
 
 @Component({
   components: {

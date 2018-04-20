@@ -29,7 +29,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, Getter } from 'vuex-class';
 
-import { MetaDataGetters } from '@/states/modules/meta';
+import { MetaDataGetters } from '@/store/modules/meta';
 import AlertCard from './layout/AlertCard.vue';
 
 @Component({

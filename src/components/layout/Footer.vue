@@ -18,7 +18,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Getter } from 'vuex-class';
 
-import { MetaDataGetters } from '@/states/modules/meta';
+import { MetaDataGetters } from '@/store/modules/meta';
 
 @Component
 export default class Footer extends Vue {
