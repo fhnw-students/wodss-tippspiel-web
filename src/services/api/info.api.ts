@@ -2,22 +2,14 @@ import Vue from 'vue';
 
 import { plainToClass } from 'class-transformer';
 
-import { MetaData } from '@/models/MetaData';
+import { ApiInfo } from '@/models/ApiInfo';
 
 /**
  * @name getAPIInfo
  * @description Loads the information of the api.
  * @returns List of contributors.
  */
-export async function getAPIInfo(): Promise<MetaData> {
-  const response = await Vue.$fetchClient()
-    .withoutCredentials()
-    .fetchGet('/api');
-
-  if (response.status === 200) {
-    const body = await response.json();
-    return plainToClass<MetaData, any>(MetaData, body) as any;
-  }
-
-  throw new Error('Could not load api info');
+export async function getApiInfo(): Promise<ApiInfo> {
+  const response = await Vue.$http.get('/api');
+  return plainToClass<ApiInfo, ApiInfo>(ApiInfo, response.data);
 }

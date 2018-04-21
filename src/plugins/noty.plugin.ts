@@ -1,14 +1,24 @@
-import { i18n } from './../config/i18n.config';
-import * as _Vue from 'vue';
+/* ============
+ * Noty
+ * ============
+ *
+ * Notification libary.
+ *
+ * https://ned.im/noty/#/
+ */
+
+import Vue from 'vue';
 import { PluginObject, PluginFunction } from 'vue';
 
-import _Noty from 'noty';
+import Noty from 'noty';
 
-export const Noty: PluginObject<any> = {
-  install(Vue, options: { i18n: any }): void {
+import { i18n } from '@/plugins/i18n.plugin';
+
+export const NotyPlugin: PluginObject<any> = {
+  install(VueInstance, options: { i18n: any }): void {
 
     const createNoty = (text: string, type: any = 'alert') => {
-      return new _Noty({
+      return new Noty({
         type,
         text,
         theme: 'relax',
@@ -17,7 +27,7 @@ export const Noty: PluginObject<any> = {
       }).show();
     };
 
-    Vue.prototype.$noty = {
+    VueInstance.prototype.$noty = {
       alert: (translationKey: string) => createNoty(options.i18n.t(translationKey), 'alert'),
       success: (translationKey: string) => createNoty(options.i18n.t(translationKey), 'success'),
       warning: (translationKey: string) => createNoty(options.i18n.t(translationKey), 'warning'),
@@ -27,3 +37,5 @@ export const Noty: PluginObject<any> = {
 
   },
 };
+
+Vue.use(NotyPlugin, { i18n });

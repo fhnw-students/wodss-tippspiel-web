@@ -58,7 +58,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 
-import { AuthGetters } from '@/states/modules/auth';
+import { AuthGetters } from '@/store/modules/auth';
 import NavLanguageSelect from './NavLanguageSelect.vue';
 import NavProfile from './NavProfile.vue';
 
