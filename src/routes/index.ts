@@ -6,7 +6,7 @@ export const routes: RouteConfig[] = [
     name: 'home',
     component: () => import('@/pages/Home.vue'),
     meta: {
-      requiresAuth: false,
+      auth: false,
       guest: false,
     },
   },
@@ -15,7 +15,7 @@ export const routes: RouteConfig[] = [
     name: 'auth.login',
     component: () => import('@/pages/auth/Login.vue'),
     meta: {
-      requiresAuth: false,
+      auth: false,
       guest: true,
     },
   },
@@ -24,7 +24,7 @@ export const routes: RouteConfig[] = [
     name: 'auth.register',
     component: () => import('@/pages/auth/Registration.vue'),
     meta: {
-      requiresAuth: false,
+      auth: false,
       guest: true,
     },
   },
@@ -34,7 +34,7 @@ export const routes: RouteConfig[] = [
     component: () => import('@/pages/auth/Verification.vue'),
     props: true,
     meta: {
-      requiresAuth: false,
+      auth: false,
       guest: true,
     },
   },
@@ -43,7 +43,7 @@ export const routes: RouteConfig[] = [
     name: 'auth.forgot-password',
     component: () => import('@/pages/auth/ForgotPassword.vue'),
     meta: {
-      requiresAuth: false,
+      auth: false,
       guest: true,
     },
   },
@@ -53,7 +53,7 @@ export const routes: RouteConfig[] = [
     component: () => import('@/pages/auth/ResetPassword.vue'),
     props: true,
     meta: {
-      requiresAuth: false,
+      auth: false,
       guest: true,
     },
   },
@@ -62,7 +62,7 @@ export const routes: RouteConfig[] = [
     name: 'ranking',
     component: () => import('@/pages/Ranking.vue'),
     meta: {
-      requiresAuth: false,
+      auth: false,
       guest: false,
     },
   },
@@ -71,7 +71,7 @@ export const routes: RouteConfig[] = [
     name: 'games',
     component: () => import('@/pages/Games.vue'),
     meta: {
-      requiresAuth: true,
+      auth: true,
       guest: false,
     },
   },
@@ -80,7 +80,7 @@ export const routes: RouteConfig[] = [
     name: 'teams',
     component: () => import('@/pages/Teams.vue'),
     meta: {
-      requiresAuth: true,
+      auth: true,
       guest: false,
     },
   },
@@ -88,7 +88,7 @@ export const routes: RouteConfig[] = [
     path: '*',
     component: () => import('@/pages/NotFound.vue'),
     meta: {
-      requiresAuth: false,
+      auth: false,
       guest: false,
     },
   },
