@@ -1,19 +1,15 @@
 <template>
   <div class="nav-item btn-group">
     <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <Gravatar :email="'hirschi1988@gmail.com'" :size="45" />
+      <Gravatar :email="currentUser.email" :size="45" />
     </button>
     <div class="dropdown-menu dropdown-menu-right">
       <router-link class="dropdown-item account" to="profile">
-        <Gravatar :email="'hirschi1988@gmail.com'" :size="60" />
-        <p>Gery Hirschfeld</p>
-        <small>hirschi1988@gmail.com</small>
+        <Gravatar :email="currentUser.email" :size="60" />
+        <p>{{currentUser.username}}</p>
+        <small>{{currentUser.email}}</small>
       </router-link>
       <div class="dropdown-divider"></div>
-      <router-link class="dropdown-item" to="profile">
-        <i class="fas fa-user"></i>
-        {{ $t("nav.profile") }}
-      </router-link>
       <button class="dropdown-item" type="button" @click="onSignOutUser()">
         <i class="fas fa-sign-out-alt"></i>
         {{ $t("nav.sign_out") }}
@@ -28,6 +24,8 @@ import { Action, Getter } from 'vuex-class';
 
 import Gravatar from './Gravatar.vue';
 import { AuthGetters, AuthActions, Credentials } from '@/store/modules/auth';
+import { UserActions, UserGetters } from '@/store/modules/user';
+import { User } from '@/models/User';
 
 @Component({
   components: {
@@ -36,8 +34,18 @@ import { AuthGetters, AuthActions, Credentials } from '@/store/modules/auth';
 })
 export default class NavProfile extends Vue {
 
+  @Getter(UserGetters.GetCurrentUser)
+  public currentUser: User;
+
   @Action(AuthActions.SignOutUser)
   public signOutUser: () => void;
+
+  @Action(UserActions.LoadCurrentUser)
+  public getCurrentUser: () => User;
+
+  public created(): void {
+    this.getCurrentUser();
+  }
 
   public onSignOutUser(): void {
     this.signOutUser();
