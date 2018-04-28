@@ -32,7 +32,7 @@ export const actions: ActionTree<AuthState, AuthState> = {
   [actionTypes.SIGN_IN_USER]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials): void {
     commit(mutationTypes.SIGN_IN_USER_REQUESTED);
     authApi.signIn(credentials.username, credentials.password)
-      .then(() => commit(mutationTypes.SIGN_IN_USER_SUCCESS))
+      .then((token: string) => commit(mutationTypes.SIGN_IN_USER_SUCCESS, token))
       .catch((err: any) => commit(mutationTypes.SIGN_IN_USER_FAILED, err));
   },
   [actionTypes.SIGN_OUT_USER]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials): void {

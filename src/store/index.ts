@@ -1,17 +1,18 @@
 /* ============
- * Vuex Store
- * ============
- *
- * The store of the application.
- *
- * http://vuex.vuejs.org/en/index.html
- */
+* Vuex Store
+* ============
+*
+* The store of the application.
+*
+* http://vuex.vuejs.org/en/index.html
+*/
 
 import Vuex from 'vuex';
 import createLogger from 'vuex/dist/logger';
 
 import { auth, AuthState } from '@/store/modules/auth';
 import { meta, MetaDataState } from '@/store/modules/meta';
+import { user, UserState } from './modules/user';
 
 /**
  * Define your Store here
@@ -19,6 +20,7 @@ import { meta, MetaDataState } from '@/store/modules/meta';
 export interface Store {
   auth: AuthState;
   meta: MetaDataState;
+  user: UserState;
 }
 
 const debug = process.env.NODE_ENV !== 'production';
@@ -30,6 +32,7 @@ export const store = new Vuex.Store<Store>({
   modules: {
     auth: auth as any,
     meta: meta as any,
+    user: user as any,
   },
 
   /**

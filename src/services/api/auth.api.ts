@@ -5,7 +5,7 @@ import { setToken, removeToken } from '@/services/token.service';
 /**
  * Logins a user with his credentials to get a valid access token
  */
-export async function signIn(username: string, password: string): Promise<void> {
+export async function signIn(username: string, password: string): Promise<string> {
   const token = btoa(`${username}:${password}`);
   const response = await Vue.$http.post('/auth/login', undefined, {
     headers: {

@@ -20,9 +20,10 @@ export default class Gravatar extends Vue {
   public alt = 'Avatar';
 
   public get url(): string {
+    const email = this.email || '';
     const img = [
       '//www.gravatar.com/avatar/',
-      md5(this.email.trim().toLowerCase()),
+      md5(email.trim().toLowerCase()),
       `?s=${this.size || 80}`,
       `&d=${this.defaultImg}`,
       `&r=${this.rating}`,
