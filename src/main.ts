@@ -16,6 +16,7 @@ import Vue from 'vue';
  */
 
 import '@/plugins/bootstrap.plugin';
+import '@/plugins/flag-icon-css.plugin';
 import '@/plugins/bluebird.plugin';
 import '@/plugins/fontawesome.plugin';
 import '@/plugins/logger.plugin';
