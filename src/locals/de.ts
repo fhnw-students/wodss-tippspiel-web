@@ -18,6 +18,7 @@ export default {
   },
   teams: {
     title: 'Tippgruppen',
+      create_team: 'Neues Team erstellen',
   },
   home: {
     title: 'Weltmeisterschaft 2018 in Russland',
