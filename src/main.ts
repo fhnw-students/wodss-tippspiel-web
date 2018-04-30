@@ -5,6 +5,7 @@
  * Will initialize the application.
  */
 
+import 'reflect-metadata';
 import Vue from 'vue';
 
 /* ============
