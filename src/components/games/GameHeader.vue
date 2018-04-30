@@ -1,6 +1,6 @@
 <template>
   <div class="game-header">
-    <div class="game-header-date">{{GameDate}}</div>
+    <div class="game-header-date">{{GameDate}} - {{game.id}}</div>
     <div class="game-header-time">{{GameTime}}</div>
     <div class="game-header-location">{{game.location.name}}</div>
   </div>

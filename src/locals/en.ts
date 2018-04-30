@@ -4,15 +4,15 @@ export default {
     de: 'German',
   },
   app: {
-    title: 'WM Tippsiel',
+    title: 'WM Bet-Game',
   },
   games: {
-    title: 'Spiele',
+    title: 'Games',
   },
   home: {
-    title: 'Weltmeisterschaft 2018 in Russland',
-    sub_title: 'Tippspiel',
-    description: 'Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli',
+    title: 'World-Cup 2018 in Russia',
+    sub_title: 'Bet-Game',
+    description: 'Project-Work of David Heimgartner, Gerhard Hirschfeld & Ken Iseli',
   },
   login: {
     sign_in: 'Sign in',

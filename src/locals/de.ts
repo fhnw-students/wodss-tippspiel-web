@@ -4,7 +4,7 @@ export default {
     de: 'Deutsch',
   },
   app: {
-    title: 'WM Tippsiel',
+    title: 'WM Tippspiel',
   },
   nav: {
     profile: 'Profile',
@@ -90,5 +90,8 @@ export default {
       title: 'Keine Internet Verbindung!',
       message: 'Bitte stellen Sie sicher, dass Sie eine Internet Verbindung haben und laden Sie dann die Seite neu.',
     },
+  },
+  action: {
+    save: 'Speichern',
   },
 };

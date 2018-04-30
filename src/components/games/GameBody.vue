@@ -8,6 +8,7 @@
         <input
           v-model="hostScore"
           autocomplete="off"
+          :disabled="game.isPlayed"
           type="text"
           class="form-control form-control-lg"/>
       </div>
@@ -15,6 +16,7 @@
         <input
           v-model="guestScore"
           autocomplete="off"
+          :disabled="game.isPlayed"
           type="text"
           class="form-control form-control-lg"/>
       </div>
@@ -43,6 +45,14 @@ export default class GameBody extends Vue {
 
   public hostScore: string = '';
   public guestScore: string = '';
+
+  @Watch('game', { deep: true, immediate: true })
+  public onGameChanged(): void {
+    if (this.game.isTipped) {
+      this.hostScore = this.game.tip.hostScore.toString();
+      this.guestScore = this.game.tip.guestScore.toString();
+    }
+  }
 
 }
 </script>

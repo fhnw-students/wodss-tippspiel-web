@@ -95,22 +95,29 @@ export default class GameRow extends Vue {
 
         div.score {
           flex: 1;
-          border: 5px solid darken($yellow, 20);
+          border: 5px solid darken($yellow, 10);
 
           input {
             text-align: center;
             padding-left: 5px !important;
             padding-right: 5px !important;
-            border: 1px solid darken($yellow, 40);
+            border: 1px solid darken($yellow, 20);
             border-radius: 0;
+            font-weight: bold;
+          }
+
+          .form-control:disabled, .form-control[readonly] {
+            background: darken($yellow, 10);
+            border: 1px solid darken($yellow, 10);
+            font-weight: bold;
           }
         }
 
         div.score-host {
-          margin-right: 5px;
+          margin-right: 2px;
         }
         div.score-guest {
-          margin-left: 5px;
+          margin-left: 2px;
         }
       }
 
@@ -123,6 +130,62 @@ export default class GameRow extends Vue {
         background: $yellow;
         padding-right: 15px;
       }
+    }
+
+    div.game-results {
+      margin-top: 4px;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      padding: 0 15px;
+      background: lighten($yellow, 10);
+
+      div.game-results-score {
+        width: 120px;
+        text-align: center;
+        background-color: $orange;
+        font-weight: bold;
+        font-size: 1.2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.hit {
+          background-color: $green;
+        }
+      }
+
+      div.game-results-rules {
+        flex: 1;
+        font-size: 1.6em;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        div.rules {
+          margin-right: 15px;
+
+          svg {
+            margin-left: 5px;
+          }
+        }
+
+        .fa-times-circle {
+          color: $red !important;
+        }
+
+        .fa-check-circle {
+          color: $green !important;
+        }
+      }
+      div.game-results-points {
+        flex: 1;
+        font-size: 1.2em;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
     }
 
   }
