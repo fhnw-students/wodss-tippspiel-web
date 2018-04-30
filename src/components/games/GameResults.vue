@@ -16,33 +16,10 @@
       <div class="game-results-points">
         {{ $t('games.points', { points: game.tip.points }) }}
       </div>
-
     </div>
 
-    <div class="game-results-popover" v-if="isPopoverVisible">
-      <div class="game-results-popover-inner">
-        <p>
-          <GameRule :active="game.tip.tippedHostScoreCorrectly"></GameRule>
-          <span>{{ $t('games.rules.tipped_host_score_correctly') }}</span>
-          <span class="points" :class="game.tip.tippedHostScoreCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 2 }) }}</span>
-        </p>
-        <p>
-          <GameRule :active="game.tip.tippedGuestScoreCorrectly"></GameRule>
-          <span>{{ $t('games.rules.tipped_guest_score_correctly') }}</span>
-          <span class="points" :class="game.tip.tippedGuestScoreCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 2 }) }}</span>
-        </p>
-        <p>
-          <GameRule :active="game.tip.tippedWinnerCorrectly"></GameRule>
-          <span>{{ $t('games.rules.tipped_winner_correctly') }}</span>
-          <span class="points" :class="game.tip.tippedWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 10 }) }}</span>
-        </p>
-        <p>
-          <GameRule :active="game.tip.tippedBalanceAndWinnerCorrectly"></GameRule>
-          <span>{{ $t('games.rules.balance_and_winner_correctly') }}</span>
-          <span class="points" :class="game.tip.tippedBalanceAndWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 6 }) }}</span>
-        </p>
-      </div>
-    </div>
+    <GameResultsPopover :game="game" v-if="isPopoverVisible"></GameResultsPopover>
+
   </div>
 </template>
 
@@ -51,10 +28,12 @@ import { Prop, Component, Vue } from 'vue-property-decorator';
 
 import { Game } from '@/models/Game';
 import GameRule from '@/components/games/GameRule.vue';
+import GameResultsPopover from '@/components/games/GameResultsPopover.vue';
 
 @Component({
   components: {
     GameRule,
+    GameResultsPopover,
   },
 })
 export default class GameResults extends Vue {
