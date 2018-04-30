@@ -25,6 +25,7 @@ import '@/plugins/vuex.plugin';
 import '@/plugins/axios.plugin';
 import '@/plugins/noty.plugin';
 import '@/plugins/vee-validate.plugin';
+import '@/plugins/vue-event-bus.plugin';
 import { i18n } from '@/plugins/i18n.plugin';
 import { router } from '@/plugins/vue-router.plugin';
 
