@@ -1,7 +1,7 @@
 <template>
   <div>
-    <span class="flag-icon flag-icon-ch"></span>
-    <span class="nation"></span>
+    <span :class="FlagClass"></span>
+    <span class="nation">{{ gameNation.nation.name }}</span>
   </div>
 </template>
 
@@ -16,9 +16,8 @@ export default class GameBody extends Vue {
   @Prop()
   public gameNation: GameNation;
 
-  @Watch('gameNation')
-  public gameNationChanged() {
-    console.warn(this.gameNation);
+  public get FlagClass(): string {
+    return `flag-icon flag-icon-${this.gameNation.nation.code}`;
   }
 
 }

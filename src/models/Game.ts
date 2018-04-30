@@ -23,4 +23,9 @@ export class Game {
 
   @Type(() => Tip)
   public tip: Tip;
+
+  public get isPlayed(): boolean {
+    return !!this.host.score && !!this.guest.score && this.host.score >= 0 && this.guest.score >= 0;
+  }
+
 }
