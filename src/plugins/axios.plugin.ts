@@ -46,8 +46,6 @@ Axios.interceptors.response.use(
   (response) => response,
   (error) => {
 
-    log.info(`Intercepted error status=${error.response.status}, isAuthenticated=${store.state.auth.isAuthenticated}`);
-    log.warn(error.message);
     if (!error.response) {
       store.dispatch(MetaDataActions.SetServerUnavailable);
     }

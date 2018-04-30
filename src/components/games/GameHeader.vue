@@ -1,8 +1,8 @@
 <template>
   <div class="game-header">
-    <div class="game-header-date">{{GameDate}} - {{game.id}}</div>
-    <div class="game-header-time">{{GameTime}}</div>
-    <div class="game-header-location">{{game.location.name}}</div>
+    <div class="game-header-date"><span>{{GameDate}} - {{game.id}}</span></div>
+    <div class="game-header-time"><span>{{GameTime}}</span></div>
+    <div class="game-header-location"><span class="d-none d-sm-none d-md-block">{{game.location.name}}</span></div>
   </div>
 </template>
 

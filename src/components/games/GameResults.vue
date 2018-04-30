@@ -24,23 +24,23 @@
         <p>
           <GameRule :active="game.tip.tippedHostScoreCorrectly"></GameRule>
           <span>{{ $t('games.rules.tipped_host_score_correctly') }}</span>
-          <span class="points">{{ $t('games.points', { points: 2 }) }}</span>
-          </p>
+          <span class="points" :class="game.tip.tippedHostScoreCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 2 }) }}</span>
+        </p>
         <p>
           <GameRule :active="game.tip.tippedGuestScoreCorrectly"></GameRule>
           <span>{{ $t('games.rules.tipped_guest_score_correctly') }}</span>
-          <span class="points">{{ $t('games.points', { points: 2 }) }}</span>
-          </p>
+          <span class="points" :class="game.tip.tippedGuestScoreCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 2 }) }}</span>
+        </p>
         <p>
           <GameRule :active="game.tip.tippedWinnerCorrectly"></GameRule>
           <span>{{ $t('games.rules.tipped_winner_correctly') }}</span>
-          <span class="points">{{ $t('games.points', { points: 10 }) }}</span>
-          </p>
+          <span class="points" :class="game.tip.tippedWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 10 }) }}</span>
+        </p>
         <p>
           <GameRule :active="game.tip.tippedBalanceAndWinnerCorrectly"></GameRule>
           <span>{{ $t('games.rules.balance_and_winner_correctly') }}</span>
-          <span class="points">{{ $t('games.points', { points: 6 }) }}</span>
-          </p>
+          <span class="points" :class="game.tip.tippedBalanceAndWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 6 }) }}</span>
+        </p>
       </div>
     </div>
   </div>

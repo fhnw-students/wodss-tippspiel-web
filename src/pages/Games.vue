@@ -8,7 +8,7 @@
       <div class="col text-right">
         <div class="dropdown" v-if="!isLoading">
 
-          <SpinnerButton :is-spinning="isLoading" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <SpinnerButton :is-spinning="isLoading" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ selectedGamePhase.name }}
             <i class="fas fa-caret-down"></i>
           </SpinnerButton>

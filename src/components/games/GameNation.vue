@@ -1,7 +1,7 @@
 <template>
   <div>
     <span :class="FlagClass"></span>
-    <span class="nation">{{ gameNation.nation.name }}</span>
+    <span class="nation d-none d-sm-none d-md-block">{{ gameNation.nation.name }}</span>
   </div>
 </template>
 
