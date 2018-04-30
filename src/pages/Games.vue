@@ -79,6 +79,7 @@ export default class Games extends Vue {
 
   public created(): void {
     this.loadContent();
+    this.$eventBus.$on('locale.changed', () => this.loadContent());
   }
 
   public get gameList(): Game[] {

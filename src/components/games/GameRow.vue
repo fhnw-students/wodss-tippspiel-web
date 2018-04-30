@@ -188,6 +188,61 @@ export default class GameRow extends Vue {
 
     }
 
+    .game-results-popover {
+      position: absolute;
+      margin-top: 4px;
+      width: 100%;
+      left: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .game-results-popover-inner {
+        width: 420px;
+
+        background: lighten($yellow, 10);
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        padding-bottom: 4px;
+
+        p {
+          margin: 0;
+          padding-top: 4px;
+          padding-left: 15px;
+          padding-right: 15px;
+
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+
+          .fa-times-circle {
+            color: $red !important;
+          }
+
+          .fa-check-circle {
+            color: $green !important;
+          }
+
+          svg {
+            margin-right: 4px;
+          }
+
+          span {
+            flex: 2;
+          }
+
+          .points {
+            flex: 1;
+            display: block;
+            align-self: flex-end;
+            font-weight: bold;
+            text-align: right;
+          }
+        }
+      }
+    }
+
   }
 
 </style>

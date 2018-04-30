@@ -15,6 +15,13 @@ export default {
   },
   games: {
     title: 'Tippspiel',
+    points: '{points} Punkte',
+    rules: {
+      tipped_host_score_correctly: 'Korrekte Anzahl Heim-Tore:',
+      tipped_guest_score_correctly: 'Korrekte Anzahl Gast-Tore:',
+      tipped_winner_correctly: 'Korrekte Sieger:',
+      balance_and_winner_correctly: 'Korrekte Tordifferenze + Sieger:',
+    },
   },
   teams: {
     title: 'Tippgruppen',
