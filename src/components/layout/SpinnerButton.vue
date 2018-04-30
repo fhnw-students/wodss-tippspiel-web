@@ -30,7 +30,12 @@ export default class SpinnerButton extends Vue {
 }
 </script>
 
+<style lang="scss">
+  button > .spinner > div {
+    background-color: #FFFFFF !important;
+  }
 
-<style lang="scss" scoped>
-
+  button::after {
+    display: none !important;
+  }
 </style>
