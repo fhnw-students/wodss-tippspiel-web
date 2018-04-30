@@ -18,6 +18,8 @@ import { store } from '@/store';
 import { AuthActions } from '@/store/modules/auth';
 import { MetaDataActions } from '@/store/modules/meta';
 
+const log = Vue.$createLogger('axios');
+
 Axios.defaults.baseURL = appConfig.apiPath;
 Axios.defaults.headers.common.Accept = 'application/json';
 Axios.defaults.headers.common.ContentType = 'application/json';
@@ -25,6 +27,8 @@ Axios.interceptors.response.use(
   (response) => response,
   (error) => {
 
+    log.info(`Intercepted error status=${error.response.status}, isAuthenticated=${store.state.auth.isAuthenticated}`);
+    log.warn(error.message);
     if (!error.response) {
       store.dispatch(MetaDataActions.SetServerUnavailable);
     }

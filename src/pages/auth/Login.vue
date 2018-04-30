@@ -1,7 +1,7 @@
 <template>
   <section class="login-page">
     <div class="row justify-content-sm-center">
-      <div class="col col-sm-6 col-md-6">
+      <div class="col col-sm-8 col-md-6 col-lg-4">
         <div class="card">
           <div class="card-body login">
             <form noValidate>
@@ -17,13 +17,16 @@
                 <input
                   id="inputUsername"
                   name="username"
+                  ref="username"
                   autocomplete="off"
                   type="text"
-                  :class="{'form-control form-control-lg': true, 'is-invalid': errors.has('username') }"
+                  :class="{'form-control': true, 'is-invalid': errors.has('username') }"
                   v-bind:placeholder="$t('label.username')"
                   v-model="username"
+                  @keypress.enter="signIn()"
                   v-validate="'required'"
-                  required />
+                  required
+                  autofocus/>
               </div>
 
               <div class="input-group mb-3">
@@ -37,15 +40,16 @@
                   name="password"
                   autocomplete="off"
                   type="password"
-                  :class="{'form-control form-control-lg': true, 'is-invalid': errors.has('password') }"
+                  :class="{'form-control': true, 'is-invalid': errors.has('password') }"
                   v-bind:placeholder="$t('label.password')"
                   v-model="password"
+                  @keypress.enter="signIn()"
                   v-validate="'required'"
                   required />
               </div>
 
               <spinner-button
-                class="btn-primary btn-lg btn-block"
+                class="btn-primary btn-block"
                 :is-spinning="isFetching"
                 @click.native="signIn()">
                 {{ $t("login.sign_in" )}}
@@ -108,6 +112,10 @@ export default class Login extends Vue {
     } else {
       this.$noty.warning('message.login_incomplete');
     }
+  }
+
+  public mounted(): void {
+    (this.$refs.username as any).focus();
   }
 
   @Watch('isAuthenticated')
