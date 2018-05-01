@@ -29,6 +29,7 @@
     "@types/axios": "^0.14.0",
     "@types/bluebird": "^3.5.20",
     "@types/immutable": "^3.8.7",
+    "@types/jquery": "^3.3.1",
     "@types/lodash": "^4.14.106",
     "@types/md5": "^2.1.32",
     "@types/vue-i18n": "^7.0.0",
