@@ -1,6 +1,7 @@
 <template>
   <button
     type="button"
+    :disabled="isSpinnerVisible"
     class="btn">
     <slot v-if="!isSpinnerVisible"></slot>
     <Spinner v-if="isSpinnerVisible"></Spinner>

@@ -34,16 +34,6 @@
 
       <GameRow v-if="!isLoading" v-for="game in gameList" :key="game.id" :game="game"></GameRow>
 
-      <div class="row" v-if="!isLoading">
-        <div class="col">
-          <button class="btn btn-primary btn-block">
-            <i class="fas fa-check"></i>
-            {{ $t('action.save') }}
-          </button>
-        </div>
-      </div>
-
-
     </div>
 
   </section>

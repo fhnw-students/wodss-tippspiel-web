@@ -4,19 +4,23 @@
     <GameNation class="game-body-host" :game-nation="game.host"></GameNation>
 
     <div class="game-body-center">
-      <div class="score score-host">
+      <div class="score score-host" :class="hostScoreIsInvalid ? 'is-invalid' : ''">
         <input
           v-model="hostScore"
           autocomplete="off"
-          :disabled="game.isPlayed"
+          :disabled="game.isPlayed || isUpdating"
+          @keypress="onKeyPress"
+          @blur.prevent="onHostScoreChanged()"
           type="text"
           class="form-control form-control-lg"/>
       </div>
-      <div class="score score-guest">
+      <div class="score score-guest" :class="guestScoreIsInvalid ? 'is-invalid' : ''">
         <input
           v-model="guestScore"
           autocomplete="off"
-          :disabled="game.isPlayed"
+          :disabled="game.isPlayed || isUpdating"
+          @keypress="onKeyPress"
+          @blur.prevent="onGuestScoreChanged()"
           type="text"
           class="form-control form-control-lg"/>
       </div>
@@ -32,6 +36,8 @@ import { Prop, Component, Vue, Watch } from 'vue-property-decorator';
 
 import GameNation from '@/components/games/GameNation.vue';
 import { Game } from '@/models/Game';
+import * as gameApi from '@/services/api/game.api';
+import { NewTip } from '@/models/NewTip';
 
 @Component({
   components: {
@@ -46,11 +52,81 @@ export default class GameBody extends Vue {
   public hostScore: string = '';
   public guestScore: string = '';
 
+  public hostScoreIsInvalid: boolean = false;
+  public guestScoreIsInvalid: boolean = false;
+
+  public isDirty: boolean = false;
+  public isUpdating: boolean = false;
+
   @Watch('game', { deep: true, immediate: true })
   public onGameChanged(): void {
     if (this.game.isTipped) {
       this.hostScore = this.game.tip.hostScore.toString();
       this.guestScore = this.game.tip.guestScore.toString();
+    }
+  }
+
+  public onKeyPress(event: { key: string }, a: any): void {
+    if (!parseInt(event.key, 10)) {
+      (event as any).preventDefault();
+    }
+  }
+
+  public onHostScoreChanged(): void {
+    if (this.hostScore !== this.getHostScoreTipScore()) {
+      this.isDirty = true;
+    }
+
+    if (this.isDirty && this.hostScore === '') {
+      this.hostScoreIsInvalid = true;
+    } else {
+      this.hostScoreIsInvalid = false;
+    }
+
+    this.verifyAndUpdate();
+  }
+
+  public onGuestScoreChanged(): void {
+    if (this.guestScore !== this.getGuestScoreTipScore()) {
+      this.isDirty = true;
+    }
+
+    if (this.isDirty && this.guestScore === '') {
+      this.guestScoreIsInvalid = true;
+    } else {
+      this.guestScoreIsInvalid = false;
+    }
+
+    this.verifyAndUpdate();
+  }
+
+  private getHostScoreTipScore(): string {
+    if ( this.game.tip && this.game.tip.hostScore ) {
+      return this.game.tip.hostScore.toString();
+    }
+    return '';
+  }
+
+  private getGuestScoreTipScore(): string {
+    if ( this.game.tip && this.game.tip.guestScore ) {
+      return this.game.tip.guestScore.toString();
+    }
+    return '';
+  }
+
+  private async verifyAndUpdate(): Promise<void> {
+    if (this.isDirty && this.hostScore !== '' && this.guestScore !== '') {
+      this.isUpdating = true;
+      this.game.tip = await gameApi.updateTip(this.game.id, new NewTip(parseInt(this.hostScore, 10), parseInt(this.guestScore, 10)));
+      this.isDirty = false;
+      this.guestScoreIsInvalid = false;
+      this.hostScoreIsInvalid = false;
+      this.isUpdating = false;
+    } else {
+      if (this.isDirty) {
+        this.hostScoreIsInvalid = this.hostScore === '' && this.guestScore !== '';
+        this.guestScoreIsInvalid = this.guestScore === '' && this.hostScore !== '';
+      }
     }
   }
 
@@ -96,6 +172,22 @@ export default class GameBody extends Vue {
           background: darken($yellow, 10);
           border: 1px solid darken($yellow, 10);
           font-weight: bold;
+        }
+
+        &.is-invalid{
+          border: 5px solid $red;
+
+          input {
+            border: 1px solid darken($red, 10);
+          }
+        }
+
+        &.is-valid{
+          border: 5px solid $green;
+
+          input {
+            border: 1px solid darken($green, 10);
+          }
         }
       }
 

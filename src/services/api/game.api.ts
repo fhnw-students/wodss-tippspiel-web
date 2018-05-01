@@ -5,6 +5,7 @@ import { classToPlain, plainToClass } from 'class-transformer';
 import { Game } from '@/models/Game';
 import { GamePhase } from '@/models/GamePhase';
 import { Tip } from '@/models/Tip';
+import { NewTip } from '@/models/NewTip';
 
 export async function getGames(): Promise<Game[]> {
   const response = await Vue.$http.get(`/games`);
@@ -16,7 +17,7 @@ export async function updateGame(game: Game): Promise<Game> {
   return plainToClass<Game, Game>(Game, response.data);
 }
 
-export async function updateTip(gameId: number, tip: Tip): Promise<Tip> {
+export async function updateTip(gameId: number, tip: NewTip): Promise<Tip> {
   const response = await Vue.$http.put(`/games/${gameId}/tip`, classToPlain(tip));
   return plainToClass<Tip, Tip>(Tip, response.data);
 }
