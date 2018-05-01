@@ -1,5 +1,4 @@
-export class NewTip {
-
+export class Score {
   public hostScore: number;
   public guestScore: number;
 
@@ -7,5 +6,4 @@ export class NewTip {
     this.hostScore = hostScore;
     this.guestScore = guestScore;
   }
-
 }

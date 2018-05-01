@@ -37,7 +37,7 @@ import { Prop, Component, Vue, Watch } from 'vue-property-decorator';
 import GameNation from '@/components/games/GameNation.vue';
 import { Game } from '@/models/Game';
 import * as gameApi from '@/services/api/game.api';
-import { NewTip } from '@/models/NewTip';
+import { Score } from '@/models/Score';
 
 @Component({
   components: {
@@ -117,7 +117,7 @@ export default class GameBody extends Vue {
   private async verifyAndUpdate(): Promise<void> {
     if (this.isDirty && this.hostScore !== '' && this.guestScore !== '') {
       this.isUpdating = true;
-      this.game.tip = await gameApi.updateTip(this.game.id, new NewTip(parseInt(this.hostScore, 10), parseInt(this.guestScore, 10)));
+      this.game.tip = await gameApi.updateTip(this.game.id, new Score(parseInt(this.hostScore, 10), parseInt(this.guestScore, 10)));
       this.isDirty = false;
       this.guestScoreIsInvalid = false;
       this.hostScoreIsInvalid = false;
@@ -158,6 +158,7 @@ export default class GameBody extends Vue {
       div.score {
         flex: 1;
         border: 5px solid darken($yellow, 10);
+        background: darken($yellow, 10);
 
         input {
           text-align: center;
@@ -176,6 +177,7 @@ export default class GameBody extends Vue {
 
         &.is-invalid{
           border: 5px solid $red;
+          background: $red;
 
           input {
             border: 1px solid darken($red, 10);

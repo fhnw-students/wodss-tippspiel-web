@@ -21,6 +21,8 @@ export default {
   },
   admin: {
     title: 'Admin',
+    lead: 'Resultate erfassen',
+    create_game: 'Spiel erfassen',
   },
   games: {
     title: 'Tippspiel',
@@ -96,6 +98,7 @@ export default {
     forgot_password_failed: 'Leider kann ihr PW nicht zurückgesetzt werden.',
     reset_password_successful: 'Password wurde erfolgreich zurückgesetzt',
     reset_password_failed: '@:message.forgot_password_failed',
+    game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
   },
   connection: {
     server_unavailable: {
