@@ -9,9 +9,18 @@ export default {
   nav: {
     profile: 'Profile',
     sign_out: 'Abmelden',
+    admin: 'Sie sind Admin.',
   },
   ranking: {
     title: 'Ranglisten',
+  },
+  settings: {
+    title: 'Einstellungen',
+    change_language: 'Sprache ändern',
+    select_language: 'Wähle eine Sprache aus',
+  },
+  admin: {
+    title: 'Admin',
   },
   games: {
     title: 'Tippspiel',

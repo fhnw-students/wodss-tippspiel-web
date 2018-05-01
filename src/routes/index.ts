@@ -85,6 +85,24 @@ export const routes: RouteConfig[] = [
     },
   },
   {
+    path: '/settings',
+    name: 'settings',
+    component: () => import('@/pages/Settings.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('@/pages/Admin.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
     path: '*',
     component: () => import('@/pages/NotFound.vue'),
     meta: {

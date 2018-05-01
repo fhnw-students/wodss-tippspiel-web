@@ -27,10 +27,10 @@
               <a class="nav-link">{{ $t("teams.title") }}</a>
             </router-link>
 
-          </ul>
+            <router-link to="/admin" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated && currentUser && currentUser.admin">
+              <a class="nav-link">{{ $t("admin.title") }}</a>
+            </router-link>
 
-          <ul class="navbar-nav mt-2 mt-md-0">
-            <NavLanguageSelect />
           </ul>
 
           <NavProfile v-if="isAuthenticated"/>
@@ -59,12 +59,12 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 
 import { AuthGetters } from '@/store/modules/auth';
-import NavLanguageSelect from './NavLanguageSelect.vue';
 import NavProfile from './NavProfile.vue';
+import { UserGetters } from '@/store/modules/user';
+import { User } from '@/models/User';
 
 @Component({
   components: {
-    NavLanguageSelect,
     NavProfile,
   },
 })
@@ -72,6 +72,9 @@ export default class Header extends Vue {
 
   @Getter(AuthGetters.IsAuthenticated)
   public isAuthenticated: boolean;
+
+  @Getter(UserGetters.GetCurrentUser)
+  public currentUser: User;
 
 }
 </script>
