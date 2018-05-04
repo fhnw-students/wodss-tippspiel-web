@@ -16,7 +16,3 @@
 import 'popper.js';
 import 'bootstrap';
 import 'jquery';
-
-$(document).ready(function () {
-  ($('[data-toggle="tooltip"]') as any).tooltip();
-});
