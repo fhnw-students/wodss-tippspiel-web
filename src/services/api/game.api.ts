@@ -2,10 +2,11 @@ import Vue from 'vue';
 
 import { classToPlain, plainToClass } from 'class-transformer';
 
+import { Tip } from '@/models/Tip';
 import { Game } from '@/models/Game';
 import { Score } from '@/models/Score';
+import { NewGame } from '@/models/NewGame';
 import { GamePhase } from '@/models/GamePhase';
-import { Tip } from '@/models/Tip';
 
 export async function getAllGames(): Promise<Game[]> {
   const response = await Vue.$http.get(`/games`);
@@ -17,7 +18,7 @@ export async function updateGame(gameId: number, score: Score): Promise<Game> {
   return plainToClass<Game, Game>(Game, response.data);
 }
 
-export async function createGame(game: Game): Promise<Game> {
+export async function createGame(game: NewGame): Promise<Game> {
   const response = await Vue.$http.post(`/games`, classToPlain(game));
   return plainToClass<Game, Game>(Game, response.data);
 }

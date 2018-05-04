@@ -60,7 +60,7 @@ export default class GameResultsPopover extends Vue {
     .game-results-popover-inner {
       width: 420px;
 
-      background: lighten($yellow, 10);
+      background: lighten($white, 10);
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       padding-bottom: 4px;

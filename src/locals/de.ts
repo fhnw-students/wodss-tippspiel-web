@@ -4,7 +4,7 @@ export default {
     de: 'Deutsch',
   },
   app: {
-    title: 'WM Tippspiel',
+    title: 'Tippspiel zu Weltmeisterschaft 2018',
   },
   nav: {
     profile: 'Profile',
@@ -23,6 +23,19 @@ export default {
     title: 'Admin',
     lead: 'Resultate erfassen',
     create_game: 'Spiel erfassen',
+  },
+  create_game: {
+    title: 'Spiel erfassen',
+    game_phase: 'Spielrunde',
+    select_game_phase: 'Wähle eine Spielrunde aus',
+    location: 'Austragungsort',
+    select_location: 'Wähle eine Austragungsort aus',
+    game_date: 'Spieldatum',
+    game_time: 'Speilzeit',
+    host: 'Heimmannschaft',
+    select_host: 'Wähle eine Heimmannschaft',
+    guest: 'Gastmannschaft',
+    select_guest: 'Wähle eine Gastmannschaft',
   },
   games: {
     title: 'Tippspiel',
@@ -99,6 +112,7 @@ export default {
     reset_password_successful: 'Password wurde erfolgreich zurückgesetzt',
     reset_password_failed: '@:message.forgot_password_failed',
     game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
+    create_game_successful: 'Spiel wurde erfoglreich erstellt',
   },
   connection: {
     server_unavailable: {

@@ -9,7 +9,7 @@
           v-model="hostScore"
           autocomplete="off"
           :disabled="game.isPlayed || isUpdating"
-          @keypress="onKeyPress"
+          @keypress="onKeyPress($event, hostScore)"
           @blur.prevent="onHostScoreChanged()"
           type="text"
           class="form-control form-control-lg"/>
@@ -19,7 +19,7 @@
           v-model="guestScore"
           autocomplete="off"
           :disabled="game.isPlayed || isUpdating"
-          @keypress="onKeyPress"
+          @keypress="onKeyPress($event, guestScore)"
           @blur.prevent="onGuestScoreChanged()"
           type="text"
           class="form-control form-control-lg"/>
@@ -66,8 +66,8 @@ export default class GameBody extends Vue {
     }
   }
 
-  public onKeyPress(event: { key: string }, a: any): void {
-    if (!parseInt(event.key, 10)) {
+  public onKeyPress(event: { key: string }, score: string): void {
+    if (!Number.isInteger(parseInt(event.key, 10)) || score.length > 1) {
       (event as any).preventDefault();
     }
   }
@@ -146,7 +146,7 @@ export default class GameBody extends Vue {
       flex: 1;
       display: flex;
       align-items: center;
-      background: $yellow;
+      background: $gray-200;
       padding-left: 15px;
     }
 
@@ -157,21 +157,21 @@ export default class GameBody extends Vue {
 
       div.score {
         flex: 1;
-        border: 5px solid darken($yellow, 10);
-        background: darken($yellow, 10);
+        border: 5px solid darken($gray-200, 10);
+        background: darken($gray-200, 10);
 
         input {
           text-align: center;
           padding-left: 5px !important;
           padding-right: 5px !important;
-          border: 1px solid darken($yellow, 20);
+          border: 1px solid darken($gray-200, 20);
           border-radius: 0;
           font-weight: bold;
         }
 
         .form-control:disabled, .form-control[readonly] {
-          background: darken($yellow, 10);
-          border: 1px solid darken($yellow, 10);
+          background: darken($gray-200, 10);
+          border: 1px solid darken($gray-200, 10);
           font-weight: bold;
         }
 
@@ -207,7 +207,7 @@ export default class GameBody extends Vue {
       display: flex;
       align-items: center;
       flex-direction: row-reverse;
-      background: $yellow;
+      background: $gray-200;
       padding-right: 15px;
     }
   }

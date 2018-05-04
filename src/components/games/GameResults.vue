@@ -63,12 +63,12 @@ export default class GameResults extends Vue {
     flex: 1;
     flex-direction: row;
     padding: 0 15px;
-    background: lighten($yellow, 10);
+    background: $gray-200;
 
     div.game-results-score {
       width: 120px;
       text-align: center;
-      background-color: $orange;
+      background-color: $yellow;
       font-weight: bold;
       font-size: 1.2em;
       display: flex;

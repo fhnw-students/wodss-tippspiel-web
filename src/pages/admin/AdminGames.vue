@@ -11,7 +11,7 @@
 
         <div class="dropdown" v-if="!isLoading">
 
-          <SpinnerButton :is-spinning="isLoading" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <SpinnerButton :is-spinning="isLoading" class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ selectedGamePhase.name }}
             <i class="fas fa-caret-down"></i>
           </SpinnerButton>
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <router-link to="home" class="btn btn-success">
+        <router-link :to="{ name: 'admin.game.create' }" class="btn btn-outline-success">
           <i class="fas fa-plus"></i>
           {{ $t('admin.create_game') }}
         </router-link>
@@ -68,7 +68,7 @@ import SpinnerButton from '@/components/layout/SpinnerButton.vue';
     SpinnerButton,
   },
 })
-export default class Admin extends Vue {
+export default class AdminGames extends Vue {
 
   public games: Game[] = [];
   public phases: GamePhase[] = [];
@@ -92,9 +92,8 @@ export default class Admin extends Vue {
 
   private async loadContent(): Promise<void> {
     this.isLoading = true;
-    this.phases = await gamePhaseApi.getGamePhases();
+    this.phases = await gamePhaseApi.getAllGamePhases();
     this.games = await gameApi.getAllGames();
-    console.log(this.games);
     this.selectedGamePhase = this.games[0].phase,
     this.isLoading = false;
   }
