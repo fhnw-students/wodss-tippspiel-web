@@ -4,7 +4,7 @@ export default {
     de: 'Deutsch',
   },
   app: {
-    title: 'Tippspiel zu Weltmeisterschaft 2018',
+    title: 'Tippspiel zur Weltmeisterschaft 2018',
   },
   nav: {
     profile: 'Profile',

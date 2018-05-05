@@ -3,7 +3,8 @@
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
       <div class="container">
         <router-link to="/" class="navbar-brand">
-          <img class="logo" src="../../assets/images/logo.png" alt="logo">
+          <!-- <img class="logo" src="../../assets/images/logo.png" alt="logo"> -->
+          <i class="fas fa-3x fa-trophy"></i>
         </router-link>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -87,9 +88,6 @@ export default class Header extends Vue {
   @import '../../styles/colors';
 
   nav.navbar {
-    // background: $primary url('../../assets/images/background.png') 0 0 repeat;
-    // background: #b4191e url('../../assets/images/background.png') 0 0 repeat;
-
     padding-top: 4px;
     padding-bottom: 4px;
 
@@ -117,6 +115,10 @@ export default class Header extends Vue {
 
       img.logo {
         height: 100px;
+      }
+
+      svg {
+        color: $yellow;
       }
 
       span {
