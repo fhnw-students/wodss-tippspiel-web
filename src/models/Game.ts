@@ -23,4 +23,20 @@ export class Game {
 
   @Type(() => Tip)
   public tip: Tip;
+
+  public get isPlayed(): boolean {
+    return this.host.score !== null && this.guest.score !== null && this.host.score >= 0 && this.guest.score >= 0;
+  }
+
+  public get isTipped(): boolean {
+    return this.tip && this.tip.hostScore !== null && this.tip.guestScore !== null && this.tip.hostScore >= 0 && this.tip.guestScore >= 0;
+  }
+
+  public get hasCorrectTip(): boolean {
+    if (this.isPlayed && this.isTipped) {
+      return this.host.score === this.tip.hostScore && this.guest.score === this.tip.guestScore;
+    }
+    return false;
+  }
+
 }

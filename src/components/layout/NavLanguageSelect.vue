@@ -29,6 +29,7 @@ export default class NavLanguageSelect extends Vue {
       this.$i18n.locale = locale;
       Validator.localize(locale);
       localStorage.setItem('locale', locale);
+      this.$eventBus.$emit('locale.changed', { locale });
   }
 
   public created(): void {

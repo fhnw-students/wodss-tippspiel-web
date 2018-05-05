@@ -4,7 +4,7 @@ export default {
     de: 'Deutsch',
   },
   app: {
-    title: 'WM Tippsiel',
+    title: 'WM Tippspiel',
   },
   nav: {
     profile: 'Profile',
@@ -15,6 +15,13 @@ export default {
   },
   games: {
     title: 'Tippspiel',
+    points: '{points} Punkte',
+    rules: {
+      tipped_host_score_correctly: 'Korrekte Anzahl Heim-Tore:',
+      tipped_guest_score_correctly: 'Korrekte Anzahl Gast-Tore:',
+      tipped_winner_correctly: 'Korrekte Sieger:',
+      balance_and_winner_correctly: 'Korrekte Tordifferenze + Sieger:',
+    },
   },
   teams: {
     title: 'Tippgruppen',
@@ -90,5 +97,8 @@ export default {
       title: 'Keine Internet Verbindung!',
       message: 'Bitte stellen Sie sicher, dass Sie eine Internet Verbindung haben und laden Sie dann die Seite neu.',
     },
+  },
+  action: {
+    save: 'Speichern',
   },
 };
