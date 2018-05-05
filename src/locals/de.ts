@@ -100,6 +100,16 @@ export default {
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
   },
+  delete_game: {
+    title: 'Spiel löschen',
+    content: 'Wollen Sie das Spiel {host} vs. {guest} wirklich löschen?',
+    delete: 'Löschen',
+    yes: 'Ja',
+    no: 'Nein',
+  },
+  modal: {
+    close: 'Schliessen',
+  },
   message: {
     login_successful: 'Sie haben sich erfolgreich angemeldet',
     login_failed: 'Username oder Passwort ist falsch.',
@@ -113,6 +123,7 @@ export default {
     reset_password_failed: '@:message.forgot_password_failed',
     game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
     create_game_successful: 'Spiel wurde erfoglreich erstellt',
+    game_deleted_successful: 'Spiel wurde erfoglreich gelöscht',
   },
   connection: {
     server_unavailable: {
@@ -126,5 +137,7 @@ export default {
   },
   action: {
     save: 'Speichern',
+    close: 'Schliessen',
+    cancel: 'Abbrechen',
   },
 };

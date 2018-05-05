@@ -40,7 +40,7 @@
 
       <Spinner v-if="isLoading"></Spinner>
 
-      <GameAdminRow v-if="!isLoading" v-for="game in gameList" :key="game.id" :game="game"></GameAdminRow>
+      <GameAdminRow v-for="game in gameList" :key="game.id" :game="game" v-if="!isLoading" ></GameAdminRow>
 
     </div>
 
@@ -77,6 +77,7 @@ export default class AdminGames extends Vue {
 
   public created(): void {
     this.loadContent();
+    this.$eventBus.$on('game.deleted', () => this.updateContent());
   }
 
   public get gameList(): Game[] {
@@ -93,9 +94,13 @@ export default class AdminGames extends Vue {
   private async loadContent(): Promise<void> {
     this.isLoading = true;
     this.phases = await gamePhaseApi.getAllGamePhases();
-    this.games = await gameApi.getAllGames();
-    this.selectedGamePhase = this.games[0].phase,
+    await this.updateContent();
+    this.selectedGamePhase = this.games[0].phase;
     this.isLoading = false;
+  }
+
+  private async updateContent(): Promise<void> {
+    this.games = await gameApi.getAllGames();
   }
 
 }

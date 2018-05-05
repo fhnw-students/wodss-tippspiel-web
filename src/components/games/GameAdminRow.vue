@@ -28,17 +28,44 @@
       <div class="game-body-action">
           <button
             type="button"
-            :disabled="isUpdating"
-            @click="saveResult"
+            :disabled="isUpdating || isDeleting"
+            @click="onSave"
             class="btn btn-success">
             <span v-if="!isUpdating">
               <i class="fas fa-check"></i>
             </span>
             <Spinner v-if="isUpdating"></Spinner>
           </button>
+          <button
+            type="button"
+            @click="showModal"
+            :disabled="isDeleting || isUpdating"
+            class="btn btn-danger">
+            <span v-if="!isDeleting">
+              <i class="fas fa-trash"></i>
+            </span>
+            <Spinner v-if="isDeleting"></Spinner>
+          </button>
       </div>
 
     </div>
+
+    <Modal :title="$t('delete_game.title')" v-show="isModalVisible" @close="closeModal">
+       <template slot="body">
+         {{ $t('delete_game.content', { host: game.host.nation.name, guest: game.guest.nation.name }) }}
+       </template>
+       <template slot="footer">
+          <button class="btn btn-success" @click="deleteGame">
+            <i class="fas fa-check"></i>
+            {{ $t('delete_game.yes') }}
+          </button>
+          <button class="btn btn-danger" @click="closeModal">
+            <i class="fas fa-times"></i>
+            {{ $t('delete_game.no') }}
+          </button>
+       </template>
+    </Modal>
+
   </div>
 </template>
 
@@ -47,15 +74,16 @@ import { Prop, Component, Vue, Watch } from 'vue-property-decorator';
 
 import GameNation from '@/components/games/GameNation.vue';
 import Spinner from '@/components/layout/Spinner.vue';
+import Modal from '@/components/layout/Modal.vue';
 import { Game } from '@/models/Game';
 import * as gameApi from '@/services/api/game.api';
 import { Score } from '@/models/Score';
-import { setTimeout } from 'timers';
 
 @Component({
   components: {
     GameNation,
     Spinner,
+    Modal,
   },
 })
 export default class GameAdminRow extends Vue {
@@ -73,6 +101,8 @@ export default class GameAdminRow extends Vue {
   public guestScoreIsInvalid: boolean = false;
 
   public isUpdating: boolean = false;
+  public isDeleting: boolean = false;
+  public isModalVisible: boolean = false;
 
   @Watch('game', { deep: true, immediate: true })
   public onGameChanged(): void {
@@ -86,7 +116,15 @@ export default class GameAdminRow extends Vue {
     }
   }
 
-  private async saveResult(): Promise<void> {
+  public showModal(): void {
+    this.isModalVisible = true;
+  }
+
+  public closeModal(): void  {
+    this.isModalVisible = false;
+  }
+
+  public async onSave(): Promise<void> {
     if (this.hostScore !== '' && this.guestScore !== '') {
       this.isUpdating = true;
       await gameApi.updateGame(this.game.id, new Score(parseInt(this.hostScore, 10), parseInt(this.guestScore, 10)));
@@ -97,6 +135,15 @@ export default class GameAdminRow extends Vue {
     } else {
       this.setInvalid();
     }
+  }
+
+  public async deleteGame(): Promise<void> {
+    this.isDeleting = true;
+    this.closeModal();
+    await gameApi.deleteGame(this.game.id);
+    this.$eventBus.$emit('game.deleted', this.game);
+    this.isDeleting = false;
+    this.$noty.success('message.game_deleted_successful');
   }
 
   private setInvalid(): void {
@@ -123,10 +170,10 @@ export default class GameAdminRow extends Vue {
 
       div.game-body-action {
         display: flex;
-        width: 100px;
+        width: 200px;
 
         button {
-          width: 100%;
+          width: 100px;
           height: 100%;
           border-radius: 0;
         }

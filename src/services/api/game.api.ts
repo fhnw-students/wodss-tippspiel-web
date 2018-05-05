@@ -18,6 +18,10 @@ export async function updateGame(gameId: number, score: Score): Promise<Game> {
   return plainToClass<Game, Game>(Game, response.data);
 }
 
+export async function deleteGame(gameId: number): Promise<void> {
+  await Vue.$http.delete(`/games/${gameId}`);
+}
+
 export async function createGame(game: NewGame): Promise<Game> {
   const response = await Vue.$http.post(`/games`, classToPlain(game));
   return plainToClass<Game, Game>(Game, response.data);
