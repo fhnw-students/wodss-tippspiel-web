@@ -25,11 +25,11 @@ export default class GameBody extends Vue {
 
 <style lang="scss">
   span.flag-icon {
-    font-size: 3em;
+    font-size: 2.8em;
   }
 
   span.nation{
-    font-size: 1.6em;
+    font-size: 1.4em;
     margin: 0 15px;
   }
 </style>

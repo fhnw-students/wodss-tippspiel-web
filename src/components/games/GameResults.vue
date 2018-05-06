@@ -4,17 +4,17 @@
 
       <div class="game-results-rules">
         <div class="rules">
-          <GameRule :active="game.tip.tippedHostScoreCorrectly"></GameRule>
-          <GameRule :active="game.tip.tippedGuestScoreCorrectly"></GameRule>
-          <GameRule :active="game.tip.tippedWinnerCorrectly"></GameRule>
-          <GameRule :active="game.tip.tippedBalanceAndWinnerCorrectly"></GameRule>
+          <GameRule :active="game.tip && game.tip.tippedHostScoreCorrectly"></GameRule>
+          <GameRule :active="game.tip && game.tip.tippedGuestScoreCorrectly"></GameRule>
+          <GameRule :active="game.tip && game.tip.tippedWinnerCorrectly"></GameRule>
+          <GameRule :active="game.tip && game.tip.tippedBalanceAndWinnerCorrectly"></GameRule>
         </div>
       </div>
       <div class="game-results-score" :class="(game.hasCorrectTip) ? 'hit':''">
         {{ game.host.score }} : {{ game.guest.score }}
       </div>
       <div class="game-results-points">
-        {{ $t('games.points', { points: game.tip.points }) }}
+        {{ $t('games.points', { points: (game.tip && game.tip.points) ? game.tip.points : 0 }) }}
       </div>
     </div>
 
@@ -63,12 +63,12 @@ export default class GameResults extends Vue {
     flex: 1;
     flex-direction: row;
     padding: 0 15px;
-    background: lighten($yellow, 10);
+    background: $gray-200;
 
     div.game-results-score {
       width: 120px;
       text-align: center;
-      background-color: $orange;
+      background-color: $yellow;
       font-weight: bold;
       font-size: 1.2em;
       display: flex;

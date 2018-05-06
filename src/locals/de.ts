@@ -4,14 +4,38 @@ export default {
     de: 'Deutsch',
   },
   app: {
-    title: 'WM Tippspiel',
+    title: 'Tippspiel zur Weltmeisterschaft 2018',
   },
   nav: {
     profile: 'Profile',
     sign_out: 'Abmelden',
+    admin: 'Sie sind Admin.',
   },
   ranking: {
     title: 'Ranglisten',
+  },
+  settings: {
+    title: 'Einstellungen',
+    change_language: 'Sprache ändern',
+    select_language: 'Wähle eine Sprache aus',
+  },
+  admin: {
+    title: 'Admin',
+    lead: 'Resultate erfassen',
+    create_game: 'Spiel erfassen',
+  },
+  create_game: {
+    title: 'Spiel erfassen',
+    game_phase: 'Spielrunde',
+    select_game_phase: 'Wähle eine Spielrunde aus',
+    location: 'Austragungsort',
+    select_location: 'Wähle eine Austragungsort aus',
+    game_date: 'Spieldatum',
+    game_time: 'Speilzeit',
+    host: 'Heimmannschaft',
+    select_host: 'Wähle eine Heimmannschaft',
+    guest: 'Gastmannschaft',
+    select_guest: 'Wähle eine Gastmannschaft',
   },
   games: {
     title: 'Tippspiel',
@@ -76,6 +100,16 @@ export default {
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
   },
+  delete_game: {
+    title: 'Spiel löschen',
+    content: 'Wollen Sie das Spiel {host} vs. {guest} wirklich löschen?',
+    delete: 'Löschen',
+    yes: 'Ja',
+    no: 'Nein',
+  },
+  modal: {
+    close: 'Schliessen',
+  },
   message: {
     login_successful: 'Sie haben sich erfolgreich angemeldet',
     login_failed: 'Username oder Passwort ist falsch.',
@@ -87,6 +121,9 @@ export default {
     forgot_password_failed: 'Leider kann ihr PW nicht zurückgesetzt werden.',
     reset_password_successful: 'Password wurde erfolgreich zurückgesetzt',
     reset_password_failed: '@:message.forgot_password_failed',
+    game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
+    create_game_successful: 'Spiel wurde erfoglreich erstellt',
+    game_deleted_successful: 'Spiel wurde erfoglreich gelöscht',
   },
   connection: {
     server_unavailable: {
@@ -100,5 +137,7 @@ export default {
   },
   action: {
     save: 'Speichern',
+    close: 'Schliessen',
+    cancel: 'Abbrechen',
   },
 };

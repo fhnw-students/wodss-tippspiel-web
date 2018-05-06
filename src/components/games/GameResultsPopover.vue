@@ -2,24 +2,24 @@
   <div class="game-results-popover">
     <div class="game-results-popover-inner">
       <p>
-        <GameRule :active="game.tip.tippedHostScoreCorrectly"></GameRule>
+        <GameRule :active="game.tip && game.tip.tippedHostScoreCorrectly"></GameRule>
         <span>{{ $t('games.rules.tipped_host_score_correctly') }}</span>
-        <span class="points" :class="game.tip.tippedHostScoreCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 2 }) }}</span>
+        <span class="points" :class="game.tip && game.tip.tippedHostScoreCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 2 }) }}</span>
       </p>
       <p>
-        <GameRule :active="game.tip.tippedGuestScoreCorrectly"></GameRule>
+        <GameRule :active="game.tip && game.tip.tippedGuestScoreCorrectly"></GameRule>
         <span>{{ $t('games.rules.tipped_guest_score_correctly') }}</span>
-        <span class="points" :class="game.tip.tippedGuestScoreCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 2 }) }}</span>
+        <span class="points" :class="game.tip && game.tip.tippedGuestScoreCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 2 }) }}</span>
       </p>
       <p>
-        <GameRule :active="game.tip.tippedWinnerCorrectly"></GameRule>
+        <GameRule :active="game.tip && game.tip.tippedWinnerCorrectly"></GameRule>
         <span>{{ $t('games.rules.tipped_winner_correctly') }}</span>
-        <span class="points" :class="game.tip.tippedWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 10 }) }}</span>
+        <span class="points" :class="game.tip && game.tip.tippedWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 10 }) }}</span>
       </p>
       <p>
-        <GameRule :active="game.tip.tippedBalanceAndWinnerCorrectly"></GameRule>
+        <GameRule :active="game.tip && game.tip.tippedBalanceAndWinnerCorrectly"></GameRule>
         <span>{{ $t('games.rules.balance_and_winner_correctly') }}</span>
-        <span class="points" :class="game.tip.tippedBalanceAndWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 6 }) }}</span>
+        <span class="points" :class="game.tip && game.tip.tippedBalanceAndWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 6 }) }}</span>
       </p>
     </div>
   </div>
@@ -60,7 +60,7 @@ export default class GameResultsPopover extends Vue {
     .game-results-popover-inner {
       width: 420px;
 
-      background: lighten($yellow, 10);
+      background: lighten($white, 10);
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       padding-bottom: 4px;

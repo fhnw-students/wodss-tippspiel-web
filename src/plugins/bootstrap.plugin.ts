@@ -13,5 +13,6 @@
  * https://getbootstrap.com/
  */
 
+import 'popper.js';
 import 'bootstrap';
 import 'jquery';

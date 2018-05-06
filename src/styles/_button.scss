@@ -3,6 +3,15 @@
   color: #fff;
 }
 
-.btn-outline-secondary:hover {
-  color: #fff;
+button.btn-outline-secondary {
+  color: $cyan;
+}
+
+.btn-outline-secondary:focus,
+.btn-outline-secondary:hover,
+.btn-outline-secondary:not(:disabled):not(.disabled).active,
+.btn-outline-secondary:not(:disabled):not(.disabled):active,
+.show > .btn-outline-secondary.dropdown-toggle {
+  color: $cyan;
+  background: $gray-200;
 }

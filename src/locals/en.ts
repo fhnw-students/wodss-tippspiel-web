@@ -14,6 +14,11 @@ export default {
     sub_title: 'Bet-Game',
     description: 'Project-Work of David Heimgartner, Gerhard Hirschfeld & Ken Iseli',
   },
+  settings: {
+    title: 'Settings',
+    change_language: 'Change the language',
+    select_language: 'Select a language',
+  },
   login: {
     sign_in: 'Sign in',
   },

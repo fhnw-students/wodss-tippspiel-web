@@ -85,6 +85,33 @@ export const routes: RouteConfig[] = [
     },
   },
   {
+    path: '/settings',
+    name: 'settings',
+    component: () => import('@/pages/Settings.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
+    path: '/admin/games',
+    name: 'admin.games',
+    component: () => import('@/pages/admin/AdminGames.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
+    path: '/admin/create-game',
+    name: 'admin.game.create',
+    component: () => import('@/pages/admin/AdminCreateGame.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
     path: '*',
     component: () => import('@/pages/NotFound.vue'),
     meta: {

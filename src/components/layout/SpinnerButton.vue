@@ -18,10 +18,10 @@ import Spinner from './Spinner.vue';
   components: {
     Spinner,
   },
-  props: ['isSpinning'],
 })
 export default class SpinnerButton extends Vue {
 
+  @Prop()
   public isSpinning: boolean;
 
   public get isSpinnerVisible(): boolean {

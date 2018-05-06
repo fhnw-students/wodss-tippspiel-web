@@ -1,3 +1,4 @@
+import { Nation } from '@/models/Nation';
 import { GameNation } from './GameNation';
 import { Type } from 'class-transformer';
 
