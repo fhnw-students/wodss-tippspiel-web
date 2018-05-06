@@ -4,13 +4,48 @@ export default {
     de: 'Deutsch',
   },
   app: {
-    title: 'WM Tippsiel',
+    title: 'Tippspiel zur Weltmeisterschaft 2018',
+  },
+  nav: {
+    profile: 'Profile',
+    sign_out: 'Abmelden',
+    admin: 'Sie sind Admin.',
   },
   ranking: {
     title: 'Ranglisten',
   },
+  settings: {
+    title: 'Einstellungen',
+    change_language: 'Sprache ändern',
+    select_language: 'Wähle eine Sprache aus',
+  },
+  admin: {
+    title: 'Admin',
+    lead: 'Resultate erfassen',
+    create_game: 'Spiel erfassen',
+  },
+  create_game: {
+    title: 'Spiel erfassen',
+    game_phase: 'Spielrunde',
+    select_game_phase: 'Wähle eine Spielrunde aus',
+    location: 'Austragungsort',
+    select_location: 'Wähle eine Austragungsort aus',
+    game_date: 'Spieldatum',
+    game_time: 'Speilzeit',
+    host: 'Heimmannschaft',
+    select_host: 'Wähle eine Heimmannschaft',
+    guest: 'Gastmannschaft',
+    select_guest: 'Wähle eine Gastmannschaft',
+  },
   games: {
     title: 'Tippspiel',
+    points: '{points} Punkte',
+    rules: {
+      tipped_host_score_correctly: 'Korrekte Anzahl Heim-Tore:',
+      tipped_guest_score_correctly: 'Korrekte Anzahl Gast-Tore:',
+      tipped_winner_correctly: 'Korrekte Sieger:',
+      balance_and_winner_correctly: 'Korrekte Tordifferenze + Sieger:',
+    },
   },
   teams: {
     title: 'Tippgruppen',
@@ -26,15 +61,32 @@ export default {
     register_link: 'Registrieren',
     reset_password_link: 'Passwort vergessen?',
   },
-  reset: {
+  forgot_password: {
+    title: 'Passwort vergessen',
+    submit: 'Passwort zurücksetzen',
+    success_title: 'Mail erfolgreich versendet.',
+    success_message: 'Es wurde eine E-Mail an <b>%{email}</b> verschickt. Bitte überprüfen Sie Ihre Mailbox.',
+  },
+  reset_password: {
     title: 'Passwort zurücksetzen',
     submit: 'Passwort zurücksetzen',
-    email: 'E-Mail',
-    successMessage: 'Es wurde eine E-Mail an <b>%{email}</b> verschickt. Bitte überprüfen Sie Ihre Mailbox.',
+    success_title: 'Passwort wurde erfolgreich geändert.',
+    success_message: 'Es wurde eine E-Mail an <b>%{email}</b> verschickt. Bitte überprüfen Sie Ihre Mailbox.',
   },
   register: {
     title: 'Registrierung',
     submit: 'Erstellen',
+  },
+  verification: {
+    pending: {
+      title: 'Email Bestätigung',
+      message: `Sie sollten in Kürze eine Email von uns erhalten. In der Email befinden sich ein Bestätiguns-Link,
+      welchen Ihren User bestätigt. Anschliessend können Sie sich bei uns Anmelden`,
+    },
+    success: {
+      title: 'Email Bestätigung',
+      message: `Die Bestätigung war erfolgreich. Sie können sich jetzt anmelden.`,
+    },
   },
   label: {
     username: 'Username',
@@ -48,9 +100,44 @@ export default {
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
   },
+  delete_game: {
+    title: 'Spiel löschen',
+    content: 'Wollen Sie das Spiel {host} vs. {guest} wirklich löschen?',
+    delete: 'Löschen',
+    yes: 'Ja',
+    no: 'Nein',
+  },
+  modal: {
+    close: 'Schliessen',
+  },
   message: {
     login_successful: 'Sie haben sich erfolgreich angemeldet',
     login_failed: 'Username oder Passwort ist falsch.',
     login_incomplete: 'Bitte geben Sie Username und Passwort an.',
+    register_successful: 'Sie haben sich erfolgreich registriert',
+    register_failed: 'Sie konnten leider nicht registriert werden.',
+    verification_successful: 'Sie wurden erfolgreich verifiziert. Sie können sich nun anmelden und los tippen! :-)',
+    verification_failed: 'Leider konnte Ihr Account nicht verifiziert werden.',
+    forgot_password_failed: 'Leider kann ihr PW nicht zurückgesetzt werden.',
+    reset_password_successful: 'Password wurde erfolgreich zurückgesetzt',
+    reset_password_failed: '@:message.forgot_password_failed',
+    game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
+    create_game_successful: 'Spiel wurde erfoglreich erstellt',
+    game_deleted_successful: 'Spiel wurde erfoglreich gelöscht',
+  },
+  connection: {
+    server_unavailable: {
+      title: 'Server ist nicht erreichbar!',
+      message: 'Momentan ist der Server nicht ansprechbar. Bitte versuchen Sie es in ein paar Minuten erneut.',
+    },
+    offline: {
+      title: 'Keine Internet Verbindung!',
+      message: 'Bitte stellen Sie sicher, dass Sie eine Internet Verbindung haben und laden Sie dann die Seite neu.',
+    },
+  },
+  action: {
+    save: 'Speichern',
+    close: 'Schliessen',
+    cancel: 'Abbrechen',
   },
 };

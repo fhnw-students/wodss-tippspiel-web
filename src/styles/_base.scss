@@ -7,7 +7,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-top: 125px;
+  margin-top: 145px;
   margin-bottom: 60px;
 }
 
@@ -17,9 +17,10 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  line-height: 60px;
   /* Vertically center the text there */
-  background-color: #f5f5f5;
+  .container {
+    margin-top: 20px;
+  }
 }
 
 /* Custom page CSS
@@ -37,4 +38,30 @@ body > .container {
 
 code {
   font-size: 80%;
+}
+
+.card h2 {
+  margin-bottom: 30px;
+}
+
+.card button {
+  margin-top: 30px;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-family: 'dusha';
+}
+
+h2 {
+  color: $gray-600;
+  margin-bottom: 0;
+}
+
+.text-cross {
+  text-decoration: line-through;
+}
+
+.page-title {
+  margin-bottom: 45px;
 }

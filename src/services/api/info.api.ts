@@ -1,16 +1,15 @@
+import Vue from 'vue';
+
 import { plainToClass } from 'class-transformer';
 
-import { api } from '@/config/api.config';
-import { MetaData } from '@/models/MetaData';
+import { ApiInfo } from '@/models/ApiInfo';
 
 /**
  * @name getAPIInfo
  * @description Loads the information of the api.
  * @returns List of contributors.
  */
-export async function getAPIInfo(): Promise<MetaData> {
-  return await api()
-    .withoutCredentials()
-    .withModel(MetaData)
-    .fetchGet<MetaData>();
+export async function getApiInfo(): Promise<ApiInfo> {
+  const response = await Vue.$http.get('/api');
+  return plainToClass<ApiInfo, ApiInfo>(ApiInfo, response.data);
 }
