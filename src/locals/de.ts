@@ -53,9 +53,9 @@ export default {
     title: 'Tippgruppen',
   },
   home: {
-    title: 'Weltmeisterschaft 2018 in Russland',
-    sub_title: 'Tippspiel',
-    description: 'Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli',
+    title: 'Tippspiel',
+    sub_title: 'Zur Weltmeisterschaft 2018 in Russland',
+    description: 'Das ist eine Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli.',
   },
   login: {
     title: 'Bitte Anmelden',

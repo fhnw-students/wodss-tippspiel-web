@@ -7,7 +7,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-top: 145px;
+  margin-top: 100px;
   margin-bottom: 60px;
 }
 
@@ -64,4 +64,15 @@ h2 {
 
 .page-title {
   margin-bottom: 45px;
+
+  div.col-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    a {
+      margin-left: 15px;
+    }
+  }
+
 }
