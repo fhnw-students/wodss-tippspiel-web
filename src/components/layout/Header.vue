@@ -1,17 +1,21 @@
 <template>
   <header>
+
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
-      <div class="container">
+      <div class="container small-header">
         <router-link to="{ name: 'home' }" class="navbar-brand">
-          <i class="fas fa-3x fa-trophy"></i>
+          <i class="fas fa-3x fa-trophy d-none d-sm-block"></i>
+          <i class="fas fa-1x fa-trophy d-block d-sm-none"></i>
         </router-link>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="small-header-toggle">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
         <div class="nav-body">
-          <div class="title">
+          <div class="title d-none d-sm-block">
             <span>{{ $t("app.title") }}</span>
           </div>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -123,7 +127,6 @@ export default class Header extends Vue {
       span {
         margin-left: 8px;
         font-family: 'dusha';
-        font-size: 1.8em;
       }
     }
 
@@ -142,6 +145,7 @@ export default class Header extends Vue {
       border-width: 2px;
     }
   }
+
 </style>
 
 

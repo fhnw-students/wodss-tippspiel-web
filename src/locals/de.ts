@@ -5,6 +5,7 @@ export default {
   },
   app: {
     title: 'Tippspiel zur Weltmeisterschaft 2018',
+    title_small: 'Tippspiel',
   },
   nav: {
     profile: 'Profile',
