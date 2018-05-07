@@ -2,8 +2,9 @@
   <section class="game-page">
 
     <div class="row">
-      <div class="col">
+      <div class="col page-title">
         <h1>{{ $t('games.title') }}</h1>
+        <h2>{{ $t('games.sub_title', { username: username }) }}</h2>
       </div>
       <div class="col text-right">
         <div class="dropdown" v-if="!isLoading">
@@ -32,7 +33,7 @@
 
       <Spinner v-if="isLoading"></Spinner>
 
-      <GameRow v-if="!isLoading" v-for="game in gameList" :key="game.id" :game="game"></GameRow>
+      <GameRow v-if="!isLoading" v-for="game in gameList" :key="game.id" :game="game" :readonly="isReadonly()"></GameRow>
 
     </div>
 
@@ -40,16 +41,18 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import * as _ from 'lodash';
-import Component from 'vue-class-component';
+import { Prop, Component, Vue, Watch } from 'vue-property-decorator';
 import { plainToClass } from 'class-transformer';
+import { Getter } from 'vuex-class';
+import * as _ from 'lodash';
 
-import GameRow from '@/components/games/GameRow.vue';
 import { Game } from '@/models/Game';
-import * as userApi from '@/services/api/user.api';
-import * as gamePhaseApi from '@/services/api/gamePhase.api';
+import { User } from '@/models/User';
 import { GamePhase } from '@/models/GamePhase';
+import * as gamePhaseApi from '@/services/api/gamePhase.api';
+import * as userApi from '@/services/api/user.api';
+import { UserGetters } from '@/store/modules/user';
+import GameRow from '@/components/games/GameRow.vue';
 import Spinner from '@/components/layout/Spinner.vue';
 import SpinnerButton from '@/components/layout/SpinnerButton.vue';
 
@@ -60,7 +63,13 @@ import SpinnerButton from '@/components/layout/SpinnerButton.vue';
     SpinnerButton,
   },
 })
-export default class Games extends Vue {
+export default class UserGames extends Vue {
+
+  @Prop()
+  public username: string;
+
+  @Getter(UserGetters.GetCurrentUser)
+  public currentUser: User;
 
   public games: Game[] = [];
   public phases: GamePhase[] = [];
@@ -69,7 +78,13 @@ export default class Games extends Vue {
 
   public created(): void {
     this.loadContent();
-    this.$eventBus.$on('locale.changed', () => this.loadContent());
+  }
+
+  public isReadonly(): boolean {
+    if (this.username && this.currentUser && this.currentUser.username) {
+      return this.username !== this.currentUser.username;
+    }
+    return true;
   }
 
   public get gameList(): Game[] {
@@ -79,6 +94,11 @@ export default class Games extends Vue {
     return [];
   }
 
+  @Watch('username')
+  public onUsernameChanged(): void {
+    this.loadContent();
+  }
+
   public onSelectPhase(phase: GamePhase): void {
     this.selectedGamePhase = phase;
   }
@@ -86,7 +106,7 @@ export default class Games extends Vue {
   private async loadContent(): Promise<void> {
     this.isLoading = true;
     this.phases = await gamePhaseApi.getAllGamePhases();
-    this.games = await userApi.getMyGames();
+    this.games = await userApi.getUserGamesByUsername(this.username);
 
     const gamesGroupedByPhases: { [phaseId: string]: Game[] } = _.groupBy(this.games, (game: Game) => game.phase.id);
     for (const phaseId in gamesGroupedByPhases) {

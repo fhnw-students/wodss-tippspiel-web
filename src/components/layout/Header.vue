@@ -2,8 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
       <div class="container">
-        <router-link to="/" class="navbar-brand">
-          <!-- <img class="logo" src="../../assets/images/logo.png" alt="logo"> -->
+        <router-link to="{ name: 'home' }" class="navbar-brand">
           <i class="fas fa-3x fa-trophy"></i>
         </router-link>
 
@@ -19,15 +18,15 @@
 
             <ul class="navbar-nav mr-auto">
 
-              <router-link to="/ranking" tag="li" class="nav-item" active-class="active">
+              <router-link :to="{ name: 'ranking' }" tag="li" class="nav-item" active-class="active">
                 <a class="nav-link">{{ $t("ranking.title") }}</a>
               </router-link>
 
-              <router-link to="/games" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated">
+              <router-link :to="{ name: 'user.games', params: { username: currentUser.username } }" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated">
                 <a class="nav-link">{{ $t("games.title") }}</a>
               </router-link>
 
-              <router-link to="/teams" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated">
+              <router-link :to="{ name: 'teams' }" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated">
                 <a class="nav-link">{{ $t("teams.title") }}</a>
               </router-link>
 

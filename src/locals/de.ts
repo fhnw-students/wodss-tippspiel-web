@@ -39,6 +39,7 @@ export default {
   },
   games: {
     title: 'Tippspiel',
+    sub_title: 'Tipps von %{username}',
     points: '{points} Punkte',
     rules: {
       tipped_host_score_correctly: 'Korrekte Anzahl Heim-Tore:',

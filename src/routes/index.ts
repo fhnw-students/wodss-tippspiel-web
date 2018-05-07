@@ -67,9 +67,10 @@ export const routes: RouteConfig[] = [
     },
   },
   {
-    path: '/games',
-    name: 'games',
-    component: () => import('@/pages/Games.vue'),
+    path: '/users/:username/games',
+    name: 'user.games',
+    component: () => import('@/pages/UserGames.vue'),
+    props: true,
     meta: {
       auth: true,
       guest: false,

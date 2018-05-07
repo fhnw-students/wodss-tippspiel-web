@@ -18,7 +18,7 @@
 
       <router-link
         class="dropdown-item"
-        to="/settings">
+        :to="{ name: 'settings' }">
         <i class="fas fa-cog"></i>
         {{ $t('settings.title') }}
       </router-link>
@@ -66,7 +66,9 @@ export default class NavProfile extends Vue {
 
   public onSignOutUser(): void {
     this.signOutUser();
-    this.$router.push('/');
+    this.$router.push({
+      name: 'home',
+    });
   }
 
 }
