@@ -8,7 +8,7 @@
         <input
           v-model="hostScore"
           autocomplete="off"
-          :disabled="game.isPlayed || isUpdating"
+          :disabled="game.isPlayed || isUpdating || readonly === true"
           @keypress="onKeyPress($event, hostScore)"
           @blur.prevent="onHostScoreChanged()"
           type="text"
@@ -18,7 +18,7 @@
         <input
           v-model="guestScore"
           autocomplete="off"
-          :disabled="game.isPlayed || isUpdating"
+          :disabled="game.isPlayed || isUpdating || readonly === true"
           @keypress="onKeyPress($event, guestScore)"
           @blur.prevent="onGuestScoreChanged()"
           type="text"
@@ -48,6 +48,9 @@ export default class GameBody extends Vue {
 
   @Prop()
   public game: Game;
+
+  @Prop()
+  public readonly: boolean;
 
   public hostScore: string = '';
   public guestScore: string = '';

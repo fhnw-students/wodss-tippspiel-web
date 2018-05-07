@@ -18,7 +18,7 @@
 
       <router-link
         class="dropdown-item"
-        to="/settings">
+        :to="{ name: 'settings' }">
         <i class="fas fa-cog"></i>
         {{ $t('settings.title') }}
       </router-link>
