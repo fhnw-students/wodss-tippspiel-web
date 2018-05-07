@@ -59,7 +59,9 @@
           </div>
           <div class="card-footer text-muted">
             <div class="links">
-              <router-link to="/auth/forgot-password">{{ $t('login.reset_password_link') }}</router-link>
+              <router-link to="{ name: 'auth.forgot-password' }">
+                {{ $t('login.reset_password_link') }}
+              </router-link>
             </div>
           </div>
         </div>
@@ -133,7 +135,9 @@ export default class Login extends Vue {
     this.log.info('hasFailed', this.hasFailed);
     if (this.isAuthenticated) {
       this.log.info('Sign in was successfull. Redirecting to the games page.');
-      this.$router.push('/games');
+      this.$router.push({
+        name: 'games',
+      });
     } else {
       if (this.hasFailed) {
         this.$noty.error('message.login_failed');
