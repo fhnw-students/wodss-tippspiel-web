@@ -35,7 +35,10 @@ router.beforeEach((to, from, next) => {
      * an guest page, redirect to the dashboard page
      */
     next({
-      name: 'games',
+      name: 'user.games',
+      params: {
+        username: store.state.user.currentUser.username,
+      },
     });
   } else {
     next();

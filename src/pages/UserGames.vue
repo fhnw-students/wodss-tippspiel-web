@@ -104,9 +104,14 @@ export default class UserGames extends Vue {
   }
 
   private async loadContent(): Promise<void> {
+    let username = this.username;
+    if (!username) {
+      username = this.currentUser.username;
+    }
+
     this.isLoading = true;
     this.phases = await gamePhaseApi.getAllGamePhases();
-    this.games = await userApi.getUserGamesByUsername(this.username);
+    this.games = await userApi.getUserGamesByUsername(username);
 
     const gamesGroupedByPhases: { [phaseId: string]: Game[] } = _.groupBy(this.games, (game: Game) => game.phase.id);
     for (const phaseId in gamesGroupedByPhases) {

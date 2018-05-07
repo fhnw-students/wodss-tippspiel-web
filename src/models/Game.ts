@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { Nation } from '@/models/Nation';
 import { GameNation } from './GameNation';
 import { Type } from 'class-transformer';
@@ -24,6 +25,10 @@ export class Game {
 
   @Type(() => Tip)
   public tip: Tip;
+
+  public get isOpenToTip(): boolean {
+    return moment().diff(this.date) < 0;
+  }
 
   public get isPlayed(): boolean {
     return this.host.score !== null && this.guest.score !== null && this.host.score >= 0 && this.guest.score >= 0;
