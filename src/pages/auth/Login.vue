@@ -1,7 +1,7 @@
 <template>
   <section class="login-page">
     <div class="row justify-content-sm-center">
-      <div class="col col-sm-8 col-md-6 col-lg-4">
+      <div class="col col-sm-12 col-md-8 col-lg-6">
         <div class="card">
           <div class="card-body login">
             <form noValidate>

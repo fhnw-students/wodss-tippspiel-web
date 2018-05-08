@@ -1,12 +1,11 @@
 <template>
   <section class="admin-page">
 
-    <div class="row">
+    <div class="row page-title">
       <div class="col">
         <h1>{{ $t('admin.title') }}</h1>
         <h2>{{ $t('admin.lead') }}</h2>
       </div>
-
       <div class="col text-right col-action">
 
         <div class="dropdown" v-if="!isLoading">
@@ -106,21 +105,3 @@ export default class AdminGames extends Vue {
 }
 </script>
 
-<style lang="scss">
-  section.admin-page {
-
-    div.col-action {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-
-      a {
-        margin-left: 15px;
-      }
-    }
-
-    div.games {
-      margin-top: 45px;
-    }
-  }
-</style>

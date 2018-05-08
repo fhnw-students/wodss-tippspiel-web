@@ -1,12 +1,12 @@
 <template>
   <section class="game-page">
 
-    <div class="row">
-      <div class="col page-title">
+    <div class="row page-title">
+      <div class="col">
         <h1>{{ $t('games.title') }}</h1>
         <h2>{{ $t('games.sub_title', { username: username }) }}</h2>
       </div>
-      <div class="col text-right">
+      <div class="col text-right col-action">
         <div class="dropdown" v-if="!isLoading">
 
           <SpinnerButton :is-spinning="isLoading" class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -104,9 +104,14 @@ export default class UserGames extends Vue {
   }
 
   private async loadContent(): Promise<void> {
+    let username = this.username;
+    if (!username) {
+      username = this.currentUser.username;
+    }
+
     this.isLoading = true;
     this.phases = await gamePhaseApi.getAllGamePhases();
-    this.games = await userApi.getUserGamesByUsername(this.username);
+    this.games = await userApi.getUserGamesByUsername(username);
 
     const gamesGroupedByPhases: { [phaseId: string]: Game[] } = _.groupBy(this.games, (game: Game) => game.phase.id);
     for (const phaseId in gamesGroupedByPhases) {

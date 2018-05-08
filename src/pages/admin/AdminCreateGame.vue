@@ -1,9 +1,10 @@
 <template>
   <section class="create-game-page">
 
-    <div class="row">
+    <div class="row page-title">
       <div class="col">
-        <h1 class="page-title">{{ $t('create_game.title') }}</h1>
+        <h1>{{ $t('admin.title') }}</h1>
+        <h2>{{ $t('create_game.title') }}</h2>
       </div>
     </div>
 

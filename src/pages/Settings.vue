@@ -1,7 +1,7 @@
 <template>
   <section class="settings-page">
 
-    <div class="row">
+    <div class="row page-title">
       <div class="col">
         <h1>{{ $t('settings.title') }}</h1>
       </div>
