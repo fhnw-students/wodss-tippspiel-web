@@ -14,6 +14,13 @@ export default {
   },
   ranking: {
     title: 'Ranglisten',
+    table: {
+      header: {
+        name: 'Name',
+        score: 'Punkte',
+        games: 'Spiele',
+      },
+    },
   },
   settings: {
     title: 'Einstellungen',

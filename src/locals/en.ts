@@ -6,6 +6,16 @@ export default {
   app: {
     title: 'WM Bet-Game',
   },
+  ranking: {
+    title: 'Ranking',
+    table: {
+      header: {
+        name: 'Name',
+        score: 'Score',
+        games: 'Games',
+      },
+    },
+  },
   games: {
     title: 'Games',
   },
