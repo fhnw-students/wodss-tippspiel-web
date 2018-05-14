@@ -60,14 +60,14 @@ $sizes: map-merge(( 25: 25%, 50: 50%, 75: 75%, 100: 100% ), $sizes);
 //
 // Settings for the `<body>` element.
 
-$body-bg: #F0EBE4 !default; //$white
+$body-bg: $white !default; //$white
 $body-color: $gray-900 !default;
 
 // Links
 //
 // Style anchor elements.
 
-$link-color: #9e8f66 !default;
+$link-color: $cyan !default;
 $link-decoration: none !default;
 $link-hover-color: darken($link-color, 15%) !default;
 $link-hover-decoration: underline !default;
@@ -91,7 +91,7 @@ $grid-breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px ) !defau
 //
 // Define the maximum width of `.container` for different screen sizes.
 
-$container-max-widths: ( sm: 540px, md: 720px, lg: 960px, xl: 1140px ) !default;
+$container-max-widths: ( sm: 600px, md: 720px, lg: 960px, xl: 1140px ) !default;
 @include _assert-ascending($container-max-widths, "$container-max-widths");
 
 // Grid columns
@@ -109,11 +109,11 @@ $line-height-lg: 1.5 !default;
 $line-height-sm: 1.5 !default;
 
 $border-width: 2px !default;
-$border-color: $yellow !default; //$gray-300
+$border-color: $gray-300 !default; //$gray-300
 
-$border-radius: .25rem !default;
-$border-radius-lg: .3rem !default;
-$border-radius-sm: .2rem !default;
+$border-radius: 0 !default;
+$border-radius-lg: 0 !default;
+$border-radius-sm: 0 !default;
 
 $component-active-color: $white !default;
 $component-active-bg: theme-color("primary") !default;
@@ -129,7 +129,7 @@ $transition-collapse: height .35s ease !default;
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-sans-serif: 'OpenSans-Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
@@ -145,15 +145,15 @@ $font-weight-bold: 700 !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: 1.5 !default;
 
-$h1-font-size: $font-size-base * 2.5 !default;
-$h2-font-size: $font-size-base * 2 !default;
-$h3-font-size: $font-size-base * 1.75 !default;
+$h1-font-size: $font-size-base * 3.2 !default;
+$h2-font-size: $font-size-base * 1.8 !default;
+$h3-font-size: $font-size-base * 1.6 !default;
 $h4-font-size: $font-size-base * 1.5 !default;
 $h5-font-size: $font-size-base * 1.25 !default;
 $h6-font-size: $font-size-base !default;
 
 $headings-margin-bottom: ($spacer / 2) !default;
-$headings-font-family: 'dusha', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headings-font-family: 'OpenSans-Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $headings-font-weight: 500 !default;
 $headings-line-height: 1.2 !default;
 $headings-color: inherit !default;
@@ -295,7 +295,7 @@ $input-bg: $white !default;
 $input-disabled-bg: $gray-200 !default;
 
 $input-color: $gray-700 !default;
-$input-border-color: $yellow !default; // $gray-400
+$input-border-color: $gray-400 !default; // $gray-400
 $input-border-width: $input-btn-border-width !default;
 $input-box-shadow: inset 0 1px 1px rgba($black, .075) !default;
 

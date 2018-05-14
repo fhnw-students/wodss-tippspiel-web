@@ -17,10 +17,31 @@ import { appConfig } from '@/config/app.config';
 import { store } from '@/store';
 import { AuthActions } from '@/store/modules/auth';
 import { MetaDataActions } from '@/store/modules/meta';
+import { i18n } from '@/plugins/i18n.plugin';
 
+const log = Vue.$createLogger('axios');
+
+/*
+ * Axsios common headers and default configurations
+ */
 Axios.defaults.baseURL = appConfig.apiPath;
 Axios.defaults.headers.common.Accept = 'application/json';
 Axios.defaults.headers.common.ContentType = 'application/json';
+
+/*
+ * Axsios request intercepter to set i18n local
+ */
+Axios.interceptors.request.use(
+  (config) => {
+    config.headers['Accept-Language'] = i18n.locale;
+    return config;
+  },
+  (error) => error
+);
+
+/*
+ * Axsios response intercepter to catch 401 responses
+ */
 Axios.interceptors.response.use(
   (response) => response,
   (error) => {

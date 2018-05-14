@@ -7,7 +7,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-top: 125px;
+  margin-top: 100px;
   margin-bottom: 60px;
 }
 
@@ -46,4 +46,33 @@ code {
 
 .card button {
   margin-top: 30px;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-family: 'dusha';
+}
+
+h2 {
+  color: $gray-600;
+  margin-bottom: 0;
+}
+
+.text-cross {
+  text-decoration: line-through;
+}
+
+.page-title {
+  margin-bottom: 45px;
+
+  div.col-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    a {
+      margin-left: 15px;
+    }
+  }
+
 }

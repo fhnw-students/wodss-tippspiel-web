@@ -1,18 +1,31 @@
 <template>
   <div class="nav-item btn-group">
     <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <Gravatar :email="currentUser.email" :size="45" />
+      <Gravatar :email="currentUser.email" :size="40" />
     </button>
     <div class="dropdown-menu dropdown-menu-right">
-      <router-link class="dropdown-item account" to="profile">
+      <div class="profile">
         <Gravatar :email="currentUser.email" :size="60" />
-        <p>{{currentUser.username}}</p>
+        <p>
+          {{currentUser.username}}
+          <span v-if="currentUser.admin" ref="adminIcon" data-toggle="tooltip" data-placement="bottom" :title="$t('nav.admin')">
+            <i class="fas fa-key"></i>
+          </span>
+        </p>
         <small>{{currentUser.email}}</small>
-      </router-link>
+      </div>
       <div class="dropdown-divider"></div>
+
+      <router-link
+        class="dropdown-item"
+        :to="{ name: 'settings' }">
+        <i class="fas fa-cog"></i>
+        {{ $t('settings.title') }}
+      </router-link>
+
       <button class="dropdown-item" type="button" @click="onSignOutUser()">
         <i class="fas fa-sign-out-alt"></i>
-        {{ $t("nav.sign_out") }}
+        {{ $t('nav.sign_out') }}
       </button>
     </div>
   </div>
@@ -47,48 +60,68 @@ export default class NavProfile extends Vue {
     this.getCurrentUser();
   }
 
+  public mounted(): void {
+    $(document).ready(() => ($(this.$refs.adminIcon) as any).tooltip());
+  }
+
   public onSignOutUser(): void {
     this.signOutUser();
-    this.$router.push('/');
+    this.$router.push({
+      name: 'home',
+    });
   }
 
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/colors";
+  @import "../../styles/colors";
 
-img {
-  border-radius: 100%;
-}
-
-.dropdown-toggle::after {
-  display: none;
-}
-
-.dropdown-menu-right {
-  right: 0;
-  left: auto;
-}
-
-.dropdown-item {
-  color: $primary;
-  cursor: pointer;
-  svg {
-    margin-right: 10px;
+  img {
+    border-radius: 100%;
   }
-}
 
-.account {
-  text-align: center !important;
-  p {
-    margin-top: 15px;
-    margin-bottom: 0px;
-    color: black;
+  div.profile {
+    text-align: center;
+    padding: 5px 15px;
+
+    p {
+      margin: 0;
+      margin-top: 5px;
+    }
   }
-  small {
-    color: gray;
+
+  .fa-key {
+    color: $yellow;
   }
-}
+
+  .dropdown-toggle::after {
+    display: none;
+  }
+
+  .dropdown-menu-right {
+    right: 0;
+    left: auto;
+  }
+
+  .dropdown-item {
+    color: $primary;
+    cursor: pointer;
+    svg {
+      margin-right: 10px;
+    }
+  }
+
+  .account {
+    text-align: center !important;
+    p {
+      margin-top: 15px;
+      margin-bottom: 0px;
+      color: black;
+    }
+    small {
+      color: gray;
+    }
+  }
 </style>
 

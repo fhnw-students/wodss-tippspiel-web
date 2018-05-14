@@ -4,26 +4,59 @@ export default {
     de: 'Deutsch',
   },
   app: {
-    title: 'WM Tippsiel',
+    title: 'Tippspiel zur Weltmeisterschaft 2018',
+    title_small: 'Tippspiel',
   },
   nav: {
     profile: 'Profile',
     sign_out: 'Abmelden',
+    admin: 'Sie sind Admin.',
   },
   ranking: {
     title: 'Ranglisten',
   },
+  settings: {
+    title: 'Einstellungen',
+    change_language: 'Sprache ändern',
+    select_language: 'Wähle eine Sprache aus',
+  },
+  admin: {
+    title: 'Admin',
+    lead: 'Resultate erfassen',
+    create_game: 'Spiel erfassen',
+  },
+  create_game: {
+    title: 'Spiel erfassen',
+    game_phase: 'Spielrunde',
+    select_game_phase: 'Wähle eine Spielrunde aus',
+    location: 'Austragungsort',
+    select_location: 'Wähle eine Austragungsort aus',
+    game_date: 'Spieldatum',
+    game_time: 'Speilzeit',
+    host: 'Heimmannschaft',
+    select_host: 'Wähle eine Heimmannschaft',
+    guest: 'Gastmannschaft',
+    select_guest: 'Wähle eine Gastmannschaft',
+  },
   games: {
     title: 'Tippspiel',
+    sub_title: 'Tipps von %{username}',
+    points: '{points} Punkte',
+    rules: {
+      tipped_host_score_correctly: 'Korrekte Anzahl Heim-Tore:',
+      tipped_guest_score_correctly: 'Korrekte Anzahl Gast-Tore:',
+      tipped_winner_correctly: 'Korrekte Sieger:',
+      balance_and_winner_correctly: 'Korrekte Tordifferenze + Sieger:',
+    },
   },
   teams: {
     title: 'Tippgruppen',
       create_team: 'Neues Team erstellen',
   },
   home: {
-    title: 'Weltmeisterschaft 2018 in Russland',
-    sub_title: 'Tippspiel',
-    description: 'Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli',
+    title: 'Tippspiel',
+    sub_title: 'Zur Weltmeisterschaft 2018 in Russland',
+    description: 'Das ist eine Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli.',
   },
   login: {
     title: 'Bitte Anmelden',
@@ -70,6 +103,16 @@ export default {
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
   },
+  delete_game: {
+    title: 'Spiel löschen',
+    content: 'Wollen Sie das Spiel {host} vs. {guest} wirklich löschen?',
+    delete: 'Löschen',
+    yes: 'Ja',
+    no: 'Nein',
+  },
+  modal: {
+    close: 'Schliessen',
+  },
   message: {
     login_successful: 'Sie haben sich erfolgreich angemeldet',
     login_failed: 'Username oder Passwort ist falsch.',
@@ -81,6 +124,9 @@ export default {
     forgot_password_failed: 'Leider kann ihr PW nicht zurückgesetzt werden.',
     reset_password_successful: 'Password wurde erfolgreich zurückgesetzt',
     reset_password_failed: '@:message.forgot_password_failed',
+    game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
+    create_game_successful: 'Spiel wurde erfoglreich erstellt',
+    game_deleted_successful: 'Spiel wurde erfoglreich gelöscht',
   },
   connection: {
     server_unavailable: {
@@ -91,5 +137,10 @@ export default {
       title: 'Keine Internet Verbindung!',
       message: 'Bitte stellen Sie sicher, dass Sie eine Internet Verbindung haben und laden Sie dann die Seite neu.',
     },
+  },
+  action: {
+    save: 'Speichern',
+    close: 'Schliessen',
+    cancel: 'Abbrechen',
   },
 };

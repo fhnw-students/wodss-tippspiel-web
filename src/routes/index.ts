@@ -67,9 +67,10 @@ export const routes: RouteConfig[] = [
     },
   },
   {
-    path: '/games',
-    name: 'games',
-    component: () => import('@/pages/Games.vue'),
+    path: '/users/:username/games',
+    name: 'user.games',
+    component: () => import('@/pages/UserGames.vue'),
+    props: true,
     meta: {
       auth: true,
       guest: false,
@@ -79,6 +80,33 @@ export const routes: RouteConfig[] = [
     path: '/teams',
     name: 'teams',
     component: () => import('@/pages/Teams.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: () => import('@/pages/Settings.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
+    path: '/admin/games',
+    name: 'admin.games',
+    component: () => import('@/pages/admin/AdminGames.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
+    path: '/admin/create-game',
+    name: 'admin.game.create',
+    component: () => import('@/pages/admin/AdminCreateGame.vue'),
     meta: {
       auth: true,
       guest: false,

@@ -15,7 +15,9 @@ export default class Spinner extends Vue { }
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
+  @import '../../styles/colors';
+
   .spinner {
     margin: 0 auto 0;
     width: 70px;
@@ -25,7 +27,8 @@ export default class Spinner extends Vue { }
   .spinner > div {
     width: 18px;
     height: 18px;
-    background-color: #fff;
+    background-color: $primary;
+    vertical-align: text-bottom;
 
     border-radius: 100%;
     display: inline-block;

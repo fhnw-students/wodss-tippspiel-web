@@ -1,6 +1,7 @@
 <template>
   <button
     type="button"
+    :disabled="isSpinnerVisible"
     class="btn">
     <slot v-if="!isSpinnerVisible"></slot>
     <Spinner v-if="isSpinnerVisible"></Spinner>
@@ -17,10 +18,10 @@ import Spinner from './Spinner.vue';
   components: {
     Spinner,
   },
-  props: ['isSpinning'],
 })
 export default class SpinnerButton extends Vue {
 
+  @Prop()
   public isSpinning: boolean;
 
   public get isSpinnerVisible(): boolean {
@@ -30,7 +31,12 @@ export default class SpinnerButton extends Vue {
 }
 </script>
 
+<style lang="scss">
+  button > .spinner > div {
+    background-color: #FFFFFF !important;
+  }
 
-<style lang="scss" scoped>
-
+  button::after {
+    display: none !important;
+  }
 </style>

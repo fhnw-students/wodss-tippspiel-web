@@ -1,6 +1,7 @@
 import { ActionContext, ActionTree } from 'vuex';
 
 import * as authApi from '@/services/api/auth.api';
+import { router } from '@/plugins/vue-router.plugin';
 import * as mutationTypes from './auth.mutations.types';
 import { AuthState } from './auth.state';
 
@@ -36,9 +37,11 @@ export const actions: ActionTree<AuthState, AuthState> = {
       .catch((err: any) => commit(mutationTypes.SIGN_IN_USER_FAILED, err));
   },
   [actionTypes.SIGN_OUT_USER]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials): void {
-    authApi.signOut()
-      .then(() => commit(mutationTypes.SIGN_OUT_USER_SUCCESS))
-      .catch((err: any) => commit(mutationTypes.SIGN_OUT_USER_SUCCESS));
+    commit(mutationTypes.SIGN_OUT_USER_SUCCESS);
+    router.push({
+      name: 'auth.login',
+    });
+    authApi.signOut();
   },
   [actionTypes.CHECK_AUTH]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials): void {
     commit(mutationTypes.CHECK_AUTH);
