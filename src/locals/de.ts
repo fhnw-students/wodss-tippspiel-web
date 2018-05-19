@@ -51,7 +51,17 @@ export default {
   },
   teams: {
     title: 'Tippgruppen',
-      create_team: 'Neues Team erstellen',
+    create_group: 'Neue Gruppe erstellen',
+    group_name: 'Gruppenname',
+    group_points: 'Durchschnittliche Punkte',
+    delete_group: 'Aus dem Gruppe austreten',
+    leave_group: 'verlassen',
+    my_groups: 'Meine Gruppen',
+    invitations: 'Meine Einladungen',
+    invitation_group_name: 'Einladung von',
+    invitation_accept: 'annehmen',
+    invitation_deny: 'ablehnen',
+    group_details: 'Details',
   },
   home: {
     title: 'Tippspiel',
