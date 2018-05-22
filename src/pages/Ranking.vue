@@ -6,7 +6,6 @@
         <h1>{{ $t('ranking.title') }}</h1>
       </div>
    </div>
-
   <table class="table table-striped">
     <thead>
       <tr>
@@ -17,9 +16,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="ranking in rankings" :key="ranking.user.id">
+      <tr v-for="ranking in rankings" :key="ranking.userId">
         <th scope="row">{{ ranking.rank }} </th>
-        <td>{{ ranking.user.username }}</td>
+        <td>{{ ranking.username }}</td>
         <td>{{ ranking.games }}</td>
         <td>{{ ranking.points }}</td>
       </tr>
@@ -27,34 +26,57 @@
   </table>
   <ul class="pagination">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <a class="page-link"
+        href="#"
+        aria-label="First"
+        @click="onLoadFirst()">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">First</span>
       </a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <a class="page-link"
+        href="#"
+        aria-label="Previous"
+        @click="onLoadPrevious()">
         <span aria-hidden="true">&lsaquo;</span>
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link" :class="firstActiveClass" href="#">{{ firstIndex }}</a></li>
-    <li class="page-item"><a class="page-link" :class="secondActiveClass" href="#">{{ secondIndex }}</a></li>
-    <li class="page-item"><a class="page-link" :class="thirdActiveClass" href="#">{{ thirdIndex }}</a></li>
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
+      <a class="page-link" :class="firstActiveClass" href="#" @click="onClickFirst()">
+        {{ firstIndex }}
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" :class="secondActiveClass" href="#" @click="onClickSecond()">
+        {{ secondIndex }}
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" :class="thirdActiveClass" href="#" @click="onClickThird()">
+        {{ thirdIndex }}
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link"
+        href="#"
+        aria-label="Next"
+        @click="onLoadNext()">
+        <span aria-hidden="true">&rsaquo;</span>
         <span class="sr-only">Next</span>
       </a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&rsaquo;</span>
+      <a class="page-link"
+        href="#"
+        aria-label="Next"
+        @click="onLoadLast()">
+        <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Last</span>
       </a>
     </li>
   </ul>
-</nav>
   </section>
 </template>
 
@@ -79,21 +101,126 @@ export default class UserGames extends Vue {
 
   public rankings: UserRanking[] = [];
   public isLoading: boolean = true;
+  private page: number;
+  private numberOfEntries: number;
+  private amountOfRankings: number;
+  public firstActiveClass: string;
+  public secondActiveClass: string;
+  public thirdActiveClass: string;
+  public firstIndex: number;
+  public secondIndex: number;
+  public thirdIndex: number;
+
+  constructor() {
+    super();
+    this.page = 0;
+    this.numberOfEntries = 5;
+    this.firstActiveClass = ' ';
+    this.secondActiveClass = ' ';
+    this.thirdActiveClass = ' ';
+    this.firstIndex = 1;
+    this.secondIndex = 2;
+    this.thirdIndex = 3;
+  }
 
   public created(): void {
     this.loadContent();
+    this.determineNavigation();
   }
 
   private async loadContent(): Promise<void> {
     this.isLoading = true;
-    this.rankings = await rankingApi.getUserRanking();
+    this.rankings = await rankingApi.getUserRanking(this.page, this.numberOfEntries);
+    this.amountOfRankings = await rankingApi.getAmountOfRankings();
     this.isLoading = false;
   }
 
+  private onLoadFirst(): void {
+    this.page = 0;
+    this.loadContent();
+    this.determineNavigation();
+  }
+
+  private onLoadPrevious(): void {
+    if (this.page > 0) {
+      this.page--;
+    }
+    this.loadContent();
+    this.determineNavigation();
+  }
+
+  private onLoadNext(): void {
+    if (this.page < this.getAmountOfPages()) {
+      this.page++;
+    }
+    this.loadContent();
+    this.determineNavigation();
+  }
+
+  private onLoadLast(): void {
+    this.page = this.getAmountOfPages();
+    this.loadContent();
+    this.determineNavigation();
+  }
+
+  private determineNavigation(): void {
+    // indizes are handled off by 1 because this.page is zero based and we don't wanna display a 0th page in the navigation
+    if (this.page === this.getAmountOfPages()) {
+      this.firstIndex = this.page + 1 - 2;
+      this.secondIndex = this.page + 1 - 1;
+      this.thirdIndex = this.page + 1;
+      this.firstActiveClass = '';
+      this.secondActiveClass = '';
+      this.thirdActiveClass = 'active';
+    } else if (this.page === 0) {
+      this.firstIndex = this.page + 1;
+      this.secondIndex = this.page + 1 + 1;
+      this.thirdIndex = this.page + 1 + 2;
+      this.firstActiveClass = 'active';
+      this.secondActiveClass = '';
+      this.thirdActiveClass = '';
+    } else {
+      this.firstIndex = this.page;
+      this.secondIndex = this.page + 1;
+      this.thirdIndex = this.page + 2;
+      this.firstActiveClass = '';
+      this.secondActiveClass = 'active';
+      this.thirdActiveClass = '';
+    }
+  }
+
+  public getAmountOfPages(): number {
+    return Math.floor(this.amountOfRankings / this.numberOfEntries);
+  }
+
+  public onClickFirst(): void {
+    this.page = this.firstIndex - 1;
+    this.loadContent();
+    this.determineNavigation();
+  }
+
+  public onClickSecond(): void {
+    this.page = this.secondIndex - 1;
+    this.loadContent();
+    this.determineNavigation();
+  }
+
+  public onClickThird(): void {
+    this.page = this.thirdIndex - 1;
+    this.loadContent();
+    this.determineNavigation();
+  }
 }
 </script>
 
 <style lang="scss">
   @import '../styles/colors';
+  .active {
+    background-color: rgb(74, 170, 218);
+    color: rgb(222, 226, 230);
+  }
 
+  .pagination {
+    margin-left: 40%;
+  }
 </style>
