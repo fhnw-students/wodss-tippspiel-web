@@ -133,6 +133,7 @@ export default {
     game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
     create_game_successful: 'Spiel wurde erfoglreich erstellt',
     game_deleted_successful: 'Spiel wurde erfoglreich gelöscht',
+    load_rankings_failed: 'Die Rankings konnten leider nicht geladen werden',
   },
   connection: {
     server_unavailable: {
