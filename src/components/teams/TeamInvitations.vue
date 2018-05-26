@@ -1,33 +1,49 @@
 <template>
-     <div class="row justify-content-sm-center">
-      <div class="col">
-        <h2>{{$t('teams.invitations')}}</h2>
-        <table class="table table-striped">
-          <tr>
-            <th>{{ $t('teams.invitation_group_name') }}</th>
-            <th></th>
-          </tr>
+  <div class="row justify-content-sm-center" v-if="teamInvitations && teamInvitations.length > 0">
+    <div class="col">
+      <h2>{{$t('teams.invitations')}}</h2>
+      <table class="table table-striped">
+        <tr>
+          <th>{{ $t('teams.invitation_group_name') }}</th>
+          <th></th>
+        </tr>
 
-          <tr>
-            <td>
-              Platzhalter für Einladungsteam
-            </td>
+        <TeamInvitationRow v-for="invitation in teamInvitations" :key="invitation.id" :invitation="invitation"/>
 
-            <td class="actions">
-              <button
-                class="btn btn-success">
-                <i class="fas fa-check"></i>
-                {{$t('teams.invitation_accept')}}
-              </button>
-              <button
-                class="btn btn-danger">
-                <i class="fas fa-times"></i>
-                {{$t('teams.invitation_deny')}}
-              </button>
-            </td>
-
-          </tr>
-        </table>
-      </div>
-    </div>
+      </table>
+  </div>
+</div>
 </template>
+
+
+<script lang="ts">
+import { Prop, Component, Vue, Watch } from 'vue-property-decorator';
+
+import { TeamInvitation } from '@/models/TeamInvitation';
+import * as userApi from '@/services/api/user.api';
+import * as teamApi from '@/services/api/team.api';
+import * as teamInvitationApi from '@/services/api/teamInvitation.api';
+import TeamInvitationRow from '@/components/teams/TeamInvitationRow.vue';
+
+@Component({
+  components: {
+    TeamInvitationRow,
+  },
+})
+export default class TeamInvitations extends Vue {
+
+  public teamInvitations: TeamInvitation[] = [];
+
+  public created(): void {
+    this.loadContent();
+
+    this.$eventBus.$on('TEAM_INVITATION.ACCEPTED', () => this.loadContent());
+    this.$eventBus.$on('TEAM_INVITATION.DENIED', () => this.loadContent());
+  }
+
+  public async loadContent(): Promise<void> {
+    this.teamInvitations = await userApi.getMyInvitations();
+  }
+
+}
+</script>

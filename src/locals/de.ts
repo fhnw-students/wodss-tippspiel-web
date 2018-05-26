@@ -137,6 +137,10 @@ export default {
     game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
     create_game_successful: 'Spiel wurde erfoglreich erstellt',
     game_deleted_successful: 'Spiel wurde erfoglreich gelöscht',
+    team_invitation_accept_successful: 'Die Einladung wurde erfolgreich angenohmen.',
+    team_invitation_deny_successful: 'Die Einladung wurde erfolgreich abgelehnt.',
+    team_invitation_accept_failed: 'Die Einladung konnte leider nicht angenohmen werden.',
+    team_invitation_deny_failed: 'Die Einladung konnte leider nicht abgelehnt werden.',
   },
   connection: {
     server_unavailable: {
