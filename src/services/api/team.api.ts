@@ -41,6 +41,6 @@ export async function acceptInvitationForTeam(teamId: number): Promise<void> {
   await Vue.$http.put(`/api/teams/${teamId}/user/me`);
 }
 
-export async function deleteTeam(teamId: number): Promise<void> {
-  await Vue.$http.delete(`/api/teams/${teamId}`);
+export async function deleteUserFromTeam(teamId: number, userId: number): Promise<void> {
+  await Vue.$http.delete(`/teams/${teamId}/users/${userId}`);
 }
