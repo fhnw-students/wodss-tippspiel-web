@@ -87,6 +87,7 @@ import { Getter } from 'vuex-class';
 import * as _ from 'lodash';
 
 import { UserRanking } from '@/models/UserRanking';
+import { PagedUserRanking } from '@/models/PagedUserRanking';
 import * as rankingApi from '@/services/api/ranking.api';
 import Spinner from '@/components/layout/Spinner.vue';
 import SpinnerButton from '@/components/layout/SpinnerButton.vue';
@@ -103,7 +104,7 @@ export default class UserGames extends Vue {
   public isLoading: boolean = true;
   private page: number;
   private numberOfEntries: number;
-  private amountOfRankings: number;
+  private totalPages: number;
   public firstActiveClass: string;
   public secondActiveClass: string;
   public thirdActiveClass: string;
@@ -130,8 +131,13 @@ export default class UserGames extends Vue {
 
   private async loadContent(): Promise<void> {
     this.isLoading = true;
-    this.rankings = await rankingApi.getUserRanking(this.page, this.numberOfEntries);
-    this.amountOfRankings = await rankingApi.getAmountOfRankings();
+    try {
+      let pagedUserRanking: PagedUserRanking = await rankingApi.getUserRanking(this.page, this.numberOfEntries);
+      this.rankings = pagedUserRanking.rankings;
+      this.totalPages = pagedUserRanking.totalPages;
+    } catch (_) {
+
+    }
     this.isLoading = false;
   }
 
@@ -150,7 +156,7 @@ export default class UserGames extends Vue {
   }
 
   private onLoadNext(): void {
-    if (this.page < this.getAmountOfPages()) {
+    if (this.page < this.totalPages) {
       this.page++;
     }
     this.loadContent();
@@ -158,16 +164,17 @@ export default class UserGames extends Vue {
   }
 
   private onLoadLast(): void {
-    this.page = this.getAmountOfPages();
+    this.page = this.totalPages - 1;
     this.loadContent();
     this.determineNavigation();
   }
 
   private determineNavigation(): void {
     // indizes are handled off by 1 because this.page is zero based and we don't wanna display a 0th page in the navigation
-    if (this.page === this.getAmountOfPages()) {
-      this.firstIndex = this.page + 1 - 2;
-      this.secondIndex = this.page + 1 - 1;
+    console.log("page: " + this.page + " total pages: " + this.totalPages);
+    if (this.page === this.totalPages - 1) {
+      this.firstIndex = this.page - 1;
+      this.secondIndex = this.page;
       this.thirdIndex = this.page + 1;
       this.firstActiveClass = '';
       this.secondActiveClass = '';
@@ -182,15 +189,11 @@ export default class UserGames extends Vue {
     } else {
       this.firstIndex = this.page;
       this.secondIndex = this.page + 1;
-      this.thirdIndex = this.page + 2;
+      this.thirdIndex = this.page + 1 + 1;
       this.firstActiveClass = '';
       this.secondActiveClass = 'active';
       this.thirdActiveClass = '';
     }
-  }
-
-  public getAmountOfPages(): number {
-    return Math.floor(this.amountOfRankings / this.numberOfEntries);
   }
 
   public onClickFirst(): void {
