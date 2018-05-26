@@ -14,6 +14,13 @@ export default {
   },
   ranking: {
     title: 'Ranglisten',
+    table: {
+      header: {
+        name: 'Name',
+        score: 'Punkte',
+        games: 'Spiele',
+      },
+    },
   },
   settings: {
     title: 'Einstellungen',
@@ -143,6 +150,7 @@ export default {
     team_invitation_accept_failed: 'Die Einladung konnte leider nicht angenommen werden.',
     team_invitation_deny_failed: 'Die Einladung konnte leider nicht abgelehnt werden.',
     team_leave_successful: 'Du hast das Team verlassen',
+    load_rankings_failed: 'Die Rankings konnten leider nicht geladen werden',
   },
   connection: {
     server_unavailable: {
