@@ -3,13 +3,15 @@
     <div class="col">
       <h2>{{$t('teams.invitations')}}</h2>
       <table class="table table-striped">
+        <thead>
         <tr>
           <th>{{ $t('teams.invitation_group_name') }}</th>
           <th></th>
         </tr>
-
-        <TeamInvitationRow v-for="invitation in teamInvitations" :key="invitation.id" :invitation="invitation"/>
-
+        </thead>
+        <tbody>
+          <TeamInvitationRow v-for="invitation in teamInvitations" :key="invitation.id" :invitation="invitation"/>
+        </tbody>
       </table>
 
       <Pagination @load-content="onLoadContent" :total-pages="totalPages" :limit="limit"/>
@@ -39,7 +41,7 @@ export default class TeamInvitations extends Vue {
 
   public teamInvitations: TeamInvitation[] = [];
   public isLoading: boolean = true;
-  public limit: number = 1;
+  public limit: number = 3;
   public totalPages: number = 0;
   public page: number = 0;
 

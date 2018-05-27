@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
 
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <router-link :to="{ name: 'ranking' }" tag="li" class="nav-item" active-class="active">
+            <router-link :to="{ name: 'ranking' }" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated">
               <a class="nav-link">{{ $t('ranking.title') }}</a>
             </router-link>
 

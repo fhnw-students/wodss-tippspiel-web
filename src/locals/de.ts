@@ -14,6 +14,12 @@ export default {
   },
   ranking: {
     title: 'Ranglisten',
+    user: {
+      title: 'Users',
+    },
+    team: {
+      title: 'Tippgruppen',
+    },
     table: {
       header: {
         name: 'Name',
@@ -70,6 +76,9 @@ export default {
     invitation_accept: 'annehmen',
     invitation_deny: 'ablehnen',
     group_details: 'Details',
+    invite: {
+      title: 'Freunde einladen',
+    },
   },
   home: {
     title: 'Tippspiel',
@@ -152,6 +161,8 @@ export default {
     team_leave_successful: 'Du hast das Team verlassen',
     load_rankings_failed: 'Die Rankings konnten leider nicht geladen werden',
     load_team_invitation_failed: 'Die Teameinladungen konnten leider nicht geladen werden',
+    team_invitation_successful: 'Die Teameinladungen wurde versendet',
+    team_invitation_failed: 'Die Teameinladungen konnten leider nicht versendet werden',
   },
   connection: {
     server_unavailable: {
@@ -167,5 +178,6 @@ export default {
     save: 'Speichern',
     close: 'Schliessen',
     cancel: 'Abbrechen',
+    invite: 'Einladen',
   },
 };

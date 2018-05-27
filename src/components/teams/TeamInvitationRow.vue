@@ -1,7 +1,7 @@
 <template>
   <tr >
     <td>
-      <router-link :to="{ name: 'teams', params: { teamname: invitation.team.name } }" class="btn btn-link">
+      <router-link :to="{ name: 'team.detail', params: { teamId: invitation.team.id.toString() } }" class="btn btn-link">
         {{ invitation.team.name }}
       </router-link>
     </td>

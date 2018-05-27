@@ -75,3 +75,17 @@ h2 {
   }
 
 }
+
+.avatar {
+  border-radius: 100%;
+}
+
+td {
+  .avatar {
+    margin-right: 15px;
+  }
+}
+
+.no-padding {
+  padding: 0 !important;
+}

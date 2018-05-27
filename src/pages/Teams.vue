@@ -10,9 +10,9 @@
       </div>
     </div>
 
-  <TeamInvitations></TeamInvitations>
-  <MyTeams></MyTeams>
+    <TeamInvitations />
 
+    <MyTeams />
 
   </section>
 </template>

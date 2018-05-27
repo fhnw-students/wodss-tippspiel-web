@@ -37,11 +37,12 @@ export const actions: ActionTree<AuthState, AuthState> = {
       .catch((err: any) => commit(mutationTypes.SIGN_IN_USER_FAILED, err));
   },
   [actionTypes.SIGN_OUT_USER]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials): void {
-    commit(mutationTypes.SIGN_OUT_USER_SUCCESS);
-    router.push({
-      name: 'auth.login',
+    authApi.signOut().then(() => {
+      commit(mutationTypes.SIGN_OUT_USER_SUCCESS);
+      router.push({
+        name: 'auth.login',
+      });
     });
-    authApi.signOut();
   },
   [actionTypes.CHECK_AUTH]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials): void {
     commit(mutationTypes.CHECK_AUTH);
