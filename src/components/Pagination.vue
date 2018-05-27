@@ -171,14 +171,15 @@ export default class Pagination extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '../styles/colors';
-  .active {
-    background-color: rgb(74, 170, 218);
-    color: rgb(222, 226, 230);
-  }
 
   .pagination {
     margin-left: 40%;
+
+    .active {
+      background-color: $blue;
+      color: $white;
+    }
   }
 </style>
