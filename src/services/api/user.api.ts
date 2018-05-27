@@ -1,3 +1,4 @@
+import { PagedTeamInvitation } from './../../models/PagedTeamInvitation';
 import Vue from 'vue';
 import { User } from '@/models/User';
 import { Game } from '@/models/Game';
@@ -28,7 +29,11 @@ export async function getMyTeams(): Promise<Team[]> {
   return plainToClass<Team, Team[]>(Team, response.data);
 }
 
-export async function getMyInvitations(): Promise<TeamInvitation[]> {
-  const response = await Vue.$http.get(`/users/me/team-invitations`);
-  return plainToClass<TeamInvitation, TeamInvitation[]>(TeamInvitation, response.data);
+export async function getMyInvitations(page: number, size: number): Promise<PagedTeamInvitation> {
+  const response = await Vue.$http.get(`/users/me/team-invitations`, {
+    params: {
+      page, size,
+    },
+  });
+  return plainToClass<PagedTeamInvitation, PagedTeamInvitation>(PagedTeamInvitation, response.data);
 }
