@@ -64,7 +64,7 @@ export default class TeamDetail extends Vue {
   }
 
   public async verifyOwner(): Promise<void> {
-    const currentUser = this.users.filter(u => u.id === this.currentUser.id)[0];
+    const currentUser = this.users.filter((user) => user.id === this.currentUser.id)[0];
     if (currentUser) {
       this.currentUserIsOwner = currentUser.owner;
     }

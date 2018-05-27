@@ -100,6 +100,13 @@
             </spinner-button>
 
           </form>
+          <div class="card-footer text-muted">
+            <div class="links">
+              <router-link to="/auth/login">
+                {{ $t('login.sign_in') }}
+              </router-link>
+            </div>
+          </div>
         </div>
       </div>
 

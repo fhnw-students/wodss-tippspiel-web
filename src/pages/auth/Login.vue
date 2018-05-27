@@ -62,6 +62,12 @@
               <router-link :to="{ name: 'auth.forgot-password' }">
                 {{ $t('login.reset_password_link') }}
               </router-link>
+
+              <hr class="lined">
+
+              <router-link to="/auth/register">
+                {{ $t('register.title') }}
+              </router-link>
             </div>
           </div>
         </div>

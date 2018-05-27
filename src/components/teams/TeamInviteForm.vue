@@ -76,9 +76,8 @@ export default class TeamInviteForm extends Vue {
         this.$noty.success('message.team_invitation_successfull');
         this.email = '';
         this.$validator.reset();
-      } catch(_) {
-        console.log(_);
-        this.$noty.success('message.team_invitation_failed');
+      } catch (_) {
+        this.$noty.error('message.team_invitation_failed');
       }
       this.isSubmitting = false;
     }
