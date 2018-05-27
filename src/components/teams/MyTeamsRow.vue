@@ -2,7 +2,7 @@
 
   <tr>
     <td>
-      <router-link :to="{ name: 'teams', params: { teamname: team.name } }" class="btn btn-link">
+      <router-link :to="{name: 'team.detail', params: { teamname: team.name } }" tag="li" class="btn btn-link" v-if="isAuthenticated">
         {{ team.name }}
       </router-link>
     </td>
@@ -27,6 +27,7 @@
 <script lang="ts">
 import { Prop, Component, Vue, Watch } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
+import { AuthGetters } from '@/store/modules/auth';
 
 import { Team } from '@/models/Team';
 import { User } from '@/models/User';
@@ -52,8 +53,8 @@ export default class MyTeamsRow extends Vue {
   @Getter(UserGetters.GetCurrentUser)
   public currentUser: User;
 
-  // 1. Row 51 -> loadContent() method auslagern
-  // 2.
+  @Getter(AuthGetters.IsAuthenticated)
+  public isAuthenticated: boolean;
 
   public async leaveTeam(teamId: number): Promise<void> {
     this.isLoading = true;

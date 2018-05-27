@@ -16,11 +16,6 @@ export async function getMyTeams(): Promise<Team[]> {
   return plainToClass<Team, Team[]>(Team, response.data);
 }
 
-export async function getTeamRanking(teamId: number): Promise<UserRanking[]> {
-  const response = await Vue.$http.get(`/api/teams/${teamId}/ranking`);
-  return plainToClass<UserRanking, UserRanking[]>(UserRanking, response.data);
-}
-
 export async function createTeam(newTeam: NewTeam): Promise<Team> {
   const response = await Vue.$http.post(`/api/teams`, classToPlain(newTeam));
   return plainToClass<Team, Team>(Team, response.data);

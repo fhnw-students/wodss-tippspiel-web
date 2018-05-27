@@ -86,6 +86,15 @@ export const routes: RouteConfig[] = [
     },
   },
   {
+    path: '/teams/:teamName',
+    name: 'team.detail',
+    component : () => import('@/pages/TeamDetail.vue'),
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
     path: '/settings',
     name: 'settings',
     component: () => import('@/pages/Settings.vue'),

@@ -1,3 +1,4 @@
+import { UserRanking } from '@/models/UserRanking';
 import Vue from 'vue';
 
 import { classToPlain, plainToClass, deserialize } from 'class-transformer';
@@ -11,11 +12,11 @@ export async function getUserRanking(offset: number, limit: number): Promise<Pag
 }
 
 export async function getTeamRanking(): Promise<TeamRanking[]> {
-  const response = await Vue.$http.get(`/ranking/users`);
+  const response = await Vue.$http.get(`/ranking/teams`);
   return plainToClass<TeamRanking, TeamRanking[]>(TeamRanking, response.data);
 }
 
-export async function getAmountOfRankings(): Promise<number> {
-  const response = await Vue.$http.get(`/ranking/users/amount`);
-  return response.data;
+export async function getTeamUserRanking(teamId: number): Promise<UserRanking[]> {
+  const response = await Vue.$http.get(`/ranking/teams/${teamId}`);
+  return plainToClass<UserRanking, UserRanking[]>(UserRanking, response.data);
 }
