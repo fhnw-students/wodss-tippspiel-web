@@ -151,6 +151,7 @@ export default {
     team_invitation_deny_failed: 'Die Einladung konnte leider nicht abgelehnt werden.',
     team_leave_successful: 'Du hast das Team verlassen',
     load_rankings_failed: 'Die Rankings konnten leider nicht geladen werden',
+    load_team_invitation_failed: 'Die Teameinladungen konnten leider nicht geladen werden',
   },
   connection: {
     server_unavailable: {
