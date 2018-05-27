@@ -8,7 +8,7 @@
         <input
           v-model="hostScore"
           autocomplete="off"
-          :disabled="!game.isOpenToTip || isUpdating || readonly === true"
+          :disabled="!game.isOpenToTip || game.isPlayed || isUpdating || readonly === true"
           @keypress="onKeyPress($event, hostScore)"
           @blur.prevent="onHostScoreChanged()"
           type="text"
@@ -18,7 +18,7 @@
         <input
           v-model="guestScore"
           autocomplete="off"
-          :disabled="!game.isOpenToTip || isUpdating || readonly === true"
+          :disabled="!game.isOpenToTip || game.isPlayed || isUpdating || readonly === true"
           @keypress="onKeyPress($event, guestScore)"
           @blur.prevent="onGuestScoreChanged()"
           type="text"
