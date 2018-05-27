@@ -1,6 +1,6 @@
 <template>
 
-  <ul class="pagination">
+  <ul class="pagination" v-if="totalPages > 1">
     <li class="page-item">
       <a class="page-link"
         href="#"
@@ -19,17 +19,17 @@
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    <li class="page-item">
+    <li class="page-item" v-if="isValidIndex(firstIndex)">
       <a class="page-link" :class="firstActiveClass" href="#" @click="onClickFirst()">
         {{ firstIndex }}
       </a>
     </li>
-    <li class="page-item">
+    <li class="page-item" v-if="isValidIndex(secondIndex)">
       <a class="page-link" :class="secondActiveClass" href="#" @click="onClickSecond()">
         {{ secondIndex }}
       </a>
     </li>
-    <li class="page-item">
+    <li class="page-item" v-if="isValidIndex(thirdIndex)">
       <a class="page-link" :class="thirdActiveClass" href="#" @click="onClickThird()">
         {{ thirdIndex }}
       </a>
@@ -76,30 +76,25 @@ import SpinnerButton from '@/components/layout/SpinnerButton.vue';
 export default class Pagination extends Vue {
 
   @Prop()
-  private totalPages: number;
-  private page: number;
-  private numberOfEntries: number;
-  public firstActiveClass: string;
-  public secondActiveClass: string;
-  public thirdActiveClass: string;
-  public firstIndex: number;
-  public secondIndex: number;
-  public thirdIndex: number;
+  public totalPages: number;
 
-  constructor() {
-    super();
-    this.page = 0;
-    this.numberOfEntries = 5;
-    this.firstActiveClass = ' ';
-    this.secondActiveClass = ' ';
-    this.thirdActiveClass = ' ';
-    this.firstIndex = 1;
-    this.secondIndex = 2;
-    this.thirdIndex = 3;
-  }
+  @Prop()
+  public limit: number;
+
+  public page: number = 0;
+  public firstActiveClass: string = '';
+  public secondActiveClass: string = '';
+  public thirdActiveClass: string = '';
+  public firstIndex: number = 1;
+  public secondIndex: number = 2;
+  public thirdIndex: number = 3;
 
   public created(): void {
     this.determineNavigation();
+  }
+
+  public isValidIndex(index: number): boolean {
+    return index > 0 && index <= this.totalPages;
   }
 
   private onLoadFirst(): void {
