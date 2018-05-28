@@ -20,8 +20,8 @@
                 :data-vv-as="$t('label.username')"
                 :class="{'form-control': true, 'is-invalid': errors.has('username') }"
                 :placeholder="$t('placeholder.username')"
-                v-validate="'required|min:3'"
-                v-model="username"
+                v-validate="'required|min:3|max:25'"
+                v-model.trim="username"
                 required>
                 <div v-show="errors.has('username')" class="invalid-feedback">
                   {{ errors.first('username') }}
@@ -39,7 +39,7 @@
                 :class="{'form-control': true, 'is-invalid': errors.has('email') }"
                 :placeholder="$t('placeholder.email')"
                 v-validate="'required|email'"
-                v-model="email"
+                v-model.trim="email"
                 required>
                 <div v-show="errors.has('email')" class="invalid-feedback">
                   {{ errors.first('email') }}

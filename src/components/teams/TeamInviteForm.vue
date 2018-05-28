@@ -17,7 +17,7 @@
             :class="{'form-control': true, 'is-invalid': errors.has('email') }"
             :placeholder="$t('placeholder.email')"
             v-validate="'required|email'"
-            v-model="email"
+            v-model.trim="email"
             required />
             <div v-show="errors.has('email')" class="invalid-feedback">
               {{ errors.first('email') }}
