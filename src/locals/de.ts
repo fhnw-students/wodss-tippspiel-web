@@ -82,6 +82,10 @@ export default {
     update: {
       title: 'Team bearbeiten',
     },
+    create_title: 'Neues Team erstellen',
+    create_subtitle: 'Teamname',
+    create_enter_teamname: 'Teamnamen eingeben',
+    create_submit: 'Team erstellen',
   },
   home: {
     title: 'Tippspiel',
@@ -127,6 +131,7 @@ export default {
     email: 'E-Mail',
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
+    textfield_create_team: 'Teamname',
   },
   placeholder: {
     username: 'Username',
@@ -168,6 +173,8 @@ export default {
     load_team_invitation_failed: 'Die Teameinladungen konnten leider nicht geladen werden',
     team_invitation_successful: 'Die Teameinladungen wurde versendet',
     team_invitation_failed: 'Die Teameinladungen konnten leider nicht versendet werden',
+    create_team_successful: 'Team wurde erstellt',
+    create_team_failed: 'Team konnte nicht erstellt werden',
   },
   connection: {
     server_unavailable: {

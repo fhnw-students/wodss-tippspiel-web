@@ -16,7 +16,7 @@
             :disabled="isSubmitting"
             :class="{'form-control': true, 'is-invalid': errors.has('teamname') }"
             :placeholder="$t('placeholder.teamname')"
-            v-validate="'required|min:3'"
+            v-validate="'required|min:3|max:45'"
             v-model.trim="teamname"
             required />
             <div v-show="errors.has('teamname')" class="invalid-feedback">
