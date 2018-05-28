@@ -1,22 +1,25 @@
 <template>
-  <div class="row justify-content-sm-center" v-if="teamInvitations && teamInvitations.length > 0">
-    <div class="col">
-      <h2>{{$t('teams.invitations')}}</h2>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>{{ $t('teams.invitation_group_name') }}</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-          <TeamInvitationRow v-for="invitation in teamInvitations" :key="invitation.id" :invitation="invitation"/>
-        </tbody>
-      </table>
+  <div>
+    <div class="row justify-content-sm-center" v-if="teamInvitations && teamInvitations.length > 0">
+      <div class="col">
+        <h2>{{$t('teams.invitations')}}</h2>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>{{ $t('teams.invitation_group_name') }}</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+            <TeamInvitationRow v-for="invitation in teamInvitations" :key="invitation.id" :invitation="invitation"/>
+          </tbody>
+        </table>
 
-      <Pagination @load-content="onLoadContent" :total-pages="totalPages" :limit="limit"/>
+        <Pagination @load-content="onLoadContent" :total-pages="totalPages" :limit="limit"/>
+      </div>
+    </div>
+    <hr class="lined divided" v-if="teamInvitations && teamInvitations.length > 0">
   </div>
-</div>
 </template>
 
 

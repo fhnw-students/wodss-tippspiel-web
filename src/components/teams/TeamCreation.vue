@@ -1,36 +1,45 @@
 <template>
-  <div>
-    <h2>{{$t('teams.create_title')}}</h2>
-    <form id="form" @submit.prevent=submitForm>
-      <div class="form-group">
-        <label for="inputTeamname">{{$t('teams.create_subtitle')}}</label>
-        <input
-          id="inputTeamname"
-          type="text"
-          name="teamname"
-          :placeholder="$t('teams.create_enter_teamname')"
-          :data-vv-as="$t('label.textfield_create_team')"
-          :class="{'form-control': true, 'is-invalid': errors.has('teamname') }"
-          :disabled="isLoading"
-          v-validate="'required|min:3|max:45'"
-          v-model.trim="teamname"
-          required>
-          <div v-show="errors.has('teamname')" class="invalid-feedback">
-            {{ errors.first('teamname') }}
-          </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <h2>{{ $t('teams.create_title') }}</h2>
+    </div>
+
+    <form id="form" class="col-xl-12" @submit.prevent="submitForm">
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="inputTeamname">{{ $t('teams.create_subtitle') }}</label>
+        <div class="col-sm-8">
+          <input
+            id="inputTeamname"
+            type="text"
+            name="teamname"
+            :placeholder="$t('teams.create_enter_teamname')"
+            :data-vv-as="$t('label.textfield_create_team')"
+            :class="{'form-control': true, 'is-invalid': errors.has('teamname') }"
+            :disabled="isLoading"
+            v-validate="'required|min:3|max:45'"
+            v-model.trim="teamname"
+            required>
+            <div v-show="errors.has('teamname')" class="invalid-feedback">
+              {{ errors.first('teamname') }}
+            </div>
+        </div>
       </div>
-      <div class="actions">
-        <button type="submit"
-          :is-spinning="isLoading"
-          :disabled="errors.any() || isLoading"
-          class="btn btn-success">
-          <span v-if="!isLoading">
-            <i class="fas fa-plus"></i>
-            {{$t('teams.create_submit')}}
-          </span>
-          <Spinner v-if="isLoading"></Spinner>
-        </button>
+
+      <div class="row">
+        <div class="offset-sm-4 col-sm-8">
+          <button type="submit"
+            :is-spinning="isLoading"
+            :disabled="errors.any() || isLoading"
+            class="btn btn-success">
+            <span v-if="!isLoading">
+              <i class="fas fa-plus"></i>
+              {{$t('teams.create_submit')}}
+            </span>
+            <Spinner v-if="isLoading"></Spinner>
+          </button>
+        </div>
       </div>
+
     </form>
   </div>
 </template>

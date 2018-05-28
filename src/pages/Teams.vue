@@ -1,7 +1,7 @@
 <template>
   <section class="teams-page">
 
-    <div class="row">
+    <div class="row page-title">
       <div class="col">
         <h1>{{ $t('teams.title') }}</h1>
       </div>
@@ -11,7 +11,7 @@
 
     <MyTeams />
 
-    <hr class="lined divded">
+    <hr class="lined divided">
 
     <TeamCreaation />
 

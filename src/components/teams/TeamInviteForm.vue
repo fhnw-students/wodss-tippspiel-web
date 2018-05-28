@@ -73,7 +73,7 @@ export default class TeamInviteForm extends Vue {
       this.isSubmitting = true;
       try {
         await teamApi.inviteUserToTeam(this.teamId, this.email);
-        this.$noty.success('message.team_invitation_successfull');
+        this.$noty.success('message.team_invitation_successful');
         this.email = '';
         this.$validator.reset();
       } catch (_) {
