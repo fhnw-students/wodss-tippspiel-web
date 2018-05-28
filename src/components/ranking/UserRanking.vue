@@ -1,9 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-xl-12 col-sm-6">
+    <div class="col-xs-12 col-sm-6">
       <h2>{{ $t('ranking.user.title') }}</h2>
     </div>
-    <div class="col-xl-12 col-sm-6">
+    <div class="col-xs-12 col-sm-6">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
