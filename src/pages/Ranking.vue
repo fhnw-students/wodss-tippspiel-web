@@ -9,7 +9,7 @@
 
     <UserRanking />
 
-    <hr class="lined">
+    <hr class="lined divided">
 
     <TeamRanking />
 

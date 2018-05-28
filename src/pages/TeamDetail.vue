@@ -9,7 +9,7 @@
 
     <TeamUserRanking v-if="hasLoaded" :team-id="team.id" />
 
-    <hr class="lined">
+    <hr class="lined divided">
 
     <TeamInviteForm v-if="hasLoaded && currentUserIsOwner" :team-id="team.id" />
 

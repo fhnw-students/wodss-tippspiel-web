@@ -1,7 +1,27 @@
 <template>
   <div class="row">
-    <div class="col-xl-12">
+    <div class="col-xl-12 col-sm-6">
       <h2>{{ $t('ranking.team.title') }}</h2>
+    </div>
+    <div class="col-xl-12 col-sm-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <input
+          id="inputTeamname"
+          name="teamname"
+          type="text"
+          autocomplete="teamname"
+          :aria-label="$t('label.teamname')"
+          aria-describedby="basic-addon1"
+          :data-vv-as="$t('label.teamname')"
+          :class="{'form-control': true, }"
+          :placeholder="$t('placeholder.teamname')"
+          v-model="teamname">
+      </div>
     </div>
     <div class="col-xl-12">
       <table class="table table-striped">
@@ -64,14 +84,15 @@ export default class TeamRanking extends Vue {
   public limit: number = 5;
   public page: number = 0;
   public totalPages: number = 0;
+  public teamname: string = '';
 
   public created(): void {
-    this.loadContent();
+    this.loadContent(undefined);
   }
 
-  public async loadContent(): Promise<void> {
+  public async loadContent(teamname: string | undefined): Promise<void> {
     try {
-      const pagedTeamRanking: PagedTeamRanking = await rankingApi.getTeamRanking(this.page, this.limit);
+      const pagedTeamRanking: PagedTeamRanking = await rankingApi.getTeamRanking(this.teamname, this.page, this.limit);
       this.rankings = pagedTeamRanking.content;
       this.totalPages = pagedTeamRanking.totalPages;
     } catch (_) {
@@ -82,7 +103,15 @@ export default class TeamRanking extends Vue {
 
   public async onLoadContent(page: number): Promise<void> {
     this.page = page;
-    this.loadContent();
+    this.loadContent(this.teamname);
+  }
+
+  @Watch('teamname')
+  public async onTeamnameChanged(newTeamname: string, oldTeamname: string): Promise<void> {
+    if (newTeamname !== oldTeamname) {
+      this.teamname = newTeamname;
+      this.loadContent(newTeamname);
+    }
   }
 
 }

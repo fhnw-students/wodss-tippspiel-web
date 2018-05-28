@@ -126,6 +126,7 @@ export default {
   },
   placeholder: {
     username: 'Username',
+    teamname: 'Teamname',
     email: 'E-Mail',
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',

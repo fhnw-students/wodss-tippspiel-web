@@ -24,10 +24,10 @@ export async function getTeamUserRanking(teamId: number, page: number, size: num
   return plainToClass<PagedUserRanking, PagedUserRanking>(PagedUserRanking, response.data);
 }
 
-export async function getTeamRanking(page: number, size: number): Promise<PagedTeamRanking> {
+export async function getTeamRanking(teamname: string | undefined, page: number, size: number): Promise<PagedTeamRanking> {
   const response = await Vue.$http.get(`/ranking/teams`, {
     params: {
-      page, size,
+      teamname, page, size,
     },
   });
   return plainToClass<PagedTeamRanking, PagedTeamRanking>(PagedTeamRanking, response.data);

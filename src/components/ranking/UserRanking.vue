@@ -1,7 +1,27 @@
 <template>
   <div class="row">
-    <div class="col-xl-12">
+    <div class="col-xl-12 col-sm-6">
       <h2>{{ $t('ranking.user.title') }}</h2>
+    </div>
+    <div class="col-xl-12 col-sm-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <input
+          id="inputUsername"
+          name="username"
+          type="text"
+          autocomplete="username"
+          :aria-label="$t('label.username')"
+          aria-describedby="basic-addon1"
+          :data-vv-as="$t('label.username')"
+          :class="{'form-control': true, }"
+          :placeholder="$t('placeholder.username')"
+          v-model="username">
+      </div>
     </div>
     <div class="col-xl-12">
       <table class="table table-striped">
@@ -66,14 +86,15 @@ export default class UserRanking extends Vue {
   public limit: number = 5;
   public page: number = 0;
   public totalPages: number = 0;
+  public username: string = '';
 
   public created(): void {
-    this.loadContent();
+    this.loadContent(undefined);
   }
 
-  public async loadContent(): Promise<void> {
+  public async loadContent(username: string | undefined): Promise<void> {
     try {
-      const pagedUserRanking: PagedUserRanking = await rankingApi.getUserRanking(undefined, this.page, this.limit);
+      const pagedUserRanking: PagedUserRanking = await rankingApi.getUserRanking(username, this.page, this.limit);
       this.rankings = pagedUserRanking.content;
       this.totalPages = pagedUserRanking.totalPages;
     } catch (_) {
@@ -84,7 +105,15 @@ export default class UserRanking extends Vue {
 
   public async onLoadContent(page: number): Promise<void> {
     this.page = page;
-    this.loadContent();
+    this.loadContent(this.username);
+  }
+
+  @Watch('username')
+  public async onUsernameChanged(newUsername: string, oldUsername: string): Promise<void> {
+    if (newUsername !== oldUsername) {
+      this.username = newUsername;
+      this.loadContent(newUsername);
+    }
   }
 
 }
