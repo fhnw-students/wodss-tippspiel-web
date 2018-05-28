@@ -17,7 +17,7 @@
         <div class="progress-container">
           <div class="progress">
             <div class="progress-bar" role="progressbar" :style="homeStyleObject"></div>
-            <div class="progress-bar bg-success" role="progressbar" :style="drawStyleObject" ></div>
+            <div class="progress-bar bg-light" role="progressbar" :style="drawStyleObject" ></div>
             <div class="progress-bar bg-info" role="progressbar" :style="guestStyleObject"></div>
           </div>
         </div>

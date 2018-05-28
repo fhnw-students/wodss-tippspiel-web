@@ -151,6 +151,7 @@ export default class GameBody extends Vue {
       align-items: center;
       background: $gray-200;
       padding-left: 15px;
+      border-left: 4px solid $primary;
     }
 
     div.game-body-center {
@@ -212,6 +213,7 @@ export default class GameBody extends Vue {
       flex-direction: row-reverse;
       background: $gray-200;
       padding-right: 15px;
+      border-right: 4px solid $info;
     }
   }
 </style>

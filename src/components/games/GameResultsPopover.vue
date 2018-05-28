@@ -21,6 +21,22 @@
         <span>{{ $t('games.rules.balance_and_winner_correctly') }}</span>
         <span class="points" :class="game.tip && game.tip.tippedBalanceAndWinnerCorrectly ? '': 'text-cross'">{{ $t('games.points', { points: 6 }) }}</span>
       </p>
+      <hr class="lined">
+      <p>
+        <i class="fas fa-circle text-primary"></i>
+        <span>{{ $t('games.stats.host') }}</span>
+        <span class="points">{{ game.hostWinsPercentage }}%</span>
+      </p>
+      <p>
+        <i class="fas fa-circle text-light"></i>
+        <span>{{ $t('games.stats.draw') }}</span>
+        <span class="points">{{ game.drawPercentage }}%</span>
+      </p>
+      <p>
+        <i class="fas fa-circle text-info"></i>
+        <span>{{ $t('games.stats.guest') }}</span>
+        <span class="points">{{ game.guestWinsPercentage }}%</span>
+      </p>
     </div>
   </div>
 </template>
