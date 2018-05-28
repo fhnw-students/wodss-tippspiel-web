@@ -124,6 +124,7 @@ export const routes: RouteConfig[] = [
   },
   {
     path: '*',
+    name: 'notFound',
     component: () => import('@/pages/NotFound.vue'),
     meta: {
       auth: false,

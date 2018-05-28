@@ -140,7 +140,7 @@ export default class Login extends Vue {
     this.log.info('isAuthenticated', this.isAuthenticated);
     this.log.info('hasFailed', this.hasFailed);
     if (this.isAuthenticated) {
-      this.log.info('Sign in was successfull. Redirecting to the games page.');
+      this.log.info('Sign in was successful. Redirecting to the games page.');
       this.$router.push({
         name: 'user.games',
         params: {

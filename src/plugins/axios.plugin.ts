@@ -1,3 +1,4 @@
+import { router } from './vue-router.plugin';
 /* ============
  * Axios
  * ============
@@ -18,6 +19,7 @@ import { store } from '@/store';
 import { AuthActions } from '@/store/modules/auth';
 import { MetaDataActions } from '@/store/modules/meta';
 import { i18n } from '@/plugins/i18n.plugin';
+import { router } from '@/plugins/vue-router.plugin';
 
 const log = Vue.$createLogger('axios');
 
@@ -54,7 +56,14 @@ Axios.interceptors.response.use(
       store.dispatch(AuthActions.SignOutUser);
     }
 
-    return Promise.reject(error);
+    if (error.response.status === 404) {
+      router.push({
+        name: 'notFound',
+      });
+    } else {
+      return Promise.reject(error);
+    }
+
   }
 );
 

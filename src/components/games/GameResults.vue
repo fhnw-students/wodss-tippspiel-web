@@ -14,7 +14,17 @@
         {{ game.host.score }} : {{ game.guest.score }}
       </div>
       <div class="game-results-points">
-        {{ $t('games.points', { points: (game.tip && game.tip.points) ? game.tip.points : 0 }) }}
+        <div class="progress-container">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" :style="homeStyleObject"></div>
+            <div class="progress-bar bg-success" role="progressbar" :style="drawStyleObject" ></div>
+            <div class="progress-bar bg-info" role="progressbar" :style="guestStyleObject"></div>
+          </div>
+        </div>
+
+        <div class="points">
+          {{ $t('games.points', { points: (game.tip && game.tip.points) ? game.tip.points : 0 }) }}
+        </div>
       </div>
     </div>
 
@@ -30,6 +40,10 @@ import { Game } from '@/models/Game';
 import GameRule from '@/components/games/GameRule.vue';
 import GameResultsPopover from '@/components/games/GameResultsPopover.vue';
 
+interface StyleObject {
+  width: string;
+}
+
 @Component({
   components: {
     GameRule,
@@ -42,6 +56,24 @@ export default class GameResults extends Vue {
   public game: Game;
 
   public isPopoverVisible: boolean = false;
+
+  public get homeStyleObject(): StyleObject {
+    return {
+      width: `${this.game.hostWinsPercentage}%`,
+    };
+  }
+
+  public get drawStyleObject(): StyleObject {
+    return {
+      width: `${this.game.drawPercentage}%`,
+    };
+  }
+
+  public get guestStyleObject(): StyleObject {
+    return {
+      width: `${this.game.guestWinsPercentage}%`,
+    };
+  }
 
   public showRulePopover(): void {
     this.isPopoverVisible = true;
@@ -107,8 +139,25 @@ export default class GameResults extends Vue {
       flex: 1;
       font-size: 1.2em;
       display: flex;
-      justify-content: flex-end;
-      align-items: center;
+
+      div.progress-container {
+        display: flex;
+        flex: 1;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 15px;
+
+        .progress {
+          width: 100%;
+        }
+      }
+
+      div.points {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+      }
     }
 
   }

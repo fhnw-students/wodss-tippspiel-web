@@ -11,6 +11,7 @@
             <th scope="col">{{ $t('ranking.table.header.name') }}</th>
             <th scope="col" class="text-right">{{ $t('ranking.table.header.games') }}</th>
             <th scope="col" class="text-right">{{ $t('ranking.table.header.score') }}</th>
+            <th scope="col" class="text-right" v-if="isOwner"></th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +28,9 @@
             </td>
             <td class="text-right">{{ ranking.games }}</td>
             <td class="text-right">{{ ranking.points }}</td>
+            <td class="text-right" style="padding: 6px;" v-if="isOwner">
+              <DeleteTeamUser :teamId="teamId" :userId="ranking.userId" />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +54,10 @@ import Spinner from '@/components/layout/Spinner.vue';
 import Pagination from '@/components/Pagination.vue';
 import SpinnerButton from '@/components/layout/SpinnerButton.vue';
 import Gravatar from '@/components/layout/Gravatar.vue';
+import DeleteTeamUser from '@/components/teams/DeleteTeamUser.vue';
 import { TeamUser } from '@/models/TeamUser';
+import { User } from '@/models/User';
+import { UserGetters } from '@/store/modules/user';
 
 @Component({
   components: {
@@ -58,6 +65,7 @@ import { TeamUser } from '@/models/TeamUser';
     SpinnerButton,
     Pagination,
     Gravatar,
+    DeleteTeamUser,
   },
 })
 export default class TeamUserRanking extends Vue {
@@ -68,6 +76,9 @@ export default class TeamUserRanking extends Vue {
   @Prop()
   public owner: TeamUser;
 
+  @Getter(UserGetters.GetCurrentUser)
+  public currentUser: User;
+
   public rankings: UserRanking[] = [];
   public isLoading: boolean = true;
   public limit: number = 5;
@@ -76,6 +87,12 @@ export default class TeamUserRanking extends Vue {
 
   public created(): void {
     this.loadContent();
+
+    this.$eventBus.$on('TEAM_USER_REMOVED', () => this.loadContent());
+  }
+
+  public get isOwner(): boolean {
+    return this.owner.id === this.currentUser.id;
   }
 
   public async loadContent(): Promise<void> {

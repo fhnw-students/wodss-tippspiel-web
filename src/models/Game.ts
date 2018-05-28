@@ -26,6 +26,10 @@ export class Game {
   @Type(() => Tip)
   public tip: Tip;
 
+  public hostWinsPercentage: number;
+  public drawPercentage: number;
+  public guestWinsPercentage: number;
+
   public get isOpenToTip(): boolean {
     return moment().diff(this.date) < 0;
   }

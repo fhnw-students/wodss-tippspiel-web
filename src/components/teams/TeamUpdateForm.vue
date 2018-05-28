@@ -81,7 +81,7 @@ export default class TeamUpdateForm extends Vue {
         const newTeam = Team.updateTeam(this.team, this.teamname);
         await teamApi.updateTeam(newTeam);
         this.$eventBus.$emit('TEAM_UPDATED', this.team);
-        this.$noty.success('message.team_update_successfull');
+        this.$noty.success('message.team_update_successful');
         this.$validator.reset();
       } catch (_) {
         this.$noty.error('message.team_update_failed');

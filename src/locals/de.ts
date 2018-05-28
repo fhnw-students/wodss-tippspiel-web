@@ -174,6 +174,9 @@ export default {
     team_invitation_successful: 'Die Teameinladungen wurde versendet',
     team_invitation_failed: 'Die Teameinladungen konnten leider nicht versendet werden',
     create_team_successful: 'Team wurde erstellt',
+    team_user_delete_successful: 'Teammitglied wurde gelöscht',
+    team_user_delete_failed: 'Teammitglied konnte nicht gelöscht werden',
+    load_team_failed: 'Teams konnten nicht geladen werden',
     create_team_failed: 'Team konnte nicht erstellt werden',
   },
   connection: {
@@ -186,10 +189,15 @@ export default {
       message: 'Bitte stellen Sie sicher, dass Sie eine Internet Verbindung haben und laden Sie dann die Seite neu.',
     },
   },
+  notFound: {
+    title: '404 - Seite nicht gefunden',
+    message: 'Ihre angefragte Seite konnte nicht gefunden werden.',
+  },
   action: {
     save: 'Speichern',
     close: 'Schliessen',
     cancel: 'Abbrechen',
     invite: 'Einladen',
+    delete: 'Löschen',
   },
 };
