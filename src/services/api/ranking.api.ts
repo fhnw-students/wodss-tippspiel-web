@@ -1,16 +1,34 @@
 import Vue from 'vue';
 
-import { classToPlain, plainToClass } from 'class-transformer';
+import { classToPlain, plainToClass, deserialize } from 'class-transformer';
 
-import { UserRanking } from '@/models/UserRanking';
+import { PagedUserRanking } from '@/models/PagedUserRanking';
+import { PagedTeamRanking } from '@/models/PagedTeamRanking';
 import { TeamRanking } from '@/models/TeamRanking';
 
-export async function getUserRanking(): Promise<UserRanking[]> {
-  const response = await Vue.$http.get(`/api/ranking/users`);
-  return plainToClass<UserRanking, UserRanking[]>(UserRanking, response.data);
+export async function getUserRanking(username: string | undefined, page: number, size: number): Promise<PagedUserRanking> {
+  const response = await Vue.$http.get(`/ranking/users`, {
+    params: {
+      username, page, size,
+    },
+  });
+  return plainToClass<PagedUserRanking, PagedUserRanking>(PagedUserRanking, response.data);
 }
 
-export async function getTeamRanking(): Promise<TeamRanking[]> {
-  const response = await Vue.$http.get(`/api/ranking/users`);
-  return plainToClass<TeamRanking, TeamRanking[]>(TeamRanking, response.data);
+export async function getTeamUserRanking(teamId: number, page: number, size: number): Promise<PagedUserRanking> {
+  const response = await Vue.$http.get(`/ranking/teams/${teamId}`, {
+    params: {
+      page, size,
+    },
+  });
+  return plainToClass<PagedUserRanking, PagedUserRanking>(PagedUserRanking, response.data);
+}
+
+export async function getTeamRanking(teamname: string | undefined, page: number, size: number): Promise<PagedTeamRanking> {
+  const response = await Vue.$http.get(`/ranking/teams`, {
+    params: {
+      teamname, page, size,
+    },
+  });
+  return plainToClass<PagedTeamRanking, PagedTeamRanking>(PagedTeamRanking, response.data);
 }

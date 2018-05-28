@@ -1,5 +1,6 @@
 <template>
   <div class="game">
+
     <div class="game-body-admin">
 
       <GameNation class="game-body-host" :game-nation="game.host"></GameNation>
@@ -51,19 +52,19 @@
     </div>
 
     <Modal :title="$t('delete_game.title')" v-show="isModalVisible" @close="closeModal">
-       <template slot="body">
-         {{ $t('delete_game.content', { host: game.host.nation.name, guest: game.guest.nation.name }) }}
-       </template>
-       <template slot="footer">
-          <button class="btn btn-success" @click="deleteGame">
-            <i class="fas fa-check"></i>
-            {{ $t('delete_game.yes') }}
-          </button>
-          <button class="btn btn-danger" @click="closeModal">
-            <i class="fas fa-times"></i>
-            {{ $t('delete_game.no') }}
-          </button>
-       </template>
+      <template slot="body">
+        {{ $t('delete_game.content', { host: game.host.nation.name, guest: game.guest.nation.name }) }}
+      </template>
+      <template slot="footer">
+        <button class="btn btn-success" @click="deleteGame">
+          <i class="fas fa-check"></i>
+          {{ $t('delete_game.yes') }}
+        </button>
+        <button class="btn btn-danger" @click="closeModal">
+          <i class="fas fa-times"></i>
+          {{ $t('delete_game.no') }}
+        </button>
+      </template>
     </Modal>
 
   </div>

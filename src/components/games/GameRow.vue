@@ -3,7 +3,7 @@
 
     <GameHeader :game="game"></GameHeader>
 
-    <GameBody :game="game"></GameBody>
+    <GameBody :game="game" :readonly="readonly"></GameBody>
 
     <GameResults :game="game"></GameResults>
 
@@ -31,6 +31,9 @@ export default class GameRow extends Vue {
 
   @Prop()
   public game: Game;
+
+  @Prop()
+  public readonly: boolean;
 
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <section class="login-page">
     <div class="row justify-content-sm-center">
-      <div class="col col-sm-8 col-md-6 col-lg-4">
+      <div class="col col-sm-12 col-md-8 col-lg-6">
         <div class="card">
           <div class="card-body login">
             <form noValidate>
@@ -59,7 +59,15 @@
           </div>
           <div class="card-footer text-muted">
             <div class="links">
-              <router-link to="/auth/forgot-password">{{ $t('login.reset_password_link') }}</router-link>
+              <router-link :to="{ name: 'auth.forgot-password' }">
+                {{ $t('login.reset_password_link') }}
+              </router-link>
+
+              <hr class="lined">
+
+              <router-link to="/auth/register">
+                {{ $t('register.title') }}
+              </router-link>
             </div>
           </div>
         </div>
@@ -132,8 +140,13 @@ export default class Login extends Vue {
     this.log.info('isAuthenticated', this.isAuthenticated);
     this.log.info('hasFailed', this.hasFailed);
     if (this.isAuthenticated) {
-      this.log.info('Sign in was successfull. Redirecting to the games page.');
-      this.$router.push('/games');
+      this.log.info('Sign in was successful. Redirecting to the games page.');
+      this.$router.push({
+        name: 'user.games',
+        params: {
+          username: this.username,
+        },
+      });
     } else {
       if (this.hasFailed) {
         this.$noty.error('message.login_failed');

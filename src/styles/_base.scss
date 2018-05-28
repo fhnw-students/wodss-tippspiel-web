@@ -7,7 +7,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-top: 145px;
+  margin-top: 100px;
   margin-bottom: 60px;
 }
 
@@ -55,7 +55,6 @@ h1 {
 
 h2 {
   color: $gray-600;
-  margin-bottom: 0;
 }
 
 .text-cross {
@@ -63,5 +62,34 @@ h2 {
 }
 
 .page-title {
+  margin-bottom: 45px;
+
+  div.col-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    a {
+      margin-left: 15px;
+    }
+  }
+
+}
+
+.avatar {
+  border-radius: 100%;
+}
+
+td {
+  .avatar {
+    margin-right: 15px;
+  }
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+hr.lined.divided {
   margin-bottom: 45px;
 }

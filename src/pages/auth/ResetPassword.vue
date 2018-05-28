@@ -88,7 +88,9 @@ export default class ResetPassword extends Vue {
       try {
         await resetUserPassword(this.resetToken, this.password);
         this.$noty.success('message.reset_password_successful');
-        this.$router.push('/auth/login');
+        this.$router.push({
+          name: 'auth.login',
+        });
       } catch (_) {
         this.hasFailed = true;
         this.$noty.error('message.reset_password_failed');

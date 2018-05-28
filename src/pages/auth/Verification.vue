@@ -50,7 +50,9 @@ export default class Verification extends Vue {
     try {
       await verifyUser(this.verificationToken);
       this.$noty.success('message.verification_successful');
-      this.$router.push('/auth/login');
+      this.$router.push({
+        name: 'auth.login',
+      });
     } catch (_) {
       this.hasFailed = true;
     }

@@ -62,14 +62,25 @@ export const routes: RouteConfig[] = [
     name: 'ranking',
     component: () => import('@/pages/Ranking.vue'),
     meta: {
-      auth: false,
+      auth: true,
       guest: false,
     },
   },
   {
-    path: '/games',
-    name: 'games',
-    component: () => import('@/pages/Games.vue'),
+    path: '/users/:username/games',
+    name: 'user.games',
+    component: () => import('@/pages/UserGames.vue'),
+    props: true,
+    meta: {
+      auth: true,
+      guest: false,
+    },
+  },
+  {
+    path: '/teams/:teamId',
+    name: 'team.detail',
+    component: () => import('@/pages/TeamDetail.vue'),
+    props: true,
     meta: {
       auth: true,
       guest: false,
@@ -113,6 +124,7 @@ export const routes: RouteConfig[] = [
   },
   {
     path: '*',
+    name: 'notFound',
     component: () => import('@/pages/NotFound.vue'),
     meta: {
       auth: false,

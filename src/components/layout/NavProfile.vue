@@ -1,7 +1,7 @@
 <template>
   <div class="nav-item btn-group">
     <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <Gravatar :email="currentUser.email" :size="45" />
+      <Gravatar :email="currentUser.email" :size="40" />
     </button>
     <div class="dropdown-menu dropdown-menu-right">
       <div class="profile">
@@ -18,7 +18,7 @@
 
       <router-link
         class="dropdown-item"
-        to="/settings">
+        :to="{ name: 'settings' }">
         <i class="fas fa-cog"></i>
         {{ $t('settings.title') }}
       </router-link>
@@ -66,7 +66,9 @@ export default class NavProfile extends Vue {
 
   public onSignOutUser(): void {
     this.signOutUser();
-    this.$router.push('/');
+    this.$router.push({
+      name: 'home',
+    });
   }
 
 }

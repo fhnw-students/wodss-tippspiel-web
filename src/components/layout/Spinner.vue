@@ -36,6 +36,12 @@ export default class Spinner extends Vue { }
     animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   }
 
+  .btn-primary, .btn-success, .btn-danger {
+    .bounce1, .bounce2, .bounce3 {
+      background-color: white;
+    }
+  }
+
   .spinner .bounce1 {
     -webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;

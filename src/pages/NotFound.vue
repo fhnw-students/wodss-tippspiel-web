@@ -1,5 +1,19 @@
 <template>
   <section class="not-found-page">
-    <h1>Not Found 404</h1>
+
+    <div class="row page-title">
+      <div class="col">
+        <h1>{{ $t('notFound.title') }}</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="alert alert-info">
+          {{ $t('notFound.message') }}
+        </div>
+      </div>
+    </div>
+
   </section>
 </template>

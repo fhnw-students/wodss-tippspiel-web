@@ -5,6 +5,7 @@ export default {
   },
   app: {
     title: 'Tippspiel zur Weltmeisterschaft 2018',
+    title_small: 'Tippspiel',
   },
   nav: {
     profile: 'Profile',
@@ -13,6 +14,19 @@ export default {
   },
   ranking: {
     title: 'Ranglisten',
+    user: {
+      title: 'Users',
+    },
+    team: {
+      title: 'Tippgruppen',
+    },
+    table: {
+      header: {
+        name: 'Name',
+        score: 'Punkte',
+        games: 'Spiele',
+      },
+    },
   },
   settings: {
     title: 'Einstellungen',
@@ -39,6 +53,7 @@ export default {
   },
   games: {
     title: 'Tippspiel',
+    sub_title: 'Tipps von %{username}',
     points: '{points} Punkte',
     rules: {
       tipped_host_score_correctly: 'Korrekte Anzahl Heim-Tore:',
@@ -46,14 +61,41 @@ export default {
       tipped_winner_correctly: 'Korrekte Sieger:',
       balance_and_winner_correctly: 'Korrekte Tordifferenze + Sieger:',
     },
+    stats: {
+      host: 'Quote Heimmannschaft gewinnt',
+      draw: 'Quote Unentschieden',
+      guest: 'Quote Gastmannschaft gewinnt',
+    },
   },
   teams: {
     title: 'Tippgruppen',
+    create_group: 'Neue Gruppe erstellen',
+    group_name: 'Gruppenname',
+    group_points: 'Durchschnittliche Punkte',
+    delete_group: 'Aus dem Gruppe austreten',
+    leave_group: 'verlassen',
+    my_groups: 'Meine Gruppen',
+    no_groups: 'Du bist in keiner Gruppe',
+    invitations: 'Meine Einladungen',
+    invitation_group_name: 'Einladung von',
+    invitation_accept: 'annehmen',
+    invitation_deny: 'ablehnen',
+    group_details: 'Details',
+    invite: {
+      title: 'Freunde einladen',
+    },
+    update: {
+      title: 'Team bearbeiten',
+    },
+    create_title: 'Neues Team erstellen',
+    create_subtitle: 'Teamname',
+    create_enter_teamname: 'Teamnamen eingeben',
+    create_submit: 'Team erstellen',
   },
   home: {
-    title: 'Weltmeisterschaft 2018 in Russland',
-    sub_title: 'Tippspiel',
-    description: 'Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli',
+    title: 'Tippspiel',
+    sub_title: 'Zur Weltmeisterschaft 2018 in Russland',
+    description: 'Das ist eine Projekt-Arbeit von David Heimgartner, Gerhard Hirschfeld & Ken Iseli.',
   },
   login: {
     title: 'Bitte Anmelden',
@@ -90,12 +132,15 @@ export default {
   },
   label: {
     username: 'Username',
+    teamname: 'Teamname',
     email: 'E-Mail',
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
+    textfield_create_team: 'Teamname',
   },
   placeholder: {
     username: 'Username',
+    teamname: 'Teamname',
     email: 'E-Mail',
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
@@ -118,12 +163,26 @@ export default {
     register_failed: 'Sie konnten leider nicht registriert werden.',
     verification_successful: 'Sie wurden erfolgreich verifiziert. Sie können sich nun anmelden und los tippen! :-)',
     verification_failed: 'Leider konnte Ihr Account nicht verifiziert werden.',
-    forgot_password_failed: 'Leider kann ihr PW nicht zurückgesetzt werden.',
+    forgot_password_failed: 'Leider kann ihr Passwort nicht zurückgesetzt werden.',
     reset_password_successful: 'Password wurde erfolgreich zurückgesetzt',
     reset_password_failed: '@:message.forgot_password_failed',
     game_updated_successful: 'Spiel wurde erfoglreich gepflegt',
     create_game_successful: 'Spiel wurde erfoglreich erstellt',
     game_deleted_successful: 'Spiel wurde erfoglreich gelöscht',
+    team_invitation_accept_successful: 'Die Einladung wurde erfolgreich angenommen.',
+    team_invitation_deny_successful: 'Die Einladung wurde erfolgreich abgelehnt.',
+    team_invitation_accept_failed: 'Die Einladung konnte leider nicht angenommen werden.',
+    team_invitation_deny_failed: 'Die Einladung konnte leider nicht abgelehnt werden.',
+    team_leave_successful: 'Du hast das Team verlassen',
+    load_rankings_failed: 'Die Rankings konnten leider nicht geladen werden',
+    load_team_invitation_failed: 'Die Teameinladungen konnten leider nicht geladen werden',
+    team_invitation_successful: 'Die Teameinladungen wurde versendet',
+    team_invitation_failed: 'Die Teameinladungen konnten leider nicht versendet werden',
+    create_team_successful: 'Team wurde erstellt',
+    team_user_delete_successful: 'Teammitglied wurde gelöscht',
+    team_user_delete_failed: 'Teammitglied konnte nicht gelöscht werden',
+    load_team_failed: 'Teams konnten nicht geladen werden',
+    create_team_failed: 'Team konnte nicht erstellt werden',
   },
   connection: {
     server_unavailable: {
@@ -135,9 +194,15 @@ export default {
       message: 'Bitte stellen Sie sicher, dass Sie eine Internet Verbindung haben und laden Sie dann die Seite neu.',
     },
   },
+  notFound: {
+    title: '404 - Seite nicht gefunden',
+    message: 'Ihre angefragte Seite konnte nicht gefunden werden.',
+  },
   action: {
     save: 'Speichern',
     close: 'Schliessen',
     cancel: 'Abbrechen',
+    invite: 'Einladen',
+    delete: 'Löschen',
   },
 };

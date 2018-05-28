@@ -41,7 +41,6 @@ export const actions: ActionTree<AuthState, AuthState> = {
     router.push({
       name: 'auth.login',
     });
-    authApi.signOut();
   },
   [actionTypes.CHECK_AUTH]({ commit, state }: ActionContext<AuthState, AuthState>, credentials: Credentials): void {
     commit(mutationTypes.CHECK_AUTH);

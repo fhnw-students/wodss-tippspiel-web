@@ -8,7 +8,7 @@
         <input
           v-model="hostScore"
           autocomplete="off"
-          :disabled="game.isPlayed || isUpdating"
+          :disabled="!game.isOpenToTip || game.isPlayed || isUpdating || readonly === true"
           @keypress="onKeyPress($event, hostScore)"
           @blur.prevent="onHostScoreChanged()"
           type="text"
@@ -18,7 +18,7 @@
         <input
           v-model="guestScore"
           autocomplete="off"
-          :disabled="game.isPlayed || isUpdating"
+          :disabled="!game.isOpenToTip || game.isPlayed || isUpdating || readonly === true"
           @keypress="onKeyPress($event, guestScore)"
           @blur.prevent="onGuestScoreChanged()"
           type="text"
@@ -48,6 +48,9 @@ export default class GameBody extends Vue {
 
   @Prop()
   public game: Game;
+
+  @Prop()
+  public readonly: boolean;
 
   public hostScore: string = '';
   public guestScore: string = '';
@@ -148,6 +151,7 @@ export default class GameBody extends Vue {
       align-items: center;
       background: $gray-200;
       padding-left: 15px;
+      border-left: 4px solid $primary;
     }
 
     div.game-body-center {
@@ -209,6 +213,7 @@ export default class GameBody extends Vue {
       flex-direction: row-reverse;
       background: $gray-200;
       padding-right: 15px;
+      border-right: 4px solid $info;
     }
   }
 </style>
