@@ -14,11 +14,6 @@ export async function getCurrentUser(): Promise<User> {
   return plainToClass<User, User>(User, response.data);
 }
 
-export async function getMyGames(): Promise<Game[]> {
-  const response = await Vue.$http.get(`/users/me/games`);
-  return plainToClass<Game, Game[]>(Game, response.data);
-}
-
 export async function getUserGamesByUsername(username: string): Promise<Game[]> {
   const response = await Vue.$http.get(`/users/${username}/games`);
   return plainToClass<Game, Game[]>(Game, response.data);
