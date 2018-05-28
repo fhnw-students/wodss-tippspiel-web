@@ -1,4 +1,3 @@
-import { router } from './vue-router.plugin';
 /* ============
  * Axios
  * ============
