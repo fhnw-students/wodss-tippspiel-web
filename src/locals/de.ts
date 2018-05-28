@@ -79,6 +79,9 @@ export default {
     invite: {
       title: 'Freunde einladen',
     },
+    update: {
+      title: 'Team bearbeiten',
+    },
   },
   home: {
     title: 'Tippspiel',
@@ -120,6 +123,7 @@ export default {
   },
   label: {
     username: 'Username',
+    teamname: 'Teamname',
     email: 'E-Mail',
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',

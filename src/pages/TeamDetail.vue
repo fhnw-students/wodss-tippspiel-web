@@ -7,11 +7,15 @@
       </div>
     </div>
 
-    <TeamUserRanking v-if="hasLoaded" :team-id="team.id" />
+    <TeamUserRanking v-if="hasLoaded" :team-id="team.id" :owner="owner"/>
 
-    <hr class="lined divided">
+    <hr class="lined divided" v-if="hasLoaded && currentUserIsOwner">
 
     <TeamInviteForm v-if="hasLoaded && currentUserIsOwner" :team-id="team.id" />
+
+    <hr class="lined divided" v-if="hasLoaded && currentUserIsOwner">
+
+    <TeamUpdateForm v-if="hasLoaded && currentUserIsOwner" :team="team" />
 
   </section>
 </template>
@@ -25,6 +29,7 @@ import * as rankingApi from '@/services/api/ranking.api';
 import { Team } from '@/models/Team';
 import TeamUserRanking from '@/components/ranking/TeamUserRanking.vue';
 import TeamInviteForm from '@/components/teams/TeamInviteForm.vue';
+import TeamUpdateForm from '@/components/teams/TeamUpdateForm.vue';
 import { User } from '@/models/User';
 import { UserGetters } from '@/store/modules/user';
 import { TeamUser } from '@/models/TeamUser';
@@ -33,6 +38,7 @@ import { TeamUser } from '@/models/TeamUser';
   components: {
     TeamUserRanking,
     TeamInviteForm,
+    TeamUpdateForm,
   },
 })
 export default class TeamDetail extends Vue {
@@ -44,18 +50,22 @@ export default class TeamDetail extends Vue {
   public currentUser: User;
 
   public team: Team = new Team();
+  public owner: TeamUser = new TeamUser();
   public users: TeamUser[] = [];
   public hasLoaded = false;
   public currentUserIsOwner = false;
 
   public created(): void {
     this.loadContent();
+
+    this.$eventBus.$on('TEAM_UPDATED', () => this.loadContent());
   }
 
   public async loadContent(): Promise<void> {
     try {
       this.team = await teamApi.getTeamById(parseInt(this.teamId, 10));
       this.users = await teamApi.getTeamUserById(parseInt(this.teamId, 10));
+      this.owner = this.users.filter((user) => user.owner)[0];
       await this.verifyOwner();
       this.hasLoaded = true;
     } catch (_) {

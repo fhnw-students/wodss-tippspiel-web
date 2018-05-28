@@ -23,6 +23,7 @@
                 :to="{name: 'user.games', params: { username: ranking.username }}">
                 {{ ranking.username }}
               </router-link>
+              <i class="fas fa-user-secret owner-icon" v-if="owner.id === ranking.userId"></i>
             </td>
             <td class="text-right">{{ ranking.games }}</td>
             <td class="text-right">{{ ranking.points }}</td>
@@ -49,6 +50,7 @@ import Spinner from '@/components/layout/Spinner.vue';
 import Pagination from '@/components/Pagination.vue';
 import SpinnerButton from '@/components/layout/SpinnerButton.vue';
 import Gravatar from '@/components/layout/Gravatar.vue';
+import { TeamUser } from '@/models/TeamUser';
 
 @Component({
   components: {
@@ -62,6 +64,9 @@ export default class TeamUserRanking extends Vue {
 
   @Prop()
   public teamId: number;
+
+  @Prop()
+  public owner: TeamUser;
 
   public rankings: UserRanking[] = [];
   public isLoading: boolean = true;
@@ -91,3 +96,14 @@ export default class TeamUserRanking extends Vue {
 
 }
 </script>
+
+<style lang="scss" scoped>
+  @import '../../styles/colors';
+
+  .owner-icon {
+    color: $dark;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+
+</style>
