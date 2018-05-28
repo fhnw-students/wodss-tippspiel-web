@@ -62,7 +62,7 @@ export default class TeamInvitationRow extends Vue {
   public async onAcceptInvitation(): Promise<void> {
     this.isAccepting = true;
     try {
-      await teamInvitationApi.acceptById(this.invitation.team.id);
+      await teamInvitationApi.acceptById(this.invitation.id);
     } catch (_) {
       this.$noty.error('message.team_invitation_accept_failed');
       return;
