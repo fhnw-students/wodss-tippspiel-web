@@ -61,6 +61,11 @@ export default {
       tipped_winner_correctly: 'Korrekte Sieger:',
       balance_and_winner_correctly: 'Korrekte Tordifferenze + Sieger:',
     },
+    stats: {
+      host: 'Quote Heimmannschaft gewinnt',
+      draw: 'Quote Unentschieden',
+      guest: 'Quote Gastmannschaft gewinnt',
+    },
   },
   teams: {
     title: 'Tippgruppen',
