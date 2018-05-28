@@ -2,7 +2,9 @@
 
   <tr>
     <td>
-      <router-link :to="{ name: 'teams', params: { teamname: team.name } }" class="btn btn-link">
+      <router-link
+        class="btn btn-link"
+        :to="{name: 'team.detail', params: { teamId: team.id.toString() }}">
         {{ team.name }}
       </router-link>
     </td>

@@ -1,5 +1,6 @@
-import { User } from './User';
-
-export class TeamUser extends User {
-  public isAdmin: boolean;
+export class TeamUser {
+  public id: number;
+  public username: string;
+  public email: string;
+  public owner: boolean;
 }

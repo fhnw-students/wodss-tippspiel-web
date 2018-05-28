@@ -12,7 +12,7 @@
           <i class="fas fa-2x fa-trophy"></i>
         </router-link>
 
-        <NavProfile class="d-lg-none d-xl-none" v-if="isAuthenticated"/>
+        <NavProfile class="d-lg-none d-xl-none"/>
 
         <div class="collapse navbar-collapse" id="navbarToggler">
 
@@ -21,48 +21,23 @@
               <a class="nav-link">{{ $t('ranking.title') }}</a>
             </router-link>
 
-            <router-link :to="{ name: 'user.games', params: { username: currentUser.username } }" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated">
+            <router-link :to="{ name: 'user.games', params: { username: currentUser.username } }" tag="li" class="nav-item" active-class="active">
               <a class="nav-link">{{ $t('games.title') }}</a>
             </router-link>
 
-            <router-link :to="{ name: 'teams' }" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated">
+            <router-link :to="{ name: 'teams' }" tag="li" class="nav-item" active-class="active">
               <a class="nav-link">{{ $t('teams.title') }}</a>
             </router-link>
 
-            <router-link :to="{ name: 'admin.games' }" tag="li" class="nav-item" active-class="active" v-if="isAuthenticated && currentUser && currentUser.admin">
+            <router-link :to="{ name: 'admin.games' }" tag="li" class="nav-item" active-class="active" v-if="currentUser && currentUser.admin">
               <a class="nav-link">{{ $t('admin.title') }}</a>
-            </router-link>
-
-            <router-link :to="{ name: 'auth.login' }" tag="li" class="nav-item d-block d-lg-none" active-class="active" v-if="!isAuthenticated">
-              <a class="nav-link">{{ $t('login.sign_in') }}</a>
-            </router-link>
-
-            <router-link :to="{ name: 'auth.register' }" tag="li" class="nav-item d-block d-lg-none" active-class="active" v-if="!isAuthenticated">
-              <a class="nav-link">{{ $t('register.title') }}</a>
             </router-link>
 
           </ul>
 
-          <div class="my-2 my-lg-0 d-none d-lg-block">
-
-            <router-link
-              class="btn btn-outline-secondary my-2 my-md-2"
-              v-if="!isAuthenticated && $route.name !== 'auth.login'"
-              to="/auth/login">
-              {{ $t('login.sign_in') }}
-            </router-link>
-            <router-link
-              class="btn btn-outline-secondary my-2 my-md-2"
-              v-if="!isAuthenticated && $route.name !== 'auth.register'"
-              to="/auth/register">
-              {{ $t('register.title') }}
-            </router-link>
-
-          </div>
-
         </div>
 
-        <NavProfile class="d-none d-lg-block d-xl-block" v-if="isAuthenticated"/>
+        <NavProfile class="d-none d-lg-block d-xl-block"/>
 
       </div>
 
@@ -75,7 +50,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 
-import { AuthGetters } from '@/store/modules/auth';
 import NavProfile from './NavProfile.vue';
 import { UserGetters } from '@/store/modules/user';
 import { User } from '@/models/User';
@@ -86,9 +60,6 @@ import { User } from '@/models/User';
   },
 })
 export default class Header extends Vue {
-
-  @Getter(AuthGetters.IsAuthenticated)
-  public isAuthenticated: boolean;
 
   @Getter(UserGetters.GetCurrentUser)
   public currentUser: User;

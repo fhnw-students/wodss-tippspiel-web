@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ConnectionHandler>
-      <Header/>
+      <Header v-if="isAuthenticated"/>
       <main class="container">
         <router-view/>
       </main>
@@ -12,7 +12,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
 
+import { AuthGetters } from '@/store/modules/auth';
 import Header from './components/layout/Header.vue';
 import Footer from './components/layout/Footer.vue';
 import ConnectionHandler from './components/ConnectionHandler.vue';
@@ -24,5 +26,10 @@ import ConnectionHandler from './components/ConnectionHandler.vue';
     ConnectionHandler,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+
+  @Getter(AuthGetters.IsAuthenticated)
+  public isAuthenticated: boolean;
+
+}
 </script>

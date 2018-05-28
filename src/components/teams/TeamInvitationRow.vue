@@ -1,7 +1,7 @@
 <template>
   <tr >
     <td>
-      <router-link :to="{ name: 'teams', params: { teamname: invitation.team.name } }" class="btn btn-link">
+      <router-link :to="{ name: 'team.detail', params: { teamId: invitation.team.id.toString() } }" class="btn btn-link">
         {{ invitation.team.name }}
       </router-link>
     </td>
@@ -62,7 +62,7 @@ export default class TeamInvitationRow extends Vue {
   public async onAcceptInvitation(): Promise<void> {
     this.isAccepting = true;
     try {
-      await teamInvitationApi.acceptById(this.invitation.team.id);
+      await teamInvitationApi.acceptById(this.invitation.id);
     } catch (_) {
       this.$noty.error('message.team_invitation_accept_failed');
       return;

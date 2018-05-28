@@ -11,21 +11,12 @@
     <div class="row">
       <div class="col">
         <p>{{ $t('home.description') }}</p>
-      </div>
-    </div>
-
-    <div class="row d-block d-sm-none">
-      <div class="col text-center">
         <router-link
           class="btn btn-primary my-2 my-md-2"
           to="/auth/login">
           {{ $t('login.sign_in') }}
         </router-link>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col text-center">
         <router-link
           class="btn btn-success my-2 my-md-2"
           to="/auth/register">

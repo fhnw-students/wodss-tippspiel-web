@@ -5,14 +5,15 @@
       <div class="col">
         <h1>{{ $t('teams.title') }}</h1>
       </div>
-      <div class="col text-right">
-
-      </div>
     </div>
 
-  <TeamInvitations></TeamInvitations>
-  <MyTeams></MyTeams>
+    <TeamInvitations />
 
+    <MyTeams />
+
+    <hr class="lined divded">
+
+    <TeamCreaation />
 
   </section>
 </template>
@@ -21,13 +22,15 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 import TeamInvitations from '@/components/teams/TeamInvitations.vue';
+import TeamCreaation from '@/components/teams/TeamCreation.vue';
 import MyTeams from '@/components/teams/MyTeams.vue';
 
 @Component({
   components: {
     TeamInvitations,
     MyTeams,
+    TeamCreaation,
   },
 })
-export default class Teams extends Vue { }
+export default class Teams extends Vue {}
 </script>

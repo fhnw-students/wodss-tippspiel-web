@@ -14,6 +14,12 @@ export default {
   },
   ranking: {
     title: 'Ranglisten',
+    user: {
+      title: 'Users',
+    },
+    team: {
+      title: 'Tippgruppen',
+    },
     table: {
       header: {
         name: 'Name',
@@ -70,6 +76,16 @@ export default {
     invitation_accept: 'annehmen',
     invitation_deny: 'ablehnen',
     group_details: 'Details',
+    invite: {
+      title: 'Freunde einladen',
+    },
+    update: {
+      title: 'Team bearbeiten',
+    },
+    create_title: 'Neues Team erstellen',
+    create_subtitle: 'Teamname',
+    create_enter_teamname: 'Teamnamen eingeben',
+    create_submit: 'Team erstellen',
   },
   home: {
     title: 'Tippspiel',
@@ -111,12 +127,15 @@ export default {
   },
   label: {
     username: 'Username',
+    teamname: 'Teamname',
     email: 'E-Mail',
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
+    textfield_create_team: 'Teamname',
   },
   placeholder: {
     username: 'Username',
+    teamname: 'Teamname',
     email: 'E-Mail',
     password: 'Passwort',
     password_confirm: 'Passwort bestätigen',
@@ -151,6 +170,11 @@ export default {
     team_invitation_deny_failed: 'Die Einladung konnte leider nicht abgelehnt werden.',
     team_leave_successful: 'Du hast das Team verlassen',
     load_rankings_failed: 'Die Rankings konnten leider nicht geladen werden',
+    load_team_invitation_failed: 'Die Teameinladungen konnten leider nicht geladen werden',
+    team_invitation_successful: 'Die Teameinladungen wurde versendet',
+    team_invitation_failed: 'Die Teameinladungen konnten leider nicht versendet werden',
+    create_team_successful: 'Team wurde erstellt',
+    create_team_failed: 'Team konnte nicht erstellt werden',
   },
   connection: {
     server_unavailable: {
@@ -166,5 +190,6 @@ export default {
     save: 'Speichern',
     close: 'Schliessen',
     cancel: 'Abbrechen',
+    invite: 'Einladen',
   },
 };

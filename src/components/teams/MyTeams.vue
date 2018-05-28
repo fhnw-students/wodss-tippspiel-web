@@ -4,13 +4,15 @@
         <h2>{{$t('teams.my_groups')}}</h2>
 
         <table class="table table-striped" v-if="teams && teams.length > 0">
-          <tr>
-            <th>{{ $t('teams.group_name') }}</th>
-            <th></th>
-          </tr>
-
-          <MyTeamsRow v-for="team in teams" :key="team.id" :team="team"></MyTeamsRow>
-
+          <thead>
+            <tr>
+              <th>{{ $t('teams.group_name') }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <MyTeamsRow v-for="team in teams" :key="team.id" :team="team"></MyTeamsRow>
+          </tbody>
         </table>
         <div v-else class="p-3 mb-2 bg-info text-white">{{$t('teams.no_groups')}}</div>
       </div>
